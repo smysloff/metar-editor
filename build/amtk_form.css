@@ -1,0 +1,142 @@
+body {
+  font: 18px monospace;
+  margin: 0;
+  box-sizing: border-box;
+}
+input,
+select {
+  font: 16px monospace;
+}
+hr {
+  margin: 2rem 0;
+  border-color: #fff;
+}
+.align-center {
+  align-items: center;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.h-40 {
+  height: 40px;
+}
+.bold {
+  font-weight: bold;
+}
+.italic {
+  color: rgba(255,255,255,0.85);
+  font-size: 16px;
+}
+@media (max-width: 991px) {
+  .mobile_cols {
+    flex-direction: column !important;
+  }
+}
+.creation-form {
+  position: relative;
+}
+.creation-form__section {
+  box-sizing: border-box;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.creation-form__section_output {
+  background-color: #fff;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+.creation-form__section_input {
+  background-color: #0057a3;
+  color: #fff;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.creation-form__section_input hr {
+  border-color: rgba(255,255,255,0.2);
+}
+.creation-form__form {
+  max-width: calc(750px + 2rem);
+  margin: auto;
+}
+.creation-form__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.creation-form__cols {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.creation-form__col_grow {
+  flex-grow: 1;
+}
+.creation-form__label {
+  user-select: none;
+  white-space: nowrap;
+}
+.creation-form__input_text,
+.creation-form__input_date,
+.creation-form__input_time {
+  background-color: #00498a;
+  color: #fff;
+  border-width: 1px;
+  box-sizing: border-box;
+  font-family: monospace;
+  font-size: 16px;
+  border-color: #00498a;
+  border-style: outset;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 250px;
+}
+.creation-form__input_text::placeholder,
+.creation-form__input_date::placeholder,
+.creation-form__input_time::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+.creation-form__input_select,
+.creation-form__input_button {
+  background-color: #00498a;
+  color: #fff;
+  border-width: 1px;
+  box-sizing: border-box;
+  font-family: monospace;
+  font-size: 16px;
+  border-color: #fff;
+  border-style: solid;
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+}
+.creation-form__input_range {
+  width: 246px;
+}
+.creation-form__input_output {
+  width: 100%;
+}
+.creation-form__input_output {
+  border: 4px solid #5797e3;
+  border-radius: 2rem;
+  outline: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.5rem;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-family: "Fira Code", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+.creation-form__input_submit {
+  border-radius: 2rem;
+  border-style: none;
+  padding: calc(0.5rem + 5px) 1.25rem;
+  background-color: #0057a3;
+  color: #fff;
+}

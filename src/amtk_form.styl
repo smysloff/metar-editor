@@ -1,0 +1,168 @@
+// ======== Переменные ========
+
+$primary-color = #0057a3
+$secondary-color = #00498a
+$accent-color = #5797e3
+$text-light = white
+
+$font-size-base = 16px
+$font-size-lg = 18px
+$font-family = monospace
+
+$spacing = 1rem
+$border-radius = 0.5rem
+$border-radius-lg = 2rem
+
+
+// ======== Миксины ========
+
+flex-layout(direction, gap)
+  display flex
+  flex-direction direction
+  gap gap
+
+sticky-header()
+  position sticky
+  z-index 1
+  top 0
+
+input-style()
+  background-color $secondary-color
+  color $text-light
+  border-width 1px
+  box-sizing border-box
+  font-family $font-family
+  font-size $font-size-base
+
+
+// ======== Базовые стили ========
+
+body
+  font $font-size-lg $font-family
+  margin 0
+  box-sizing border-box
+
+input, select
+  font $font-size-base $font-family
+
+hr
+  margin 2rem 0
+  border-color $text-light
+
+
+// ======== Утилитарные классы ========
+
+.align-center
+  align-items center
+
+.mb-1
+  margin-bottom $spacing
+
+.h-40
+  height 40px
+
+.bold
+  font-weight bold
+
+.italic // @todo!
+  color rgba($text-light, .85)
+  font-size $font-size-base
+
+@media (max-width 991px)
+  .mobile_cols
+    flex-direction column !important
+
+
+// ======== Основная форма ========
+
+.creation-form
+  position relative
+
+  &__section
+    box-sizing border-box
+    padding-left $spacing
+    padding-right @padding-left
+
+    &_output
+      background-color $text-light
+      sticky-header()
+      width 100%
+      padding-top 1rem
+      padding-bottom 2rem
+
+    &_input
+      background-color $primary-color
+      color $text-light
+      padding-top 2rem
+      padding-bottom @padding-top
+
+      hr
+        border-color rgba($text-light, .2)
+
+  &__form
+    max-width calc(750px + 2rem)
+    margin auto
+
+  &__rows
+    flex-layout(column, 0.5rem)
+
+  &__cols
+    flex-layout(row, $spacing)
+
+  &__col
+    &_grow
+      flex-grow 1
+
+  &__label
+    user-select none
+    white-space nowrap
+
+  &__input
+    &_text
+    &_date
+    &_time
+      input-style()
+      border-color $secondary-color
+      border-style outset
+      border-radius $border-radius
+      padding .5rem $spacing
+      width 250px
+
+      &::placeholder
+        color rgba(255, 255, 255, .3)
+
+    &_select
+    &_button
+      input-style()
+      border-color $text-light
+      border-style solid
+      border-radius $border-radius-lg
+      padding .5rem 1.5rem
+
+    &_range
+      width 246px
+
+    &_output
+      width 100%
+
+    &_output
+      border 4px solid $accent-color
+      border-radius $border-radius-lg
+      outline none
+      padding-left $spacing
+      padding-right $spacing
+      padding-top .6rem
+      padding-bottom .5rem
+      box-sizing border-box
+      font-size $font-size-lg
+      font-family "Fira Code", sans-serif
+      font-optical-sizing auto
+      font-weight normal
+      font-style normal
+
+    &_submit
+      border-radius $border-radius-lg
+      border-style none
+      padding calc(0.5rem + 5px) 1.25rem
+      background-color $primary-color
+      color $text-light
