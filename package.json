@@ -4,16 +4,23 @@
   "devDependencies": {
     "@babel/core": "^7.27.1",
     "@babel/preset-env": "^7.27.2",
+    "autoprefixer": "^10.4.21",
     "gulp": "^5.0.0",
     "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-htmlmin": "^5.0.1",
     "gulp-notify": "^5.0.0",
     "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^10.0.0",
     "gulp-pug": "^5.0.0",
     "gulp-stylus": "^3.0.1",
+    "gulp-terser": "^2.1.0",
+    "postcss": "^8",
     "stylus": "^0.64.0"
   },
   "scripts": {
     "build": "gulp build",
-    "serve": "node examples/server.mjs"
+    "serve": "node examples/server.mjs",
+    "watch": "gulp watch"
   }
 }
