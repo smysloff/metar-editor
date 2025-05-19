@@ -3,14 +3,15 @@
 $primary-color = #0057a3
 $secondary-color = #00498a
 $accent-color = #5797e3
-$text-light = white
+$text-light = #ffffff
 
 $font-size-base = 16px
 $font-size-lg = 18px
 $font-family = monospace
 
 $spacing = 1rem
-$border-radius = 0.5rem
+$smallspacing = .5rem
+$border-radius = .5rem
 $border-radius-lg = 2rem
 
 
@@ -33,44 +34,6 @@ input-style()
   box-sizing border-box
   font-family $font-family
   font-size $font-size-base
-
-
-// ======== Базовые стили ========
-
-body
-  font $font-size-lg $font-family
-  margin 0
-  box-sizing border-box
-
-input, select
-  font $font-size-base $font-family
-
-hr
-  margin 2rem 0
-  border-color $text-light
-
-
-// ======== Утилитарные классы ========
-
-.align-center
-  align-items center
-
-.mb-1
-  margin-bottom $spacing
-
-.h-40
-  height 40px
-
-.bold
-  font-weight bold
-
-.italic // @todo!
-  color rgba($text-light, .85)
-  font-size $font-size-base
-
-@media (max-width 991px)
-  .mobile_cols
-    flex-direction column !important
 
 
 // ======== Основная форма ========
@@ -96,8 +59,9 @@ hr
       padding-top 2rem
       padding-bottom @padding-top
 
-      hr
-        border-color rgba($text-light, .2)
+  &__hr
+    border-color rgba($text-light, .2)
+    margin 2rem 0
 
   &__form
     max-width calc(750px + 2rem)
@@ -118,6 +82,8 @@ hr
     white-space nowrap
 
   &__input
+    font $font-size-base $font-family
+
     &_text
     &_date
     &_time
@@ -141,6 +107,10 @@ hr
 
     &_range
       width 246px
+
+    &_radio
+    &_checkbox
+      margin-right $smallspacing
 
     &_output
       width 100%
@@ -166,3 +136,27 @@ hr
       padding calc(0.5rem + 5px) 1.25rem
       background-color $primary-color
       color $text-light
+
+
+// ======== Вспомогательные классы ========
+
+.creation-form
+  &__align-center
+    align-items center
+
+  &__mb-1
+    margin-bottom $spacing
+
+  &__h-40px
+    height 40px
+
+  &__bold
+    font-weight bold
+
+  &__small
+    color rgba($text-light, .85)
+    font-size $font-size-base
+
+  @media (max-width 814px)
+    &__mobile-cols
+      flex-direction column

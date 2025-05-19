@@ -12,17 +12,17 @@
 // ############################################################# //
 
 // * Globals
-// * Core libraries code
-// * User space code
-// ** utils
+// * Core code
+// * User code
 // ** init
+// ** utils
 // ** event handlers
-// *** тип сводки
-// *** icao
-// *** дата и время
+// *** Тип сводки
+// *** ICAO
+// *** Дата и время
 // *** Ветер
 // *** Видимость
-// *** Явления погоды
+// *** Осадки и явления погоды
 // *** Облачность
 // *** Температура
 // *** Давление
@@ -32,8 +32,8 @@
 //  Globals                                                      //
 // ############################################################# //
 
-// ICAO list for search tips
-const ICAOS = [
+// Список ICAO для поисковых подсказок
+const AMTK_ICAOS = [
     'HKHB',
     'HRYR',
     'TAPT',
@@ -178,15 +178,85 @@ const ICAOS = [
     'UWWW',
 ]
 
-// Visibility Values
-const VISIBILITY_VALUES = []
-for (let i = 0;    i < 800;   i += 50)   VISIBILITY_VALUES.push(i)
-for (let i = 800;  i < 5000;  i += 100)  VISIBILITY_VALUES.push(i)
-for (let i = 5000; i < 10000; i += 1000) VISIBILITY_VALUES.push(i)
-                                         VISIBILITY_VALUES.push(9999)
+// Допустимые значения видимости
+const AMTK_VISIBILITY = []
+for (let i = 0;    i < 800;   i += 50)   AMTK_VISIBILITY.push(i)
+for (let i = 800;  i < 5000;  i += 100)  AMTK_VISIBILITY.push(i)
+for (let i = 5000; i < 10000; i += 1000) AMTK_VISIBILITY.push(i)
+                                         AMTK_VISIBILITY.push(9999)
+
+// Список вариантов осадков
+
+const AMTK_PRECIPITATION = [
+  'DZ',
+  'RA',
+  'SN',
+  'SG',
+  'PL',
+  'GS',
+  'GR',
+  'DZ',
+  'RA',
+  'SN',
+  'SG',
+  'PL',
+  'GS',
+  'GR',
+  'RASN',
+  'SNRA',
+  'SHSN',
+  'SHRA',
+  'SHGR',
+  'FZRA',
+  'FZDZ',
+  'TSRA',
+  'TSGR',
+  'TSGS',
+  'TSSN',
+  'DS',
+  'SS',
+]
+
+// Список погодных явлений
+
+const AMTK_PHENOMENA = [
+  'FG',
+  'FZFG',
+  'VCFG',
+  'MIFG',
+  'PRFG',
+  'BCFG',
+  'BR',
+  'HZ',
+  'FU',
+  'DRSN',
+  'DRSA',
+  'DRDU',
+  'DU',
+  'BLSN',
+  'BLDU',
+  'SQ',
+  'IC',
+  'TS',
+  'VCTS',
+  'VA',
+]
+
+
+// Список параметров интенсивности облачности
+
+const AMTK_CLOUDS = [
+  'SKC',
+  'NSC',
+  'FEW',
+  'SCT',
+  'BKN',
+  'OVC',
+]
+
 
 // ############################################################# //
-//  Core libraries code                                          //
+//  Core code                                                    //
 // ############################################################# //
 
 
@@ -304,6 +374,7 @@ class AMTK_CreationForm {
   //             результирующего выходного значения всей формы.
   //
   addHandler(groupName, options = {}) {
+
     // Если группы нет - создать её
     if (!this.groups.has(groupName)) {
       this.addGroup(groupName)
@@ -366,8 +437,14 @@ class AMTK_CreationForm {
 
 
 // ############################################################# //
-//  User space code                                              //
+//  User code                                                    //
 // ############################################################# //
+
+
+// init
+
+const amtk_metar_form = new AMTK_CreationForm('#metar_form')
+
 
 // utils
 
@@ -375,23 +452,37 @@ function isEmpty(value) {
   return value == null || value == ''
 }
 
-function isNotEmpty(value) {
-  return !isEmpty(value)
+function isNullable(value) {
+  return +value === 0
 }
 
 function toUpperCase(value) {
   return value.toUpperCase()
 }
 
+function toLowerCase(value) {
+  return value.toLowerCase()
+}
 
-// init
 
-const amtk_form = new AMTK_CreationForm('#metar_form')
+// Фабрика функции, которая поволяет переиспользовать свой код,
+// создав несколько функций с различными параметрами,
+// сохраненными в замыкании.
+function optionSelectionFabric(element, values) {
+  return function() {
+    for (const value of (values ?? [])) {
+      const option = document.createElement('option')
+      option.value = value
+      option.textContent = value
+      element.append(option)
+    }
+  }
+}
 
 
 // event handlers
 
-// тип сводки
+// Тип сводки
 
 // @todo metar cor
 // @todo speci cor
@@ -408,27 +499,27 @@ function initType() {
   group.value = ''
 }
 
-amtk_form.addHandler('type', {
+amtk_metar_form.addHandler('type', {
   name: 'metar',
   init: initType,
   update: toUpperCase,
 })
 
-amtk_form.addHandler('type', {
+amtk_metar_form.addHandler('type', {
   name: 'speci',
   init: initType,
   update: toUpperCase,
 })
 
 
-// icao
+// ICAO
 
 function updateICAO() {
   const { value } = this.elements.icao
   return value.length === 4 ? value.toUpperCase() : ''
 }
 
-amtk_form.addHandler('icao', {
+amtk_metar_form.addHandler('icao', {
 
   auxiliary() {
     const { type } = this.elements
@@ -445,7 +536,7 @@ amtk_form.addHandler('icao', {
                         .slice(0, 4)
 
     const icaos = search
-      ? ICAOS.filter((icao) => icao.startsWith(search))
+      ? AMTK_ICAOS.filter((icao) => icao.startsWith(search))
                                    .slice(0, 10)
       : []
 
@@ -472,17 +563,14 @@ amtk_form.addHandler('icao', {
 
 })
 
-amtk_form.addHandler('icao', {
+amtk_metar_form.addHandler('icao', {
 
   name: 'icao_variants',
 
-  event: 'click',
+  event: 'change',
 
   auxiliary(value, event) {
     const { icao } = this.elements
-    const variants = this.elements.icao_variants
-    console.log(event.target, event.currentTarget)
-    if (event.target === variants) return
     icao.value = value.toUpperCase()
   },
 
@@ -491,7 +579,7 @@ amtk_form.addHandler('icao', {
 })
 
 
-// дата и время
+// Дата и время
 
 function updateDateTime() {
   const { date, time } = this.elements
@@ -501,17 +589,17 @@ function updateDateTime() {
   return value.length === 7 ? value : ''
 }
 
-amtk_form.addHandler('datetime', {
+amtk_metar_form.addHandler('datetime', {
   name: 'date',
   update: updateDateTime,
 })
 
-amtk_form.addHandler('datetime', {
+amtk_metar_form.addHandler('datetime', {
   name: 'time',
   update: updateDateTime,
 })
 
-amtk_form.addHandler('datetime', {
+amtk_metar_form.addHandler('datetime', {
 
   name: 'current',
 
@@ -529,22 +617,21 @@ amtk_form.addHandler('datetime', {
 })
 
 
-// ветер
+// Ветер
 
 function updateWind() {
   const { units } = this.elements
   const { direction, speed, gust } = this.elements
 
   if (
-    isNotEmpty(direction.value)
-    && isNotEmpty(speed.value) && speed.value != 0
+    !isNullable(direction.value)
+    && !isNullable(speed.value)
   ) {
     const unitsValue = units.value.toUpperCase()
     const directionValue = direction.value.padStart(3, '0')
     const speedValue = speed.value.padStart(2, '0')
     const gustValue = (
-      isNotEmpty(gust.value)
-      && +gust.value != 0
+      !isNullable(gust.value)
       && +gust.value > +speedValue
     )
       ? 'G' + gust.value.padStart(2, '0')
@@ -555,17 +642,17 @@ function updateWind() {
   return ''
 }
 
-amtk_form.addHandler('wind', {
+amtk_metar_form.addHandler('wind', {
   name: 'mps',
   update: updateWind,
 })
 
-amtk_form.addHandler('wind', {
+amtk_metar_form.addHandler('wind', {
   name: 'kt',
   update: updateWind,
 })
 
-amtk_form.addHandler('wind', {
+amtk_metar_form.addHandler('wind', {
 
   name: 'direction',
 
@@ -578,30 +665,49 @@ amtk_form.addHandler('wind', {
 
   auxiliary(value) {
     const { direction_range } = this.elements
+    const { speed, speed_range } = this.elements
+    const { gust, gust_range } = this.elements
 
-    direction_range.value = isNotEmpty(value) || value != 0
-      ? Math.round(+value / 10) * 10
-      : 0
+    direction_range.value = isNullable(value)
+      ? 0
+      : Math.round(+value / 10) * 10
+
+    if (+value === 0) {
+      speed.value = 0
+      speed_range.value = 0
+      gust.value = 0
+      gust_range.value = 0
+    }
   },
 
   update: updateWind,
 
 })
 
-amtk_form.addHandler('wind', {
+amtk_metar_form.addHandler('wind', {
 
   name: 'direction_range',
 
   auxiliary(value) {
     const { direction } = this.elements
+    const { speed, speed_range } = this.elements
+    const { gust, gust_range } = this.elements
+
     direction.value = value
+
+    if (+value === 0) {
+      speed.value = 0
+      speed_range.value = 0
+      gust.value = 0
+      gust_range.value = 0
+    }
   },
 
   update: updateWind,
 
 })
 
-amtk_form.addHandler('wind', {
+amtk_metar_form.addHandler('wind', {
 
   name: 'speed',
 
@@ -612,14 +718,14 @@ amtk_form.addHandler('wind', {
 
   auxiliary(value) {
     const { speed_range } = this.elements
-    speed_range.value = isNotEmpty(value) ? +value : 0
+    speed_range.value = isNullable(value) ? 0 : +value
   },
 
   update: updateWind,
 
 })
 
-amtk_form.addHandler('wind', {
+amtk_metar_form.addHandler('wind', {
 
   name: 'speed_range',
 
@@ -632,7 +738,7 @@ amtk_form.addHandler('wind', {
 
 })
 
-amtk_form.addHandler('wind', {
+amtk_metar_form.addHandler('wind', {
 
   name: 'gust',
 
@@ -643,14 +749,14 @@ amtk_form.addHandler('wind', {
 
   auxiliary(value) {
     const { gust_range } = this.elements
-    gust_range.value = isNotEmpty(value) ? +value : 0
+    gust_range.value = isNullable(value) ? 0 : +value
   },
 
   update: updateWind,
 
 })
 
-amtk_form.addHandler('wind', {
+amtk_metar_form.addHandler('wind', {
 
   name: 'gust_range',
 
@@ -664,14 +770,15 @@ amtk_form.addHandler('wind', {
 })
 
 
-// видимость
+// Видимость
+// @todo CAVOK
 
 function updateVisibility() {
-    const { value } = this.elements.visibility
-    return (isNotEmpty(value) && value != 0) ? value : ''
+  const { value } = this.elements.visibility
+  return isNullable(value) ? '' : value
 }
 
-amtk_form.addHandler('visibility', {
+amtk_metar_form.addHandler('visibility', {
 
   format(value) {
     return value.replace(/\D/g, '').slice(0, 4)
@@ -687,11 +794,11 @@ amtk_form.addHandler('visibility', {
                : visibilityValue < 9999 ? 1000
                : 0
 
-    let visibilityRangeValue = VISIBILITY_VALUES.at(-1)
+    let visibilityRangeValue = AMTK_VISIBILITY.at(-1)
 
     if (base > 0) {
       const roundedValue = Math.floor(visibilityValue / base) * base
-      visibilityRangeValue = VISIBILITY_VALUES.indexOf(roundedValue)
+      visibilityRangeValue = AMTK_VISIBILITY.indexOf(roundedValue)
     }
 
     visibility_range.value = visibilityRangeValue.toString()
@@ -701,18 +808,18 @@ amtk_form.addHandler('visibility', {
 
 })
 
-amtk_form.addHandler('visibility', {
+amtk_metar_form.addHandler('visibility', {
 
   name: 'visibility_range',
 
   init(value) {
     const { visibility_range } = this.elements
-    visibility_range.setAttribute('max', VISIBILITY_VALUES.length - 1)
+    visibility_range.setAttribute('max', AMTK_VISIBILITY.length - 1)
   },
 
   auxiliary(value) {
     const { visibility } = this.elements
-    visibility.value = VISIBILITY_VALUES.at(+value)
+    visibility.value = AMTK_VISIBILITY.at(+value)
   },
 
   update: updateVisibility,
@@ -720,45 +827,27 @@ amtk_form.addHandler('visibility', {
 })
 
 
-// явления погоды
+// Осадки и явления погоды
 
-function updateWeather() {
-  const { value } = this.elements.weather
-  return value.length > 1 ? value : ''
-}
+const initPrecipitation = optionSelectionFabric(
+  amtk_metar_form.elements.precipitation,
+  AMTK_PRECIPITATION
+)
 
-function auxiliaryWeatherIntensity(_, event) {
-  const { weather, intensity } = this.elements
-  for (const checkbox of intensity) {
-    if (checkbox === event.target) {
-      weather.value = (event.target.checked ? checkbox.value : '')
-        + weather.value.replace(/[^A-Z]/, '')
-    } else {
-      checkbox.checked = false
-    }
-  }
-}
+const initPhenomena = optionSelectionFabric(
+  amtk_metar_form.elements.phenomena,
+  AMTK_PHENOMENA
+)
 
-function auxiliaryWeatherVariants(value, event) {
-  const { weather } = this.elements
-  const variants = this.elements.weather_variants
-  const phenomenas = this.elements.weather_phenomenas
-  if ([variants, phenomenas].includes(event.target)) {
-    return
-  }
-  weather.value += value.toUpperCase()
-}
-
-amtk_form.addHandler('weather', {
-
-  format(value) {
-
+function formatWeather(value) {
     const { intensity } = this.elements
 
     // символ, не в диапазоне от 'A' до 'Z' в начале строки
     // или не '+', не '-' и не в диапазоне от 'A' до 'Z' не в начале строки
     const formated = value.toUpperCase()
-                          .replace(/(?<=^)[^-+A-Z]|(?<!^)[^A-Z]/, '')
+                          .replace(/(?<=^)[^-+A-Z]|(?<!^)[^A-Z ]/, '')
+                          .replace(/^-\s/, '-')
+                          .replace(/\s{2,}/g, ' ')
 
     const sign = formated.at(0)
     for (const checkbox of intensity) {
@@ -766,43 +855,84 @@ amtk_form.addHandler('weather', {
     }
 
     return formated
-  },
+}
 
+function updateWeather() {
+  const { value } = this.elements.weather
+  return value.length > 1 ? value : ''
+}
+
+function auxiliaryIntensity(_, event) {
+  const { weather, intensity } = this.elements
+  for (const checkbox of intensity) {
+    if (checkbox === event.target) {
+      weather.value = (event.target.checked ? checkbox.value : '')
+        + weather.value.replace(/[^A-Z ]/, '')
+    } else {
+      checkbox.checked = false
+    }
+  }
+}
+
+function auxiliaryWeather(value, event) {
+  const { weather } = this.elements
+  if (
+    weather.value.length > 2
+    || weather.value.length === 2 && weather.value.at(0) !== '!'
+  ) {
+    weather.value += ' '
+  }
+  weather.value += value.toUpperCase()
+}
+
+amtk_metar_form.addHandler('weather', {
+  format: formatWeather,
   update: updateWeather,
-
 })
 
-amtk_form.addHandler('weather', {
+amtk_metar_form.addHandler('weather', {
   name: 'weather_minus',
   event: 'click',
-  auxiliary: auxiliaryWeatherIntensity,
+  auxiliary: auxiliaryIntensity,
   update: updateWeather,
 })
 
-amtk_form.addHandler('weather', {
+amtk_metar_form.addHandler('weather', {
   name: 'weather_plus',
   event: 'click',
-  auxiliary: auxiliaryWeatherIntensity,
+  auxiliary: auxiliaryIntensity,
   update: updateWeather,
 })
 
-amtk_form.addHandler('weather', {
-  name: 'weather_variants',
-  event: 'click',
-  auxiliary: auxiliaryWeatherVariants,
+amtk_metar_form.addHandler('weather', {
+  name: 'precipitation',
+  init: initPrecipitation,
+  event: 'change',
+  auxiliary: auxiliaryWeather,
   update: updateWeather,
 })
 
-amtk_form.addHandler('weather', {
-  name: 'weather_phenomenas',
-  event: 'click',
-  auxiliary: auxiliaryWeatherVariants,
+amtk_metar_form.addHandler('weather', {
+  name: 'phenomena',
+  init: initPhenomena,
+  event: 'change',
+  auxiliary: auxiliaryWeather,
   update: updateWeather,
 })
 
 
-// облака
+// Облачность
 // @todo 4 слоя
+
+const initClouds = optionSelectionFabric(
+  amtk_metar_form.elements.clouds_variants,
+  AMTK_CLOUDS
+)
+
+function formatClouds(value) {
+  return value.toUpperCase()
+              .replace(/[^A-Z\d]/, '')
+}
 
 function updateClouds() {
   const { value } = this.elements.clouds
@@ -811,7 +941,8 @@ function updateClouds() {
   }
 }
 
-function auxiliaryClouds(elements) {
+function auxiliaryClouds() {
+  const { elements } = amtk_metar_form // @todo <- это очень плохо!
   const { clouds, height } = elements
   const variants = elements.clouds_variants
   const types = elements.clouds_type
@@ -845,17 +976,14 @@ function auxiliaryCloudsType(_, event) {
       continue
     }
   }
-  auxiliaryClouds(this.elements)
+  auxiliaryClouds()
 }
 
-amtk_form.addHandler('clouds', {
+amtk_metar_form.addHandler('clouds', {
 
   name: 'clouds',
 
-  format(value) {
-    return value.toUpperCase()
-                .replace(/[^A-Z\d]/, '')
-  },
+  format: formatClouds,
 
   auxiliary(value) {
     let slice = ''
@@ -863,12 +991,12 @@ amtk_form.addHandler('clouds', {
     // изменение ползунка height
     const { height } = this.elements
     slice = value.replace(/\D/g, '').slice(0, 3)
-    const number = slice === '' ? 0 : parseInt(slice)
+    const number = isNullable(slice) ? 0 : +slice
     height.value = number > 100 ? 100 : number
 
     // выбор соответствующего cloud variant
     const variants = this.elements.clouds_variants
-    slice = value.slice(0, 3).toLowerCase()
+    slice = value.slice(0, 3)
     for (const variant of variants.options) {
       if (variant.value === slice) {
         variants.value = variant.value
@@ -878,8 +1006,8 @@ amtk_form.addHandler('clouds', {
 
     // выбор соответствующего cloud type
     const types = this.elements.clouds_type
-    slice = value.replace(/\s/g, '').slice(6).toLowerCase()
-    console.log(slice)
+    slice = value.replace(/\s/g, '').slice(6)
+
     for (const type of types) {
       type.checked = type.value === slice
     }
@@ -890,40 +1018,28 @@ amtk_form.addHandler('clouds', {
 
 })
 
-amtk_form.addHandler('clouds', {
+amtk_metar_form.addHandler('clouds', {
   name: 'height',
-  auxiliary(value) {
-    auxiliaryClouds(this.elements)
-  },
+  auxiliary: auxiliaryClouds,
   update: updateClouds,
 })
 
-amtk_form.addHandler('clouds', {
-
+amtk_metar_form.addHandler('clouds', {
   name: 'clouds_variants',
-  event: 'click',
-
-  auxiliary(value, event) {
-    const { clouds, height } = this.elements
-    const variants = this.elements.clouds_variants
-    if (event.target === variants) {
-      return
-    }
-    auxiliaryClouds(this.elements)
-  },
-
+  init: initClouds,
+  event: 'change',
+  auxiliary: auxiliaryClouds,
   update: updateClouds,
-
 })
 
-amtk_form.addHandler('clouds', {
+amtk_metar_form.addHandler('clouds', {
   name: 'cb',
   event: 'click',
   auxiliary: auxiliaryCloudsType,
   update: updateClouds,
 })
 
-amtk_form.addHandler('clouds', {
+amtk_metar_form.addHandler('clouds', {
   name: 'tcu',
   event: 'click',
   auxiliary: auxiliaryCloudsType,
@@ -988,26 +1104,26 @@ function updateTemperature(value, event) {
     : ''
 }
 
-amtk_form.addHandler('temperature', {
+amtk_metar_form.addHandler('temperature', {
   format: formatTemperature,
   auxiliary: auxiliaryTemperature,
   update: updateTemperature,
 })
 
-amtk_form.addHandler('temperature', {
+amtk_metar_form.addHandler('temperature', {
   name: 'temperature_range',
   auxiliary: auxiliaryTemperatureRange,
   update: updateTemperature,
 })
 
-amtk_form.addHandler('temperature', {
+amtk_metar_form.addHandler('temperature', {
   name: 'dew_point',
   format: formatTemperature,
   auxiliary: auxiliaryTemperature,
   update: updateTemperature,
 })
 
-amtk_form.addHandler('temperature', {
+amtk_metar_form.addHandler('temperature', {
   name: 'dew_point_range',
   auxiliary: auxiliaryTemperatureRange,
   update: updateTemperature,
@@ -1020,7 +1136,7 @@ function updatePressure(value, event) {
   return 'Q' + value.padStart(4, '0')
 }
 
-amtk_form.addHandler('pressure', {
+amtk_metar_form.addHandler('pressure', {
 
   format(value) {
     return value.replace(/\D/g, '').slice(0, 4)
@@ -1039,7 +1155,7 @@ amtk_form.addHandler('pressure', {
   update: updatePressure,
 })
 
-amtk_form.addHandler('pressure', {
+amtk_metar_form.addHandler('pressure', {
 
   name: 'pressure_range',
 

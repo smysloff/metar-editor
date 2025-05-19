@@ -1,4 +1,4 @@
-.creation-form#metar_form
+#metar_form.creation-form
 
   section.creation-form__section.creation-form__section_output
     form.creation-form__form(
@@ -11,16 +11,16 @@
         .creation-form__row
           .creation-form__cols
             .creation-form__col
-               label.creation-form__label(for='report') Редактор сводок
+               label.creation-form__label(for='report') Редактор METAR/SPECI
         .creation-form__row
-          .creation-form__cols.mobile_cols
+          .creation-form__cols.creation-form__mobile-cols
             .creation-form__col.creation-form__col_grow
-              input.creation-form__input.creation-form__input_output#report(
+              input#report.creation-form__input.creation-form__input_output(
                 type='text'
                 name='report'
               )
             .creation-form__col
-              input.creation-form__input.creation-form__input_submit#submit(
+              input#submit.creation-form__input.creation-form__input_submit(
                 type='submit'
                 value='Сохранить'
               )
@@ -38,118 +38,122 @@
             label.creation-form__label Тип сводки
         .creation-form__row.creation-form__cols
           .creation-form__col
-            input.creation-form__input.creation-form__input_radio#metar(
-              type='radio'
-              name='type'
-              value='metar'
-              checked
-            )
-            label.creation-form__label(for='metar') METAR
+            label.creation-form__label(for='metar')
+              input#metar.creation-form__input.creation-form__input_radio(
+                type='radio'
+                name='type'
+                value='metar'
+                checked
+              )
+              span.creation-form__span METAR
           .creation-form__col
-            input.creation-form__input.creation-form__input_radio#speci(
-              type='radio'
-              name='type'
-              value='speci'
-            )
-            label.creation-form__label(for='speci') SPECI
+            label.creation-form__label(for='speci')
+              input#speci.creation-form__input.creation-form__input_radio(
+                type='radio'
+                name='type'
+                value='speci'
+              )
+              span.creation-form__span SPECI
 
-      hr
+      hr.creation-form__hr
 
       // ICAO
       .creation-form__rows
         .creation-form__row.creation-form__cols
           .creation-form__col
             label.creation-form__label(for='icao') ICAO
-        .creation-form__row.creation-form__cols.mobile_cols
+        .creation-form__row.creation-form__cols.creation-form__mobile-cols
           .creation-form__col
-            input.creation-form__input.creation-form__input_text#icao(
+            input#icao.creation-form__input.creation-form__input_text(
               type='text'
               name='icao'
               placeholder='UUEE'
           )
           .creation-form__col
-            select.creation_form__input.creation-form__input_select#icao_variants(disabled)
+            select#icao_variants.creation-form__input.creation-form__input_select(disabled)
               option Не найдено
 
-      hr
+      hr.creation-form__hr
 
       // Дата и время
       .creation-form__rows
         .creation-form__row.creation-form__cols
           .creation-form__col
             label.creation-form__label(for='date') Дата и время
-        .creation-form__row.creation-form__cols.mobile_cols
+        .creation-form__row.creation-form__cols.creation-form__mobile-cols
           .creation-form__col
-            input.creation-form__input.creation-form__input_date#date(
+            input#date.creation-form__input.creation-form__input_date(
               type='date'
               name='date'
             )
           .creation-form__col
-            input.creation-form__input.creation-form__input_time#time(
+            input#time.creation-form__input.creation-form__input_time(
               type='time'
               name='time'
               step='60'
             )
           .creation-form__col
-            input.creation-form__input.creation-form__input_button#current(
+            input#current.creation-form__input.creation-form__input_button(
               type='button'
               name='current'
               value='Сейчас'
             )
 
-      hr
+      hr.creation-form__hr
 
       // Ветер
       .creation-form__rows
         .creation-form__row.creation-form__cols
           .creation-form__col
             label.creation-form__label(for='direction') Ветер
-        .creation-form__row.creation-form__cols.mb-1
+        .creation-form__row.creation-form__cols.creation-form__mb-1
           .creation-form__col
-            input.creation-form__input.creation-form__input_radio#mps(
-              type='radio'
-              name='units'
-              value='mps'
-              checked
-            )
-            label.creation-form__label(for='mps') MPS
+            label.creation-form__label(for='mps')
+              input#mps.creation-form__input.creation-form__input_radio(
+                type='radio'
+                name='units'
+                value='mps'
+                checked
+              )
+              span.creation-form__span MPS
           .creation-form__col
-            input.creation-form__input.creation-form__input_radio#kt(
-              type='radio'
-              name='units'
-              value='kt'
-            )
-            label.creation-form__label(for='kt') KT
-        .creation-form__row.creation-form__cols.mobile_cols
+            label.creation-form__label(for='kt')
+              input#kt.creation-form__input.creation-form__input_radio(
+                type='radio'
+                name='units'
+                value='kt'
+              )
+              span.creation-form__span KT
+        .creation-form__row.creation-form__cols.creation-form__mobile-cols
           .creation-form__col.creation-form__rows
             .creation-form__row
-              label.creation-form__label.italic(for='direction') Направление
+              label.creation-form__label.creation-form__small(for='direction') Направление
             .creation-form__row
-              input.creation-form__input.creation-form__input_text#direction(
+              input#direction.creation-form__input.creation-form__input_text(
                 type='text'
                 name='direction'
                 placeholder='180'
               )
             .creation-form__row
-              input.creation-form__input.creation-form__input_range#direction_range(
+              input#direction_range.creation-form__input.creation-form__input_range(
                 type='range'
                 name='direction_range'
                 min='0'
-                max='350'
+                max='360'
                 step='10'
                 value='0'
               )
           .creation-form__col.creation-form__rows
             .creation-form__row
-              label.creation-form__label.italic(for='speed') Скорость
+              label.creation-form__label.creation-form__small(for='speed') Скорость
             .creation-form__row
-              input.creation-form__input.creation-form__input_text#speed(
+              input#speed.creation-form__input.creation-form__input_text(
                 type='text'
                 name='speed'
                 placeholder='10'
               )
             .creation-form__row
-              input.creation-form__input.creation-form__input_range#speed_range(
+              input#speed_range.creation-form__input.creation-form__input_range(
                 type='range'
                 name='speed_range'
                 min='0'
@@ -159,15 +163,15 @@
               )
           .creation-form__col.creation-form__rows
             .creation-form__row
-              label.creation-form__label.italic(for='gust') Порывы
+              label.creation-form__label.creation-form__small(for='gust') Порывы
             .creation-form__row
-              input.creation-form__input.creation-form__input_text#gust(
+              input#gust.creation-form__input.creation-form__input_text(
                 type='text'
                 name='gust'
                 placeholder='15'
               )
             .creation-form__row
-              input.creation-form__input.creation-form__input_range#gust_range(
+              input#gust_range.creation-form__input.creation-form__input_range(
                 type='range'
                 name='gust_range'
                 min='0'
@@ -176,7 +180,7 @@
                 value='0'
               )
 
-      hr
+      hr.creation-form__hr
 
       // Видимость
       .creation-form__rows
@@ -200,21 +204,21 @@
                 value='0'
               )
 
-      hr
+      hr.creation-form__hr
 
       // Явления погоды
       .creation-form__rows
         .creation-form__row.creation-form__cols
           .creation-form__col
             label.creation-form__label(for='weather') Явления погоды
-        .creation-form__row.creation-form__cols.mobile_cols
+        .creation-form__row.creation-form__cols.creation-form__mobile-cols
           .creation-form__col
             input#weather.creation-form__input.creation-form__input_text(
               type='text'
               name='weather'
               placeholder='-SNRA'
             )
-          .creation-form__col.creation-form__cols.align-center
+          .creation-form__col.creation-form__cols.creation-form__align-center
             .creation-form__col
               label.creation-form__label(for='weather_minus')
                 input#weather_minus.creation-form__input.creation-form__input_checkbox(
@@ -231,68 +235,21 @@
                   value='+'
                 )
                 span.creation-form__span +
-          // Осадки (@todo weather_variants -> precipitation)
+          // Осадки
           .creation-form__col
-            select#weather_variants.creation-form__input.creation-form__input_select
-              option(value='DZ')   DZ
-              option(value='RA')   RA
-              option(value='SN')   SN
-              option(value='SG')   SG
-              option(value='PL')   PL
-              option(value='GS')   GS
-              option(value='GR')   GR
-              option(value='DZ')   DZ
-              option(value='RA')   RA
-              option(value='SN')   SN
-              option(value='SG')   SG
-              option(value='PL')   PL
-              option(value='GS')   GS
-              option(value='GR')   GR
-              option(value='RASN') RASN
-              option(value='SNRA') SNRA
-              option(value='SHSN') SHSN
-              option(value='SHRA') SHRA
-              option(value='SHGR') SHGR
-              option(value='FZRA') FZRA
-              option(value='FZDZ') FZDZ
-              option(value='TSRA') TSRA
-              option(value='TSGR') TSGR
-              option(value='TSGS') TSGS
-              option(value='TSSN') TSSN
-              option(value='DS')   DS
-              option(value='SS')   SS
-          // Явления
+            select#precipitation.creation-form__input.creation-form__input_select
+          // Явления погоды
           .creation-form__col
-            select#weather_phenomenas.creation-form__input.creation-form__input_select
-              option(value='FG')   FG
-              option(value='FZFG') FZFG
-              option(value='VCFG') VCFG
-              option(value='MIFG') MIFG
-              option(value='PRFG') PRFG
-              option(value='BCFG') BCFG
-              option(value='BR')   BR
-              option(value='HZ')   HZ
-              option(value='FU')   FU
-              option(value='DRSN') DRSN
-              option(value='DRSA') DRSA
-              option(value='DRDU') DRDU
-              option(value='DU')   DU
-              option(value='BLSN') BLSN
-              option(value='BLDU') BLDU
-              option(value='SQ')   SQ
-              option(value='IC')   IC
-              option(value='TS')   TS
-              option(value='VCTS') VCTS
-              option(value='VA')   VA
+            select#phenomena.creation-form__input.creation-form__input_select
 
-      hr
+      hr.creation-form__hr
 
       // Облачность
       .creation-form__rows
         .creation-form__row.creation-form__cols
           .creation-form__col
             label.creation-form__label(for='clouds') Облачность
-        .creation-form__row.creation-form__cols.mobile_cols
+        .creation-form__row.creation-form__cols.creation-form__mobile-cols
             .creation-form__col.creation-form__rows
               .creation-form__row
                 input#clouds.creation-form__input.creation-form__input_text(
@@ -311,19 +268,13 @@
                 )
             .creation-form__col
               select#clouds_variants.creation-form__input.creation-form__input_select
-                option(value='skc') SKC
-                option(value='nsc') NSC
-                option(value='few') FEW
-                option(value='sct') SCT
-                option(value='bkn') BKN
-                option(value='ovc') OVC
-            .creation-form__col.creation-form__cols.h-40.align-center
+            .creation-form__col.creation-form__cols.creation-form__h-40px.creation-form__align-center
               .creation-form__col
                 label.creation-form__label(for='cb')
                   input#cb.creation-form__input.creation-form__input_checkbox(
                     type='checkbox'
                     name='clouds_type'
-                    value='cb'
+                    value='CB'
                   )
                   span.creation-form__span CB
               .creation-form__col
@@ -331,22 +282,22 @@
                   input#tcu.creation-form__input.creation-form__input_checkbox(
                     type='checkbox'
                     name='clouds_type'
-                    value='tcu'
+                    value='TCU'
                   )
                   span.creation-form__span TCU
-      hr
+      hr.creation-form__hr
 
       // Температура
       .creation-form__rows
         .creation-form__row.creation-form__cols
             .creation-form__col.creation-form__rows
-              .creation-form__row.creation-form__cols.mb-1
+              .creation-form__row.creation-form__cols.creation-form__mb-1
                 .creation-form__col
                   label.creation-form__label Температура
-              .creation-form__row.creation-form__cols.mobile_cols
+              .creation-form__row.creation-form__cols.creation-form__mobile-cols
                 .creation-form__col.creation-form__rows
                   .creation-form__row
-                    label.creation-form__label.italic(for='temperature') Воздух
+                    label.creation-form__label.creation-form__small(for='temperature') Воздух
                   .creation-form__row
                     input#temperature.creation-form__input.creation-form__input_text(
                       type='text'
@@ -364,7 +315,7 @@
                     )
                 .creation-form__col.creation-form__rows
                   .creation-form__row
-                    label.creation-form__label.italic(for='dew_point') Точка росы
+                    label.creation-form__label.creation-form__small(for='dew_point') Точка росы
                   .creation-form__row
                     input#dew_point.creation-form__input.creation-form__input_text(
                       type='text'
@@ -381,7 +332,7 @@
                       value='0'
                     )
 
-      hr
+      hr.creation-form__hr
 
       // Давление
       .creation-form__rows

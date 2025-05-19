@@ -1,10 +1,13 @@
 {
   "name": "WeatherReportEditor",
+  "type": "module",
   "packageManager": "yarn@4.6.0",
   "devDependencies": {
     "@babel/core": "^7.27.1",
     "@babel/preset-env": "^7.27.2",
+    "@vitejs/plugin-legacy": "^6.1.1",
     "autoprefixer": "^10.4.21",
+    "cssnano": "^7.0.7",
     "gulp": "^5.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
@@ -16,11 +19,21 @@
     "gulp-stylus": "^3.0.1",
     "gulp-terser": "^2.1.0",
     "postcss": "^8",
-    "stylus": "^0.64.0"
+    "pug": "^3.0.3",
+    "pug-cli": "^1.0.0-alpha6",
+    "stylus": "^0.64.0",
+    "terser": "^5.39.2",
+    "vite": "^6.3.5",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-pug": "^0.4.1"
   },
   "scripts": {
-    "build": "gulp build",
     "serve": "node examples/server.mjs",
-    "watch": "gulp watch"
+    "gulp_build": "gulp build",
+    "gulp_watch": "gulp watch",
+    "dev": "vite",
+    "vite-build": "vite build && mv dist/amtk_form.js dist/amtk_form.min.js && cp dist/amtk_form.css dist/_amtk_form.scss",
+    "pug-build": "pug src/amtk_form.pug --out dist",
+    "build": "yarn vite-build && yarn pug-build"
   }
 }
