@@ -32,7 +32,7 @@
     "gulp_build": "gulp build",
     "gulp_watch": "gulp watch",
     "dev": "vite",
-    "vite-build": "vite build && mv dist/amtk_form.js dist/amtk_form.min.js && cp dist/amtk_form.css dist/_amtk_form.scss",
+    "vite-build": "vite build && mv dist/amtk_form.js dist/amtk_form.min.js && mv dist/amtk_form.css dist/_amtk_form.scss",
     "pug-build": "pug src/amtk_form.pug --out dist",
     "build": "yarn vite-build && yarn pug-build"
   }
