@@ -1,0 +1,59 @@
+.amtk_metar_editor
+  font 18px monospace
+  box-sizing border-box
+  position relative
+  width 728px
+  margin-left auto
+  margin-right @margin-left
+
+  form
+    padding-left 1rem
+    padding-right @padding-left
+
+
+  form[name='amtk_form_output']
+    position sticky
+    bottom 0
+    background-color white
+    border-top 1px solid currentColor
+    padding-top 1rem
+    padding-bottom @padding-top
+
+  div
+    margin-bottom .5rem
+
+  hr
+    margin-top 1.5rem
+    margin-bottom @margin-top
+
+  input[type='text']
+  input[type='date']
+  input[type='time']
+  input[type='button']
+  select
+  textarea
+    box-sizing border-box
+    padding .5rem 1rem
+
+  input[type='range']
+  textarea
+    width 100%
+
+  textarea
+    margin-bottom 1rem
+
+  label
+    font-weight bold
+
+  input
+  textarea
+  select
+  option
+    font inherit
+
+  #amtk_metar_icao
+  #amtk_metar_direction
+  #amtk_metar_speed
+  #amtk_metar_gust
+    width calc(11ch + 2.25rem)
+
