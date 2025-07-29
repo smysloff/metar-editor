@@ -1,357 +1,331 @@
-#metar_form.creation-form
+div#amtk_metar_editor.amtk_metar_editor
 
-  section.creation-form__section.creation-form__section_output
-    form.creation-form__form(
-      name='amtk_output'
-      method='post'
-    )
+  form(name='amtk_form_input')
 
-      // Сводка
-      .creation-form__rows
-        .creation-form__row
-          .creation-form__cols
-            .creation-form__col
-               label.creation-form__label(for='report') Редактор METAR/SPECI
-        .creation-form__row
-          .creation-form__cols.creation-form__mobile-cols
-            .creation-form__col.creation-form__col_grow
-              input#report.creation-form__input.creation-form__input_output(
-                type='text'
-                name='report'
-              )
-            .creation-form__col
-              input#submit.creation-form__input.creation-form__input_submit(
-                type='submit'
-                value='Сохранить'
-              )
 
-  section.creation-form__section.creation-form__section_input
-    form.creation-form__form(
-      name='amtk_input'
-      method='post'
-    )
+    // Type
 
-      // Тип сводки
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label Тип сводки
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label(for='metar')
-              input#metar.creation-form__input.creation-form__input_radio(
-                type='radio'
-                name='type'
-                value='metar'
-                checked
-              )
-              span.creation-form__span METAR
-          .creation-form__col
-            label.creation-form__label(for='speci')
-              input#speci.creation-form__input.creation-form__input_radio(
-                type='radio'
-                name='type'
-                value='speci'
-              )
-              span.creation-form__span SPECI
+    div
+      div
+        label(for='amtk_metar_type_metar')
+          span Тип сводки
+      div
+        label
+          input(type='radio' name='type' value='METAR' pattern='[A-Z]{4}' title='4 заглавные буквы' id='amtk_metar_type_metar')
+          span METAR
+        label
+          input(type='radio' name='type' value='SPECI' id='amtk_metar_type_speci')
+          span SPECI
+        label
+          input(type='checkbox' name='cor' value='COR' id='amtk_metar_cor')
+          span COR
+    hr
 
-      hr.creation-form__hr
 
-      // ICAO
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label(for='icao') ICAO
-        .creation-form__row.creation-form__cols.creation-form__mobile-cols
-          .creation-form__col
-            input#icao.creation-form__input.creation-form__input_text(
-              type='text'
-              name='icao'
-              placeholder='UUEE'
-          )
-          .creation-form__col
-            select#icao_variants.creation-form__input.creation-form__input_select(disabled)
-              option Не найдено
+    // ICAO
 
-      hr.creation-form__hr
+    div
+      div
+        label(for='amtk_metar_icao')
+          span ICAO
+      div
+        input(type='text' name='icao' id='amtk_metar_icao')
+        select(name='icao_variants')
+          option Не найдено
 
-      // Дата и время
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label(for='date') Дата и время
-        .creation-form__row.creation-form__cols.creation-form__mobile-cols
-          .creation-form__col
-            input#date.creation-form__input.creation-form__input_date(
-              type='date'
-              name='date'
-            )
-          .creation-form__col
-            input#time.creation-form__input.creation-form__input_time(
-              type='time'
-              name='time'
-              step='60'
-            )
-          .creation-form__col
-            input#current.creation-form__input.creation-form__input_button(
-              type='button'
-              name='current'
-              value='Сейчас'
-            )
+    hr
 
-      hr.creation-form__hr
 
-      // Ветер
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label(for='direction') Ветер
-        .creation-form__row.creation-form__cols.creation-form__mb-1
-          .creation-form__col
-            label.creation-form__label(for='mps')
-              input#mps.creation-form__input.creation-form__input_radio(
-                type='radio'
-                name='units'
-                value='mps'
-                checked
-              )
-              span.creation-form__span MPS
-          .creation-form__col
-            label.creation-form__label(for='kt')
-              input#kt.creation-form__input.creation-form__input_radio(
-                type='radio'
-                name='units'
-                value='kt'
-              )
-              span.creation-form__span KT
-        .creation-form__row.creation-form__cols.creation-form__mobile-cols
-          .creation-form__col.creation-form__rows
-            .creation-form__row
-              label.creation-form__label.creation-form__small(for='direction') Направление
-            .creation-form__row
-              input#direction.creation-form__input.creation-form__input_text(
-                type='text'
-                name='direction'
-                placeholder='180'
-              )
-            .creation-form__row
-              input#direction_range.creation-form__input.creation-form__input_range(
-                type='range'
-                name='direction_range'
-                min='0'
-                max='360'
-                step='10'
-                value='0'
-              )
-          .creation-form__col.creation-form__rows
-            .creation-form__row
-              label.creation-form__label.creation-form__small(for='speed') Скорость
-            .creation-form__row
-              input#speed.creation-form__input.creation-form__input_text(
-                type='text'
-                name='speed'
-                placeholder='10'
-              )
-            .creation-form__row
-              input#speed_range.creation-form__input.creation-form__input_range(
-                type='range'
-                name='speed_range'
-                min='0'
-                max='99'
-                step='1'
-                value='0'
-              )
-          .creation-form__col.creation-form__rows
-            .creation-form__row
-              label.creation-form__label.creation-form__small(for='gust') Порывы
-            .creation-form__row
-              input#gust.creation-form__input.creation-form__input_text(
-                type='text'
-                name='gust'
-                placeholder='15'
-              )
-            .creation-form__row
-              input#gust_range.creation-form__input.creation-form__input_range(
-                type='range'
-                name='gust_range'
-                min='0'
-                max='99'
-                step='1'
-                value='0'
-              )
+    // DateTime
 
-      hr.creation-form__hr
+    div
+      div
+        label(for='amtk_metar_date')
+          span Дата и время
+      div
+        input(type='date' name='date' id='amtk_metar_date')
+        input(type='time' name='time' step='60' id='amtk_metar_time')
+        input(type='button' name='current' value='Сейчас' id='amtk_metar_current')
+    hr
 
-      // Видимость
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label(for='visibility') Видимость
-        .creation-form__row.creation-form__cols
-          .creation-form__col.creation-form__rows
-            .creation-form__row
-              input#visibility.creation-form__input.creation-form__input_text(
-                type='text'
-                name='visibility'
-                placeholder='9999'
-              )
-            .creation-form__row
-              input#visibility_range.creation-form__input.creation-form__input_range(
-                type='range'
-                name='visibility_range'
-                min='0'
-                max='63'
-                value='0'
-              )
 
-      hr.creation-form__hr
+    // Wind
 
-      // Явления погоды
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label(for='weather') Явления погоды
-        .creation-form__row.creation-form__cols.creation-form__mobile-cols
-          .creation-form__col
-            input#weather.creation-form__input.creation-form__input_text(
-              type='text'
-              name='weather'
-              placeholder='-SNRA'
-            )
-          .creation-form__col.creation-form__cols.creation-form__align-center
-            .creation-form__col
-              label.creation-form__label(for='weather_minus')
-                input#weather_minus.creation-form__input.creation-form__input_checkbox(
-                  type='checkbox'
-                  name='intensity'
-                  value='-'
-                )
-                span.creation-form__span -
-            .creation-form__col
-              label.creation-form__label(for='weather_plus')
-                input#weather_plus.creation-form__input.creation-form__input_checkbox(
-                  type='checkbox'
-                  name='intensity'
-                  value='+'
-                )
-                span.creation-form__span +
-          // Осадки
-          .creation-form__col
-            select#precipitation.creation-form__input.creation-form__input_select
-          // Явления погоды
-          .creation-form__col
-            select#phenomena.creation-form__input.creation-form__input_select
+    div
+      div
+        label
+          span Ветер
+      div
+        label
+          input(type='radio' name='units' value='MPS' id='amtk_metar_units_mps')
+          span MPS
+        label
+          input(type='radio' name='units' value='KT' id='amtk_metar_units_kt')
+          span KT
+        label
+          input(type='checkbox' name='calm' VALUE='CALM' id='amtk_metar_calm')
+          span CALM
+      div
+        div
+          input(type='text' name='direction' id='amtk_metar_direction' placeholder='направление')
+          input(type='text' name='speed' id='amtk_metar_speed' placeholder='скорость')
+          input(type='text' name='gust' id='amtk_metar_gust' placeholder='порыв')
+        div
+          div
+            label(for='amtk_metar_direction')
+              span Направление
+            //label(for='amtk_metar_vrb')
+            //  input(type='checkbox' name='vrb' value='VRB' id='amtk_metar_vrb')
+            //  span VRB
+          div
+            input(type='range' name='direction_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_direction_range')
+        div
+          div
+            label(for='amtk_metar_speed')
+              span Скорость
+          div
+            input(type='range' name='speed_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_speed_range')
+        div
+          div
+            label(for='amtk_metar_gust')
+              span Порыв
+          div
+            input(type='range' name='gust_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_gust_range')
+    hr
 
-      hr.creation-form__hr
 
-      // Облачность
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label(for='clouds') Облачность
-        .creation-form__row.creation-form__cols.creation-form__mobile-cols
-            .creation-form__col.creation-form__rows
-              .creation-form__row
-                input#clouds.creation-form__input.creation-form__input_text(
-                  type='text'
-                  name='clouds'
-                  placeholder='FEW035CB'
-                )
-              .creation-form__row
-                input#height.creation-form__input.creation-form__input_range(
-                  type='range'
-                  name='height'
-                  min='0'
-                  max='100'
-                  step='1'
-                  value='0'
-                )
-            .creation-form__col
-              select#clouds_variants.creation-form__input.creation-form__input_select
-            .creation-form__col.creation-form__cols.creation-form__h-40px.creation-form__align-center
-              .creation-form__col
-                label.creation-form__label(for='cb')
-                  input#cb.creation-form__input.creation-form__input_checkbox(
-                    type='checkbox'
-                    name='clouds_type'
-                    value='CB'
-                  )
-                  span.creation-form__span CB
-              .creation-form__col
-                label.creation-form__label(for='tcu')
-                  input#tcu.creation-form__input.creation-form__input_checkbox(
-                    type='checkbox'
-                    name='clouds_type'
-                    value='TCU'
-                  )
-                  span.creation-form__span TCU
-      hr.creation-form__hr
+    // Visibility
 
-      // Температура
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-            .creation-form__col.creation-form__rows
-              .creation-form__row.creation-form__cols.creation-form__mb-1
-                .creation-form__col
-                  label.creation-form__label Температура
-              .creation-form__row.creation-form__cols.creation-form__mobile-cols
-                .creation-form__col.creation-form__rows
-                  .creation-form__row
-                    label.creation-form__label.creation-form__small(for='temperature') Воздух
-                  .creation-form__row
-                    input#temperature.creation-form__input.creation-form__input_text(
-                      type='text'
-                      name='temperature'
-                      placeholder='21'
-                    )
-                  .creation-form__row
-                    input#temperature_range.creation-form__input.creation-form__input_range(
-                      type='range'
-                      name='temperature_range'
-                      min='-80'
-                      max='60'
-                      step='1'
-                      value='0'
-                    )
-                .creation-form__col.creation-form__rows
-                  .creation-form__row
-                    label.creation-form__label.creation-form__small(for='dew_point') Точка росы
-                  .creation-form__row
-                    input#dew_point.creation-form__input.creation-form__input_text(
-                      type='text'
-                      name='dew_point'
-                      placeholder='10'
-                    )
-                  .creation-form__row
-                    input#dew_point_range.creation-form__input.creation-form__input_range(
-                      type='range'
-                      name='dew_point_range'
-                      min='-80'
-                      max='60'
-                      step='1'
-                      value='0'
-                    )
+    div
+      div
+        div
+          label(for='amtk_metar_visibility')
+            //span Основная видимость (VV)
+            span Видимость
+        div
+          input(type='text' name='visibility' id='amtk_metar_visibility')
+          label
+            input(type='checkbox' name='cavok' value='CAVOK')
+            span CAVOK
+        div     
+          input(type='range' name='visibility_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_range')
 
-      hr.creation-form__hr
+      //div
+      //  div
+      //    label(for='amtk_metar_vertical_visibility')
+      //      span Вертикальная видимость (при FG)
+      //  div
+      //    input(type='text' name='vertical_visibility' id='amtk_metar_vertical_visibility')
+      //  div     
+      //    input(type='range' name='vertical_visibility_range' min='0' max='9999' step='1' value='0' id='amtk_metar_vertical_visibility_range')
 
-      // Давление
-      .creation-form__rows
-        .creation-form__row.creation-form__cols
-          .creation-form__col
-            label.creation-form__label(for='pressure') Давление
-        .creation-form__row.creation-form__cols
-          .creation-form__col.creation-form__rows
-            .creation-form__row
-              input#pressure.creation-form__input.creation-form__input_text(
-                type='text'
-                name='pressure'
-                placeholder='1013'
-              )
-            .creation-form__row
-              input#pressure_range.creation-form__input.creation-form__input_range(
-                type='range'
-                name='pressure_range'
-                min='500'
-                max='1100'
-                value='500'
-              )
+      //div
+      //  div
+      //    label(for='amtk_metar_rvr')
+      //      span Видимость на ВПП (RVR)
+      //  div
+      //    input(type='text' name='rvr' id='amtk_metar_rvr')
+      //  div
+          input(type='range' name='rvr_range' min='0' max='9999' step='1' value='0' id='amtk_metar_rvr_range')
+
+    hr
+
+
+    // Weather
+
+    div
+      div
+        label(for='amtk_metar_weather')
+          span Явления погоды
+      div
+        input(type='text' name='weather' id='amtk_metar_weather')
+        label
+          input(type='checkbox' name='intensity' value='-' id='amtk_metar_intensity_minus')
+          span -
+        label
+          input(type='checkbox' name='intensity' value='+' id='amtk_metar_intensity_plus')
+          span +
+        select(name='precipitation')
+          option(value='') Не выбрано
+          option(value='DZ') DZ
+          option(value='RA') RA
+          option(value='SN') SN
+          option(value='SG') SG
+          option(value='IC') IC
+          option(value='PL') PL
+          option(value='GR') GR
+          option(value='GS') GS
+          option(value='UP') UP
+        select(name='phenomena')
+          option(value='') Не выбрано
+          option(value='BR') BR
+          option(value='FG') FG
+          option(value='FU') FU
+          option(value='VA') VA
+          option(value='DU') DU
+          option(value='SA') SA
+          option(value='HZ') HZ
+          option(value='PY') PY
+ 
+    hr
+
+
+    // Clouds
+
+    div
+      div
+        label(for='amtk_metar_clouds_1')
+          span Облачность
+
+      div
+        div
+          label(for='amtk_metar_clouds_1')
+            span 1-й слой
+        div
+          select(name='clouds_1_coverage')
+            option(value='NCD') NCD
+            option(value='FEW') FEW
+            option(value='SCT') SCT
+            option(value='BKN') BKN
+            option(value='OVC') OVC
+            option(value='NSC') NSC
+          input(type='text' name='clouds_1' id='amtk_metar_clouds_1')
+          label
+            input(type='checkbox' name='clouds_1_type' value='CB' id='amtk_metar_clouds_1_type_cb')
+            span CB
+          label
+            input(type='checkbox' name='clouds_1_type' value='TCU' id='amtk_metar_clouds_1_type_tcu')
+            span TCU
+        div
+          input(type='range' name='clouds_1_height' min='-1' max='120' step='1' value='-1' id='amtk_metar_clouds_1_height')
+
+      br
+
+      div
+        div
+          label(for='amtk_metar_clouds_2')
+            span 2-й слой
+        div
+          select(name='clouds_2_coverage')
+            option(value='NCD') NCD
+            option(value='FEW') FEW
+            option(value='SCT') SCT
+            option(value='BKN') BKN
+            option(value='OVC') OVC
+            option(value='NSC') NSC
+          input(type='text' name='clouds_2' id='amtk_metar_clouds_2')
+          label
+            input(type='checkbox' name='clouds_2_type' value='CB' id='amtk_metar_clouds_2_type_cb')
+            span CB
+          label
+            input(type='checkbox' name='clouds_2_type' value='TCU' id='amtk_metar_clouds_2_type_tcu')
+            span TCU
+        div
+          input(type='range' name='clouds_2_height' min='-1' max='120' step='1' value='-1' id='amtk_metar_clouds_2_height')
+
+      br
+
+      div
+        div
+          label(for='amtk_metar_clouds_3')
+            span 3-й слой
+        div
+          select(name='clouds_3_coverage')
+            option(value='NCD') NCD
+            option(value='FEW') FEW
+            option(value='SCT') SCT
+            option(value='BKN') BKN
+            option(value='OVC') OVC
+            option(value='NSC') NSC
+          input(type='text' name='clouds_3' id='amtk_metar_clouds_3')
+          label
+            input(type='checkbox' name='clouds_3_type' value='CB' id='amtk_metar_clouds_3_type_cb')
+            span CB
+          label
+            input(type='checkbox' name='clouds_3_type' value='TCU' id='amtk_metar_clouds_3_type_tcu')
+            span TCU
+        div
+          input(type='range' name='clouds_3_height' min='-1' max='120' step='1' value='-1' id='amtk_metar_clouds_3_height')
+
+      br
+
+      div
+        label(for='amtk_metar_clouds_4')
+          span 4-й слой
+        div
+          select(name='clouds_4_coverage')
+            option(value='NCD') NCD
+            option(value='FEW') FEW
+            option(value='SCT') SCT
+            option(value='BKN') BKN
+            option(value='OVC') OVC
+            option(value='NSC') NSC
+          input(type='text' name='clouds_4' id='amtk_metar_clouds_4')
+          label
+            input(type='checkbox' name='clouds_4_type' value='CB' id='amtk_metar_clouds_4_type_cb')
+            span CB
+          label
+            input(type='checkbox' name='clouds_4_type' value='TCU' id='amtk_metar_clouds_4_type_tcu')
+            span TCU
+        div
+          input(type='range' name='clouds_4_height' min='-1' max='120' step='1' value='-1' id='amtk_metar_clouds_4_height')
+
+    hr
+
+    div
+      div
+        label(for='amtk_temperature_temperature')
+          span Температура
+
+      div
+        div
+          input(type='text' name='temperature' id='amtk_metar_temperature' placeholder='воздух')
+          input(type='text' name='dew_point' id='amtk_metar_dew_point' placeholder='точка росы')
+        div
+          div
+            label(for='amtk_metar_temperature')
+              span Воздух
+          div
+            input(type='range' name='temperature_range' min='-81' max='60' step='1' value='-81' id='amtk_metar_temperature_range')
+        div
+          div
+            label(for='amtk_metar_dew_point')
+              span Точка росы
+          div
+            input(type='range' name='dew_point_range' min='-81' max='60' step='1' value='-81' id='amtk_metar_dew_point_range')
+
+    hr
+
+    div
+      div
+        label(for='amtk_metar_pressure')
+          span Давление
+      div
+        div
+          input(type='text' name='pressure' id='amtk_metar_pressure')
+        div
+          input(type='range' name='pressure_range' min='499' max='1100' value='499' id='amtk_metar_pressure_range')
+
+    hr
+
+    div
+      div
+        label(for='amtk_metar_trend_text')
+          span TREND-прогноз (на 2 часа)
+      div()
+        //select(name='trend' id='amtk_metar_trend')
+        //  option(value='NOSIG') NOSIG (без изменений)
+        //  option(value='BECMG') BECMG (постепенные изменения)
+        //  option(value='TEMPO') TEMPO (временные изменения)
+        input(type='text' name='trend_text' id='amtk_metar_trend_text' style='width:100%')
+      br
+
+  form(name='amtk_form_output' method='post')
+    div
+      label(for='amtk_metar_output')
+        span METAR/SPECI
+    div
+      textarea(name='output' style='resize: none' id='amtk_metar_output')
+    div
+      input(type='submit' value='Отправить')
+
