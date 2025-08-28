@@ -16,11 +16,12 @@ const template = (bodyContent) => `
   <title>AMTK Form</title>
   <style>
     body {
-      font: 18px monospace;
+      font: 14px Tahoma, Arial, sans-serif;
       margin: 0;
       box-sizing: border-box;
     }
   </style>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="/amtk_form.css">
   <script src="/amtk_form.min.js" defer></script>
 </head>

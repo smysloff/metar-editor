@@ -8,7 +8,7 @@ div#amtk_metar_editor.amtk_metar_editor
     div
       div
         label(for='amtk_metar_type_metar')
-          span Тип сводки
+          span.bold Тип сводки
       div
         label
           input(type='radio' name='type' value='METAR' pattern='[A-Z]{4}' title='4 заглавные буквы' id='amtk_metar_type_metar')
@@ -27,7 +27,7 @@ div#amtk_metar_editor.amtk_metar_editor
     div
       div
         label(for='amtk_metar_icao')
-          span ICAO
+          span.bold ICAO
       div
         input(type='text' name='icao' id='amtk_metar_icao')
         select(name='icao_variants')
@@ -41,7 +41,7 @@ div#amtk_metar_editor.amtk_metar_editor
     div
       div
         label(for='amtk_metar_date')
-          span Дата и время
+          span.bold Дата и время
       div
         input(type='date' name='date' id='amtk_metar_date')
         input(type='time' name='time' step='60' id='amtk_metar_time')
@@ -54,7 +54,7 @@ div#amtk_metar_editor.amtk_metar_editor
     div
       div
         label
-          span Ветер
+          span.bold Ветер
       div
         label
           input(type='radio' name='units' value='MPS' id='amtk_metar_units_mps')
@@ -101,13 +101,13 @@ div#amtk_metar_editor.amtk_metar_editor
         div
           label(for='amtk_metar_visibility')
             //span Основная видимость (VV)
-            span Видимость
+            span.bold Видимость
         div
           input(type='text' name='visibility' id='amtk_metar_visibility')
           label
             input(type='checkbox' name='cavok' value='CAVOK')
             span CAVOK
-        div     
+        div
           input(type='range' name='visibility_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_range')
 
       //div
@@ -116,7 +116,7 @@ div#amtk_metar_editor.amtk_metar_editor
       //      span Вертикальная видимость (при FG)
       //  div
       //    input(type='text' name='vertical_visibility' id='amtk_metar_vertical_visibility')
-      //  div     
+      //  div
       //    input(type='range' name='vertical_visibility_range' min='0' max='9999' step='1' value='0' id='amtk_metar_vertical_visibility_range')
 
       //div
@@ -136,7 +136,7 @@ div#amtk_metar_editor.amtk_metar_editor
     div
       div
         label(for='amtk_metar_weather')
-          span Явления погоды
+          span.bold Явления погоды
       div
         input(type='text' name='weather' id='amtk_metar_weather')
         label
@@ -166,7 +166,7 @@ div#amtk_metar_editor.amtk_metar_editor
           option(value='SA') SA
           option(value='HZ') HZ
           option(value='PY') PY
- 
+
     hr
 
 
@@ -175,7 +175,7 @@ div#amtk_metar_editor.amtk_metar_editor
     div
       div
         label(for='amtk_metar_clouds_1')
-          span Облачность
+          span.bold Облачность
 
       div
         div
@@ -197,85 +197,85 @@ div#amtk_metar_editor.amtk_metar_editor
             input(type='checkbox' name='clouds_1_type' value='TCU' id='amtk_metar_clouds_1_type_tcu')
             span TCU
         div
-          input(type='range' name='clouds_1_height' min='-1' max='120' step='1' value='-1' id='amtk_metar_clouds_1_height')
-
-      br
+          input(type='range' name='clouds_1_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_1_height')
 
       div
-        div
-          label(for='amtk_metar_clouds_2')
-            span 2-й слой
-        div
-          select(name='clouds_2_coverage')
-            option(value='NCD') NCD
-            option(value='FEW') FEW
-            option(value='SCT') SCT
-            option(value='BKN') BKN
-            option(value='OVC') OVC
-            option(value='NSC') NSC
-          input(type='text' name='clouds_2' id='amtk_metar_clouds_2')
-          label
-            input(type='checkbox' name='clouds_2_type' value='CB' id='amtk_metar_clouds_2_type_cb')
-            span CB
-          label
-            input(type='checkbox' name='clouds_2_type' value='TCU' id='amtk_metar_clouds_2_type_tcu')
-            span TCU
-        div
-          input(type='range' name='clouds_2_height' min='-1' max='120' step='1' value='-1' id='amtk_metar_clouds_2_height')
 
-      br
+        details
+          summary 2-й слой
 
-      div
-        div
-          label(for='amtk_metar_clouds_3')
-            span 3-й слой
-        div
-          select(name='clouds_3_coverage')
-            option(value='NCD') NCD
-            option(value='FEW') FEW
-            option(value='SCT') SCT
-            option(value='BKN') BKN
-            option(value='OVC') OVC
-            option(value='NSC') NSC
-          input(type='text' name='clouds_3' id='amtk_metar_clouds_3')
-          label
-            input(type='checkbox' name='clouds_3_type' value='CB' id='amtk_metar_clouds_3_type_cb')
-            span CB
-          label
-            input(type='checkbox' name='clouds_3_type' value='TCU' id='amtk_metar_clouds_3_type_tcu')
-            span TCU
-        div
-          input(type='range' name='clouds_3_height' min='-1' max='120' step='1' value='-1' id='amtk_metar_clouds_3_height')
-
-      br
+          div
+            div
+              select(name='clouds_2_coverage')
+                option(value='NCD') NCD
+                option(value='FEW') FEW
+                option(value='SCT') SCT
+                option(value='BKN') BKN
+                option(value='OVC') OVC
+                option(value='NSC') NSC
+              input(type='text' name='clouds_2' id='amtk_metar_clouds_2')
+              label
+                input(type='checkbox' name='clouds_2_type' value='CB' id='amtk_metar_clouds_2_type_cb')
+                span CB
+              label
+                input(type='checkbox' name='clouds_2_type' value='TCU' id='amtk_metar_clouds_2_type_tcu')
+                span TCU
+            div
+              input(type='range' name='clouds_2_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_2_height')
 
       div
-        label(for='amtk_metar_clouds_4')
-          span 4-й слой
-        div
-          select(name='clouds_4_coverage')
-            option(value='NCD') NCD
-            option(value='FEW') FEW
-            option(value='SCT') SCT
-            option(value='BKN') BKN
-            option(value='OVC') OVC
-            option(value='NSC') NSC
-          input(type='text' name='clouds_4' id='amtk_metar_clouds_4')
-          label
-            input(type='checkbox' name='clouds_4_type' value='CB' id='amtk_metar_clouds_4_type_cb')
-            span CB
-          label
-            input(type='checkbox' name='clouds_4_type' value='TCU' id='amtk_metar_clouds_4_type_tcu')
-            span TCU
-        div
-          input(type='range' name='clouds_4_height' min='-1' max='120' step='1' value='-1' id='amtk_metar_clouds_4_height')
+
+        details
+          summary 3-й слой
+
+          div
+            select(name='clouds_3_coverage')
+              option(value='NCD') NCD
+              option(value='FEW') FEW
+              option(value='SCT') SCT
+              option(value='BKN') BKN
+              option(value='OVC') OVC
+              option(value='NSC') NSC
+            input(type='text' name='clouds_3' id='amtk_metar_clouds_3')
+            label
+              input(type='checkbox' name='clouds_3_type' value='CB' id='amtk_metar_clouds_3_type_cb')
+              span CB
+            label
+              input(type='checkbox' name='clouds_3_type' value='TCU' id='amtk_metar_clouds_3_type_tcu')
+              span TCU
+          div
+            input(type='range' name='clouds_3_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_3_height')
+
+      div
+
+        details
+          summary 4-й слой
+
+          div
+            div
+              select(name='clouds_4_coverage')
+                option(value='NCD') NCD
+                option(value='FEW') FEW
+                option(value='SCT') SCT
+                option(value='BKN') BKN
+                option(value='OVC') OVC
+                option(value='NSC') NSC
+              input(type='text' name='clouds_4' id='amtk_metar_clouds_4')
+              label
+                input(type='checkbox' name='clouds_4_type' value='CB' id='amtk_metar_clouds_4_type_cb')
+                span CB
+              label
+                input(type='checkbox' name='clouds_4_type' value='TCU' id='amtk_metar_clouds_4_type_tcu')
+                span TCU
+            div
+              input(type='range' name='clouds_4_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_4_height')
 
     hr
 
     div
       div
         label(for='amtk_temperature_temperature')
-          span Температура
+          span.bold Температура
 
       div
         div
@@ -285,33 +285,39 @@ div#amtk_metar_editor.amtk_metar_editor
           div
             label(for='amtk_metar_temperature')
               span Воздух
-          div
-            input(type='range' name='temperature_range' min='-81' max='60' step='1' value='-81' id='amtk_metar_temperature_range')
+          div.flex
+            label
+              input(type='checkbox' name='temperature_minus' value='-')
+              span -
+            input(type='range' name='temperature_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_temperature_range')
         div
           div
             label(for='amtk_metar_dew_point')
               span Точка росы
-          div
-            input(type='range' name='dew_point_range' min='-81' max='60' step='1' value='-81' id='amtk_metar_dew_point_range')
+          div.flex
+            label
+              input(type='checkbox' name='dew_point_minus' value='-')
+              span -
+            input(type='range' name='dew_point_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_dew_point_range')
 
     hr
 
     div
       div
         label(for='amtk_metar_pressure')
-          span Давление
+          span.bold Давление
       div
         div
           input(type='text' name='pressure' id='amtk_metar_pressure')
         div
-          input(type='range' name='pressure_range' min='499' max='1100' value='499' id='amtk_metar_pressure_range')
+          input(type='range' name='pressure_range' min='899' max='1100' value='899' id='amtk_metar_pressure_range')
 
     hr
 
     div
       div
         label(for='amtk_metar_trend_text')
-          span TREND-прогноз (на 2 часа)
+          span.bold TREND-прогноз (на 2 часа)
       div()
         //select(name='trend' id='amtk_metar_trend')
         //  option(value='NOSIG') NOSIG (без изменений)
@@ -323,7 +329,7 @@ div#amtk_metar_editor.amtk_metar_editor
   form(name='amtk_form_output' method='post')
     div
       label(for='amtk_metar_output')
-        span METAR/SPECI
+        span.bold METAR/SPECI
     div
       textarea(name='output' style='resize: none' id='amtk_metar_output')
     div

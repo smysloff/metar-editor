@@ -256,7 +256,7 @@ class AMTK_Form {
     const record = this.registry.get(element)
     if (!record) return
 
-    const { name }  = record
+    const { name } = record
     const { format, auxiliary, update } = record.callbacks
 
     if (format) {
@@ -369,6 +369,10 @@ class AMTK_Form {
       init.call(this, elements)
       this.#update()
     }
+  }
+
+  updateResult() {
+    this.#update()
   }
 
   addHandler(name, options = {}) {
@@ -735,6 +739,7 @@ form.addHandler('cavok', {
 
   auxiliary(value, element) {
 
+    const { result } = this
     const { visibility, visibility_range } = this.elements
     const { weather, intensity, precipitation, phenomena } = this.elements
     const { clouds_1_coverage, clouds_1, clouds_1_type, clouds_1_height } = this.elements
@@ -787,6 +792,13 @@ form.addHandler('cavok', {
       clouds_4.disabled = true
       clouds_4_type.forEach(type => type.disabled = true)
       clouds_4_height.disabled = true
+      console.log(result)
+      result.visibility = ''
+      result.weather = ''
+      result.clouds_1 = ''
+      result.clouds_2 = ''
+      result.clouds_3 = ''
+      result.clouds_4 = ''
     } else {
       visibility.disabled = false
       visibility_range.disabled = false
@@ -812,6 +824,7 @@ form.addHandler('cavok', {
       clouds_4_height.disabled = false
     }
 
+    this.updateResult()
   },
 
   update(value, element) {
@@ -962,8 +975,8 @@ function formatClouds(value) {
   value = value.trim()
   if (value === '') return ''
   const result = value
-                  .substr(0, 3)
-                  .replace(/\D/, '')
+                   .substr(0, 3)
+                   .replace(/\D/, '')
   return +result > 120 ? 120 : result 
 }
 
@@ -1400,7 +1413,7 @@ function auxiliaryPressure(value, element) {
 }
 
 function updatePressure(value, element) {
-  const result = value < 500 || value > 1100 ? '' : value
+  const result = value < 900 || value > 1100 ? '' : value
   return result === '' ? '' : `Q${result}`
 }
 
