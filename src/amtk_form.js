@@ -792,13 +792,12 @@ form.addHandler('cavok', {
       clouds_4.disabled = true
       clouds_4_type.forEach(type => type.disabled = true)
       clouds_4_height.disabled = true
-      console.log(result)
-      result.visibility = ''
-      result.weather = ''
-      result.clouds_1 = ''
-      result.clouds_2 = ''
-      result.clouds_3 = ''
-      result.clouds_4 = ''
+      result.set('visibility', '')
+      result.set('weather', '')
+      result.set('clouds_1', '')
+      result.set('clouds_2', '')
+      result.set('clouds_3', '')
+      result.set('clouds_4', '')
     } else {
       visibility.disabled = false
       visibility_range.disabled = false
@@ -823,8 +822,6 @@ form.addHandler('cavok', {
       clouds_4_type.forEach(type => type.disabled = false)
       clouds_4_height.disabled = false
     }
-
-    this.updateResult()
   },
 
   update(value, element) {
@@ -1308,7 +1305,7 @@ function formatTemperature(value) {
 
   return isNaN(number) ? '' 
        : number < -80  ? -80
-       : number >  60  ?  60
+       : number >  80  ?  80
        : number
 }
 
@@ -1399,6 +1396,37 @@ form.addHandler('temperature', {
 
   update: updateTemperature,
 
+})
+
+function auxiliaryTemperatureMinus(_, element) {
+
+  const { temperature, dew_point } = this.elements
+  let linkedElement = ''
+  let value = ''
+
+  if (element.checked) value += '-'
+
+  switch (element.name) {
+    case 'temperature_minus': linkedElement = temperature; break
+    case 'dew_point_minus': linkedElement = dew_point; break
+    default: throw TypeError(`unknown element name`)
+  }
+
+  value += linkedElement.value.replace(/\D/, '')
+  if (!isNaN(value)) linkedElement.value = value
+
+}
+
+form.addHandler('temperature', {
+    element: 'temperature_minus',
+    auxiliary: auxiliaryTemperatureMinus,
+    update: updateTemperature,
+})
+
+form.addHandler('temperature', {
+    element: 'dew_point_minus',
+    auxiliary: auxiliaryTemperatureMinus,
+    update: updateTemperature,
 })
 
 
