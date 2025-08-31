@@ -1288,7 +1288,7 @@ form.addHandler('clouds_4', {
 
 // Temperature
 
-function formatTemperature(value) {
+function formatTemperature(value) { // @todo fix bug -0
 
   value = value.trim()
 
@@ -1340,62 +1340,129 @@ function updateTemperature() {
 
 }
 
-form.addHandler('temperature', {
+function auxiliaryTemperature(value, element) {
 
+  const { temperature, dew_point } = this.elements
+  const { temperature_range, dew_point_range } = this.elements
+  const { temperature_minus, dew_point_minus } = this.elements
+
+  let linkedElement = null
+  let minusElement = null
+
+  switch (element) {
+
+    case temperature:
+      linkedElement = temperature_range
+      minusElement = temperature_minus
+      break
+
+    case dew_point:
+      linkedElement = dew_point_range
+      minusElement = dew_point_minus
+      break
+
+    default: throw new TypeError(`unknown element`)
+  }
+
+  if (
+    !(linkedElement instanceof HTMLInputElement)
+  ) {
+    throw new TypeError('not an input element')
+  }
+
+  if (
+    !(minusElement instanceof HTMLInputElement)
+  ) {
+    throw new TypeError(`minusElement is not a proper HTMLInputElement`)
+  }
+
+  linkedElement.value = value === '' || value === '-'
+      ? -1
+      : Math.abs(value)
+
+  minusElement.checked = value.startsWith('-')
+}
+
+function auxiliaryTemperatureRange(value, element) {
+
+  const { temperature, dew_point } = this.elements
+  const { temperature_range, dew_point_range } = this.elements
+  const { temperature_minus, dew_point_minus } = this.elements
+
+  let linkedElement = ''
+  let minusElement = ''
+
+  switch (element) {
+
+    case temperature_range:
+      linkedElement = temperature
+      minusElement = temperature_minus
+      break
+
+    case dew_point_range:
+      linkedElement = dew_point
+      minusElement = dew_point_minus
+      break
+
+    default: throw new Error(`unknown element`)
+  }
+
+  if (
+    !(linkedElement instanceof HTMLInputElement)
+    || !('value' in linkedElement)
+  ) {
+    throw new TypeError(`linkedElement must be a typeof HTMLInputElement(text), but got ${typeof linkedElement}`)
+  }
+
+  if (
+    !(minusElement instanceof HTMLInputElement)
+    || minusElement?.type !== 'checkbox'
+  ) {
+    throw new TypeError(`minusElement must be a typeof HTMLInputElement(checkbox), but got ${typeof minusElement}`)
+  }
+
+  if (value < 0) {
+    linkedElement.value = ''
+    //minusElement.checked = true
+  } else {
+    if (minusElement.checked)
+      value = `-${value}`
+    linkedElement.value = value
+  }
+}
+
+form.addHandler('temperature', {
   element: 'temperature',
-
   format: formatTemperature,
-
-  auxiliary(value) {
-    const { temperature_range } = this.elements
-    temperature_range.value = ['', '-'].includes(value) ? -81 : value
-  },
-
+  auxiliary: auxiliaryTemperature,
   update: updateTemperature,
-
 })
 
 form.addHandler('temperature', {
-
   element: 'dew_point',
-
   format: formatTemperature,
-
-  auxiliary(value) {
-    const { dew_point_range } = this.elements
-    dew_point_range.value = ['', '-'].includes(value) ? -81 : value
-  },
-
+  auxiliary: auxiliaryTemperature,
   update: updateTemperature,
-
 })
 
 form.addHandler('temperature', {
-
   element: 'temperature_range',
-
-  auxiliary(value) {
-    value = +value
-    const { temperature } = this.elements
-    temperature.value = value === -81 ? '' : value
-  },
-
+  //auxiliary(value) { // @todo auxiliaryTemperatureRange
+  //  const { temperature } = this.elements
+  //  temperature.value = value < 0 ? '' : value
+  //},
+  auxiliary: auxiliaryTemperatureRange,
   update: updateTemperature,
-
 })
 
 form.addHandler('temperature', {
-
   element: 'dew_point_range',
-
-  auxiliary(value) {
-    value = +value
-    const { dew_point } = this.elements
-    dew_point.value = value === -81 ? '' : value
-  },
-
+  //auxiliary(value) { // @todo auxiliaryTemperatureRange
+  //  const { dew_point } = this.elements
+  //  dew_point.value = value < 0 ? '' : value
+  //},
+  auxiliary: auxiliaryTemperatureRange,
   update: updateTemperature,
-
 })
 
 function auxiliaryTemperatureMinus(_, element) {
