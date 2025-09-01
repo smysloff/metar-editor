@@ -1421,14 +1421,17 @@ function auxiliaryTemperatureRange(value, element) {
     throw new TypeError(`minusElement must be a typeof HTMLInputElement(checkbox), but got ${typeof minusElement}`)
   }
 
-  if (value < 0) {
-    linkedElement.value = ''
-    //minusElement.checked = true
-  } else {
-    if (minusElement.checked)
-      value = `-${value}`
-    linkedElement.value = value
-  }
+  //if (value < 0) {
+  //  linkedElement.value = ''
+  //} else {
+  //  if (minusElement.checked)
+  //    value = `-${value}`
+  //  linkedElement.value = value
+  //}
+
+  linkedElement.value = value < 0            ? ''          :
+                        minusElement.checked ? `-${value}` :
+                        /* default */          value
 }
 
 form.addHandler('temperature', {
