@@ -1,18 +1,21 @@
-const autoprefixer = require('autoprefixer') // импортируем autoprefixer как плагин PostCSS
-const babel        = require('gulp-babel')
-const cleanCSS     = require('gulp-clean-css')
-const gulp         = require('gulp')
-const htmlmin      = require('gulp-htmlmin')
-const notify       = require('gulp-notify')
-const plumber      = require('gulp-plumber')
-const postcss      = require('gulp-postcss')
-const pug          = require('gulp-pug')
-const stylus       = require('gulp-stylus')
-const terser       = require('gulp-terser')
+// file: gulpfile.mjs
+
+import gulp         from 'gulp'           // 
+import autoprefixer from 'autoprefixer'   // импортируем autoprefixer как плагин PostCSS
+import babel        from 'gulp-babel'     // 
+import cleanCSS     from 'gulp-clean-css' // 
+import htmlmin      from 'gulp-htmlmin'   // 
+import notify       from 'gulp-notify'    // 
+import plumber      from 'gulp-plumber'   // 
+import postcss      from 'gulp-postcss'   // 
+import pug          from 'gulp-pug'       // 
+import rename       from 'gulp-rename'    // 
+import stylus       from 'gulp-stylus'    // 
+import terser       from 'gulp-terser'    // 
 
 const paths = {
   build:  'build',
-  js:     'src/amtk_form.js',
+  js:     'src/amtk_form.mjs',
   pug:    'src/amtk_form.pug',
   stylus: 'src/amtk_form.styl',
 }
@@ -23,7 +26,7 @@ function compilePug() {
     .pipe(plumber({
       errorHandler: notify.onError("Pug Error: <%= error.message %>")
     }))
-    .pipe(pug({ pretty: false })) // компактный HTML
+    .pipe(pug({ pretty: false }))      // компактный HTML
     .pipe(htmlmin({
       collapseWhitespace:        true,
       minifyCSS:                 true,
@@ -54,6 +57,7 @@ function compileStylus() {
       })
     ]))
     .pipe(cleanCSS({ level: 2 }))
+    .pipe(rename('_amtk_form.scss'))
     .pipe(gulp.dest(paths.build))
 }
 
@@ -65,6 +69,7 @@ function compileJS() {
     }))
     .pipe(babel())
     .pipe(terser())
+    .pipe(rename('amtk_form.min.js'))
     .pipe(gulp.dest(paths.build));
 }
 
@@ -84,6 +89,5 @@ const build = gulp.series(
   )
 )
 
-exports.watch   = watch
-exports.build   = build
-exports.default = build
+export { watch, build }
+export default build

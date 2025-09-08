@@ -34,18 +34,18 @@ const template = (bodyContent) => `
 const server = http.createServer(async (req, res) => {
   try {
     if (req.url === '/') {
-      const formHtml = await fs.readFile(path.join(__dirname, '../dist/amtk_form.html'), 'utf8')
+      const formHtml = await fs.readFile(path.join(__dirname, '../build/amtk_form.html'), 'utf8')
       const page = template(formHtml)
       res.writeHead(200, { 'Content-Type': 'text/html charset=utf-8' })
       res.end(page)
     }
     else if (req.url === '/amtk_form.css') {
-      const css = await fs.readFile(path.join(__dirname, '../dist/_amtk_form.scss'))
+      const css = await fs.readFile(path.join(__dirname, '../build/_amtk_form.scss'))
       res.writeHead(200, { 'Content-Type': 'text/css' })
       res.end(css)
     }
     else if (req.url === '/amtk_form.min.js') {
-      const js = await fs.readFile(path.join(__dirname, '../dist/amtk_form.min.js'))
+      const js = await fs.readFile(path.join(__dirname, '../build/amtk_form.min.js'))
       res.writeHead(200, { 'Content-Type': 'application/javascript' })
       res.end(js)
     }
