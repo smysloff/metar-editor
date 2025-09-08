@@ -19,6 +19,12 @@ div#amtk_metar_editor.amtk_metar_editor
         label
           input(type='checkbox' name='cor' value='COR' id='amtk_metar_cor')
           span COR
+        label
+          input(type='checkbox' name='nil' value='NIL' id='amtk_metar_nil')
+          span NIL
+        label
+          input(type='checkbox' name='auto' value='AUTO' id='amtk_metar_auto')
+          span AUTO
     hr
 
 
@@ -63,8 +69,11 @@ div#amtk_metar_editor.amtk_metar_editor
           input(type='radio' name='units' value='KT' id='amtk_metar_units_kt')
           span KT
         label
-          input(type='checkbox' name='calm' VALUE='CALM' id='amtk_metar_calm')
+          input(type='checkbox' name='calm' value='CALM' id='amtk_metar_calm')
           span CALM
+        label
+          input(type='checkbox' name='vrb' value='VRB' id='amtk_metar_vrb')
+          span VRB
       div
         div
           input(type='text' name='direction' id='amtk_metar_direction' placeholder='направление')
@@ -100,33 +109,48 @@ div#amtk_metar_editor.amtk_metar_editor
       div
         div
           label(for='amtk_metar_visibility')
-            //span Основная видимость (VV)
             span.bold Видимость
         div
-          input(type='text' name='visibility' id='amtk_metar_visibility')
-          label
-            input(type='checkbox' name='cavok' value='CAVOK')
-            span CAVOK
+          div
+            label
+              span Преобладающая видимость (VV)
+          div
+            input(type='text' name='visibility' id='amtk_metar_visibility')
+            label
+              input(type='checkbox' name='cavok' value='CAVOK')
+              span CAVOK
+            div
+              input(type='range' name='visibility_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_range')
         div
-          input(type='range' name='visibility_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_range')
+          div
+            label
+              span Минимальная видимость
+          div
+            input(type='text' name='visibility_minimal' id='amtk_metar_visibility_minimal')
+            select
+              option N
+              option NE
+              option E
+              option SE
+              option S
+              option SW
+              option W
+              option NW
+          div
+            input(type='range' name='visibility_minimal_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_minimal_range')
 
-      //div
-      //  div
-      //    label(for='amtk_metar_vertical_visibility')
-      //      span Вертикальная видимость (при FG)
-      //  div
-      //    input(type='text' name='vertical_visibility' id='amtk_metar_vertical_visibility')
-      //  div
-      //    input(type='range' name='vertical_visibility_range' min='0' max='9999' step='1' value='0' id='amtk_metar_vertical_visibility_range')
+      hr
 
-      //div
-      //  div
-      //    label(for='amtk_metar_rvr')
-      //      span Видимость на ВПП (RVR)
-      //  div
-      //    input(type='text' name='rvr' id='amtk_metar_rvr')
-      //  div
-          input(type='range' name='rvr_range' min='0' max='9999' step='1' value='0' id='amtk_metar_rvr_range')
+
+      div
+        div
+          label(for='amtk_metar_vertical_visibility')
+            span Вертикальная видимость
+        div
+          input(type='text' name='vertical_visibility' id='amtk_metar_vertical_visibility')
+        div
+          input(type='range' name='vertical_visibility_range' min='0' max='9999' step='1' value='0' id='amtk_metar_vertical_visibility_range')
+
 
     hr
 
@@ -183,12 +207,12 @@ div#amtk_metar_editor.amtk_metar_editor
             span 1-й слой
         div
           select(name='clouds_1_coverage')
-            option(value='NCD') NCD
+            //option(value='NCD') NCD
             option(value='FEW') FEW
             option(value='SCT') SCT
             option(value='BKN') BKN
             option(value='OVC') OVC
-            option(value='NSC') NSC
+            //option(value='NSC') NSC
           input(type='text' name='clouds_1' id='amtk_metar_clouds_1')
           label
             input(type='checkbox' name='clouds_1_type' value='CB' id='amtk_metar_clouds_1_type_cb')
@@ -207,12 +231,12 @@ div#amtk_metar_editor.amtk_metar_editor
           div
             div
               select(name='clouds_2_coverage')
-                option(value='NCD') NCD
-                option(value='FEW') FEW
+                //option(value='NCD') NCD
+                //option(value='FEW') FEW
                 option(value='SCT') SCT
                 option(value='BKN') BKN
                 option(value='OVC') OVC
-                option(value='NSC') NSC
+                //option(value='NSC') NSC
               input(type='text' name='clouds_2' id='amtk_metar_clouds_2')
               label
                 input(type='checkbox' name='clouds_2_type' value='CB' id='amtk_metar_clouds_2_type_cb')
@@ -230,12 +254,12 @@ div#amtk_metar_editor.amtk_metar_editor
 
               div
                 select(name='clouds_3_coverage')
-                  option(value='NCD') NCD
-                  option(value='FEW') FEW
-                  option(value='SCT') SCT
+                  //option(value='NCD') NCD
+                  //option(value='FEW') FEW
+                  //option(value='SCT') SCT
                   option(value='BKN') BKN
                   option(value='OVC') OVC
-                  option(value='NSC') NSC
+                  //option(value='NSC') NSC
                 input(type='text' name='clouds_3' id='amtk_metar_clouds_3')
                 label
                   input(type='checkbox' name='clouds_3_type' value='CB' id='amtk_metar_clouds_3_type_cb')
@@ -249,17 +273,17 @@ div#amtk_metar_editor.amtk_metar_editor
               div
 
                 details
-                  summary 4-й слой
+                  summary Дополнительная группа
 
                   div
                     div
                       select(name='clouds_4_coverage')
-                        option(value='NCD') NCD
+                        //option(value='NCD') NCD
                         option(value='FEW') FEW
                         option(value='SCT') SCT
                         option(value='BKN') BKN
                         option(value='OVC') OVC
-                        option(value='NSC') NSC
+                        //option(value='NSC') NSC
                       input(type='text' name='clouds_4' id='amtk_metar_clouds_4')
                       label
                         input(type='checkbox' name='clouds_4_type' value='CB' id='amtk_metar_clouds_4_type_cb')
