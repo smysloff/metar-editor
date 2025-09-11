@@ -1,7 +1,5 @@
 import AMTK_ICAOS from './icaos.mjs'
 
-;(async () => {
-
 // Правильный порядок логических групп для METAR/SPECI:
 //  1. Тип сводки (METAR/SPECI + COR если есть)
 //  2. Код аэродрома (ICAO) (4 буквы)
@@ -1446,5 +1444,3 @@ form.addHandler('trend', {
   format: (value) => value.trim().toUpperCase(),
   update: (value) => value,
 })
-
-})();
