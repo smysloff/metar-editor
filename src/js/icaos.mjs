@@ -1,9 +1,9 @@
 
 // file: src/icaos.mjs
 
-// Список ICAO для поисковых подсказок
+// Список кодов ICAO для поисковых подсказок
 
-const AMTK_ICAOS = [
+export default [
   'HKHB',
   'HRYR',
   'TAPT',
@@ -147,5 +147,3 @@ const AMTK_ICAOS = [
   'UWUU',
   'UWWW',
 ]
-
-export default AMTK_ICAOS

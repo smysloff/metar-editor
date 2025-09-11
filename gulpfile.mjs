@@ -17,16 +17,31 @@ import babel        from '@rollup/plugin-babel'
 
 import { rm } from 'node:fs/promises'
 
+class PathEntry {
+  constructor(src, dest) {
+    if (typeof src !== 'string') {
+      throw new TypeError(
+        `'src' must be a type of string, but '${ typeof src }' passed`)
+    }
+    if (typeof dest !== 'string') {
+      throw new TypeError(
+        `'dest' must be a type of string, but '${ typeof dest }' passed`)
+    }
+    this.src  = src
+    this.dest = dest
+  }
+}
+
 const paths = {
-  dest: 'build',
-  html: 'src/html/*.pug',
-  css:  'src/css/*.styl',
-  js:   'src/js/amtk_form.mjs',
+  pipe: new PathEntry('src', 'build'),
+  html: new PathEntry('src/html/main.pug', 'amtk_form.html'),
+  css:  new PathEntry('src/css/main.styl', '_amtk_form.scss'),
+  js:   new PathEntry('src/js/index.mjs',  'amtk_form.min.js'),
 }
 
 async function clean() {
   try {
-    await rm(paths.dest, {
+    await rm(paths.pipe.dest, {
       recursive: true,
       force: true,
     })
@@ -36,7 +51,7 @@ async function clean() {
 }
 
 function html() {
-  return src(paths.html)
+  return src(paths.html.src)
     .pipe(pug({ pretty: false }))
     .pipe(htmlmin({
       collapseWhitespace:        true,
@@ -46,12 +61,13 @@ function html() {
       removeEmptyAttributes:     true,
       removeRedundantAttributes: true,
     }))
-    .pipe(dest(paths.dest))
+    .pipe(rename(paths.html.dest))
+    .pipe(dest(paths.pipe.dest))
     // @todo error handling
 }
 
 function css() {
-  return src(paths.css)
+  return src(paths.css.src)
     .pipe(stylus({ compress: true }))
     .pipe(postcss([
       autoprefixer({
@@ -65,13 +81,13 @@ function css() {
       })
     ]))
     .pipe(cleancss({ level: 2 }))
-    .pipe(rename({ prefix: '_', extname: '.scss' }))
-    .pipe(dest(paths.dest))
+    .pipe(rename(paths.css.dest))
+    .pipe(dest(paths.pipe.dest))
     // @todo error handling
 }
 
 function js() {
-  return src(paths.js)
+  return src(paths.js.src)
     .pipe(rollup({
       plugins: [
         babel({
@@ -84,8 +100,8 @@ function js() {
       ]
     }, 'iife'))
     .pipe(terser())
-    .pipe(rename({ suffix: '.min', extname: '.js' }))
-    .pipe(dest(paths.dest))
+    .pipe(rename(paths.js.dest))
+    .pipe(dest(paths.pipe.dest))
     // @todo error handling
 }
 
