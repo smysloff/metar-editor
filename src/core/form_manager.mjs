@@ -1,5 +1,5 @@
 
-// file: src/js/form_manager.mjs
+// file: src/core/form_manager.mjs
 
 export default class {
 

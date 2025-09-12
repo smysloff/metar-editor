@@ -25,6 +25,7 @@
     "start": "yarn node examples/server.mjs",
     "build": "yarn gulp",
     "clean": "yarn gulp clean",
+    "watch": "yarn gulp update",
     "test": "echo \"no tests specfied\""
   }
 }

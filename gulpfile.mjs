@@ -1,6 +1,7 @@
 
 // file: gulpfile.mjs
 
+import { watch }            from 'gulp'
 import { src, dest }        from 'gulp'
 import { parallel, series } from 'gulp'
 
@@ -34,9 +35,9 @@ class PathEntry {
 
 const paths = {
   pipe: new PathEntry('src', 'build'),
-  html: new PathEntry('src/html/main.pug', 'amtk_form.html'),
-  css:  new PathEntry('src/css/main.styl', '_amtk_form.scss'),
-  js:   new PathEntry('src/js/index.mjs',  'amtk_form.min.js'),
+  html: new PathEntry('src/components/**/*.pug',  'amtk_form.html'),
+  css:  new PathEntry('src/components/**/*.styl', '_amtk_form.scss'),
+  js:   new PathEntry('src/index.mjs',            'amtk_form.min.js'),
 }
 
 async function clean() {
@@ -105,5 +106,11 @@ function js() {
     // @todo error handling
 }
 
-export { clean, html, css, js }
+function update() {
+  watch(paths.html.src, html)
+  watch(paths.css.src,  css)
+  watch(paths.js.src,   js)
+}
+
+export { clean, html, css, js, update }
 export default series(clean, parallel(html, css, js))

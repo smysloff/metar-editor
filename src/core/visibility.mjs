@@ -1,5 +1,5 @@
 
-// file: src/js/visibility.mjs
+// file: src/core/visibility.mjs
 
 // Допустимые значения видимости
 

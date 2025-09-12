@@ -1,9 +1,11 @@
 
-// file: src/js/amtk_form.mjs
+// file: src/index.mjs
 
-import AMTK_ICAOS      from './icaos.mjs'
-import AMTK_VISIBILITY from './visibility.mjs'
-import FormManager     from './form_manager.mjs'
+import AMTK_ICAOS      from './core/icaos.mjs'
+import AMTK_VISIBILITY from './core/visibility.mjs'
+import FormManager     from './core/form_manager.mjs'
+
+import metar_type_component from './components/metar_type.mjs'
 
 
 // Правильный порядок логических групп для METAR/SPECI:
@@ -27,35 +29,12 @@ import FormManager     from './form_manager.mjs'
 // -- заменяет группы 5, 6, 7
 // - Погодные явления могут быть в любом месте после ветра, но обычно перед облачностью.
 // - RVR (видимость на ВПП) идёт после основной видимости, если есть.
-
+//
 
 const form = new FormManager('#amtk_metar_editor')
 
+metar_type_component(form)
 
-// Type
-
-function updateType() {
-  let result = ''
-  for (const type of this.elements.type) {
-    if (type.checked) {
-      result += type.value
-      break
-    }
-  }
-  const { cor } = this.elements
-  result += cor.checked ? ` ${cor.value}` : ''
-  return result
-}
-
-form.addHandler('type', {
-  checked: 'METAR',
-  update: updateType,
-})
-
-form.addHandler('type', {
-  element: 'cor',
-  update: updateType,
-})
 
 
 // ICAO

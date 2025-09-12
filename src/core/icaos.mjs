@@ -1,5 +1,5 @@
 
-// file: src/icaos.mjs
+// file: src/core/icaos.mjs
 
 // Список кодов ICAO для поисковых подсказок
 
