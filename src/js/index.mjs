@@ -3,7 +3,7 @@
 
 import AMTK_ICAOS      from './icaos.mjs'
 import AMTK_VISIBILITY from './visibility.mjs'
-import AMTK_Form       from './form_manager.mjs'
+import FormManager     from './form_manager.mjs'
 
 
 // Правильный порядок логических групп для METAR/SPECI:
@@ -29,7 +29,7 @@ import AMTK_Form       from './form_manager.mjs'
 // - RVR (видимость на ВПП) идёт после основной видимости, если есть.
 
 
-const form = new AMTK_Form('#amtk_metar_editor')
+const form = new FormManager('#amtk_metar_editor')
 
 
 // Type
