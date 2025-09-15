@@ -1,5 +1,5 @@
 
-// file: src/components/metar_weather.mjs
+// file: src/components/metar/weather/weather.mjs
 
 
 function auxiliaryPhenomena(value) {

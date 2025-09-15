@@ -1,16 +1,14 @@
 
-// file: src/components/form_datetime.mjs
+// file: src/components/metar/datetime/datetime.mjs
 
-function datetime_update() {
+function update() {
   const { date, time } = this.elements
-  const date_value = date.value?.split('-')?.at(-1)
-  const time_value = time.value?.split(':')?.join('')
-  return date_value && time_value
-    ? `${date_value}${time_value}Z`
-    : ''
+  const dateval = date.value?.split('-')?.at(-1)
+  const timeval = time.value?.split(':')?.join('')
+  return dateval && timeval ? `${dateval}${timeval}Z` : ''
 }
 
-function setCurrentDatetime() {
+function auxiliary() {
   const { date, time } = this.elements
   const now = new Date()
   const y = now.getUTCFullYear()
@@ -26,18 +24,18 @@ export default function(form) {
 
   form.addHandler('datetime', {
     element: 'date',
-    update: datetime_update,
+    update,
   })
 
   form.addHandler('datetime', {
     element: 'time',
-    update: datetime_update,
+    update,
   })
 
   form.addHandler('datetime', {
     element: 'current',
-    auxiliary: setCurrentDatetime,
-    update: datetime_update,
+    auxiliary,
+    update,
   })
 
 }

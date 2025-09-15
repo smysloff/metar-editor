@@ -1,5 +1,5 @@
 
-// file: src/components/metar_type.mjs
+// file: src/components/metar/type/type.mjs
 
 function update() {
   let result = ''

@@ -1,5 +1,14 @@
 
-// file: src/components/metar_visibility.mjs
+// file: src/components/metar/visibility/visibility.mjs
+
+// Допустимые значения видимости
+
+const visibilities = [-1]
+
+for (let i = 0;    i < 800;   i += 50)   visibilities.push(i)
+for (let i = 800;  i < 5000;  i += 100)  visibilities.push(i)
+for (let i = 5000; i < 10000; i += 1000) visibilities.push(i)
+                                         visibilities.push(9999)
 
 function updateVisibility() {
   const { visibility } = this.elements
@@ -21,7 +30,7 @@ export default function(form) {
 
       if (value === '') visibility_range.value = -1
 
-      const visibilityValue = +value
+      const visibilityValue = Number(value)
 
       const base = visibilityValue < 800  ? 50
                  : visibilityValue < 5000 ? 100

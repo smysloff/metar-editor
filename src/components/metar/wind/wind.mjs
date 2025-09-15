@@ -1,13 +1,13 @@
 
-// file: src/components/metar_wind.mjs
+// file: src/components/metar/wind/wind.mjs
 
 // @todo VRB
 
 function updateWind() {
-  const { units } = this.elements
+
   const { direction, speed, gust } = this.elements
   const { direction_range, speed_range, gust_range } = this.elements
-  const { vrb } = this.elements
+  const { units, vrb } = this.elements
 
   let result = ''
 
@@ -17,13 +17,13 @@ function updateWind() {
 
   result += `${direction.value.padStart(3, '0')}${speed.value.padStart(2, '0')}`
 
-  if (+gust.value > +speed.value) {
-    result += `G${+gust.value}`
+  if (Number(gust.value) > Number(speed.value)) {
+    result += `G${ gust.value }`
   }
 
   for (const unit of units) {
     if (unit.checked) {
-      result += `${unit.value}`; break
+      result += `${ unit.value }`; break
     }
   }
 

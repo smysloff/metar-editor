@@ -1,24 +1,6 @@
 
 // file: src/index.mjs
 
-import AMTK_ICAOS      from './core/icaos.mjs'
-import AMTK_VISIBILITY from './core/visibility.mjs'
-import FormManager     from './core/form_manager.mjs'
-
-
-import metar_type_component        from  './components/metar_type.mjs'
-import metar_icao_component        from  './components/metar_icao.mjs'
-import metar_datetime_component    from  './components/metar_datetime.mjs'
-import metar_wind_component        from  './components/metar_wind.mjs'
-import metar_cavok_component       from  './components/metar_cavok.mjs'
-import metar_visibility_component  from  './components/metar_visibility.mjs'
-import metar_weather_component     from  './components/metar_weather.mjs'
-import metar_clouds_component      from  './components/metar_clouds.mjs'
-import metar_temperature_component from  './components/metar_temperature.mjs'
-import metar_pressure_component    from  './components/metar_pressure.mjs'
-import metar_trend_component       from  './components/metar_trend.mjs'
-
-
 // Правильный порядок логических групп для METAR/SPECI:
 //  1. Тип сводки (METAR/SPECI + COR если есть)
 //  2. Код аэродрома (ICAO) (4 буквы)
@@ -40,88 +22,22 @@ import metar_trend_component       from  './components/metar_trend.mjs'
 // -- заменяет группы 5, 6, 7
 // - Погодные явления могут быть в любом месте после ветра, но обычно перед облачностью.
 // - RVR (видимость на ВПП) идёт после основной видимости, если есть.
-//
+// @todo
+
+import FormManager     from './core/form_manager.mjs'
+import MetarComponents from './components/metar.mjs'
 
 const form = new FormManager('#amtk_metar_editor')
 
-metar_type_component(form)
-metar_icao_component(form)
-metar_datetime_component(form)
-metar_wind_component(form)
-metar_cavok_component(form)
-metar_visibility_component(form)
-metar_weather_component(form)
-metar_clouds_component(form)
-metar_temperature_component(form)
-metar_pressure_component(form)
-metar_trend_component(form)
+MetarComponents.type(form)
+MetarComponents.icao(form)
+MetarComponents.datetime(form)
+MetarComponents.wind(form)
+MetarComponents.cavok(form)
+MetarComponents.visibility(form)
+MetarComponents.weather(form)
+MetarComponents.clouds(form)
+//MetarComponents.temperature(form)
+//MetarComponents.pressure(form)
+//MetarComponents.trend(form)
 
-
-
-// Pressure
-
-function auxiliaryPressure(value, element) {
-
-  const { pressure, pressure_range } = this.elements
-
-  switch (element) {
-
-    case pressure:
-      pressure_range.value = pressure.value
-      break
-
-    case pressure_range:
-      pressure.value = pressure_range.value
-      break
-  }
-
-}
-
-function updatePressure(value, element) {
-  const result = value < 900 || value > 1100 ? '' : value
-  return result === '' ? '' : `Q${result}`
-}
-
-form.addHandler('pressure', {
-
-  format(value) {
-    value = value.trim()
-                 .replace(/\D/, '')
-                 .substring(0, 4)
-
-    if (value === '')
-      return ''
-
-    return +value > 1100 ? 1100 : value
-  },
-
-  auxiliary(value) {
-    const { pressure_range } = this.elements
-    pressure_range.value = value === '' || +value < 500 ? 499 : value
-  },
-
-  update: updatePressure,
-
-})
-
-form.addHandler('pressure', {
-
-  element: 'pressure_range',
-
-  auxiliary(value) {
-    const { pressure } = this.elements
-    pressure.value = +value === 499 ? '' : value
-  },
-
-  update: updatePressure,
-
-})
-
-
-// TREND
-
-form.addHandler('trend', {
-  element: 'trend_text',
-  format: (value) => value.trim().toUpperCase(),
-  update: (value) => value,
-})

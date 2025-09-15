@@ -1,5 +1,5 @@
 
-// file: src/components/metar_cavok.mjs
+// file: src/components/metar/cavok/cavok.mjs
 
 export default function(form) {
 

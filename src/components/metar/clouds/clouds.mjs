@@ -1,14 +1,13 @@
 
-// file: src/components/metar_clouds.mjs
+// file: src/components/metar/clouds/clouds.mjs
 
 
 function formatClouds(value) {
-  value = value.trim()
-  if (value === '') return ''
-  const result = value
-                   .substr(0, 3)
-                   .replace(/\D/, '')
-  return +result > 120 ? 120 : result 
+  const val = value.trim()
+  if (val === '') return ''
+  const result = val.substr(0, 3)
+                    .replace(/\D/, '')
+  return Number(result) > 120 ? 120 : result 
 }
 
 function updateClouds(_, element) {

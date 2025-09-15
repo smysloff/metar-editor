@@ -1,5 +1,5 @@
 
-// file: src/components/metar_temperature.mjs
+// file: src/components/metar/temperature/temperature.mjs
 
 function formatTemperature(value) { // @todo fix bug -0
 
