@@ -15,6 +15,7 @@ import rollup       from 'gulp-better-rollup'
 import stylus       from 'gulp-stylus'
 import terser       from 'gulp-terser'
 import babel        from '@rollup/plugin-babel'
+import resolve      from '@rollup/plugin-node-resolve'
 
 import { rm } from 'node:fs/promises'
 
@@ -91,6 +92,7 @@ function js() {
   return src(paths.js.src)
     .pipe(rollup({
       plugins: [
+        resolve(),
         babel({
           babelHelpers: 'bundled',
           exclude: 'node_modules/**',

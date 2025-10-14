@@ -3,7 +3,7 @@
 
 // Список кодов ICAO для поисковых подсказок
 
-export default [
+const assumptions = [
   'HKHB',
   'HRYR',
   'TAPT',
@@ -148,16 +148,44 @@ export default [
   'UWWW',
 ]
 
+function clearIcao() {
+  const { icao } = this.elements
+  icao.value = ''
+}
+
+function clearVariants() {
+  const variants = this.elements.icao_variants
+  const option = document.createElement('option')
+  option.textContent = 'Не найдено'
+  option.disabled = true
+  option.selected = true
+  variants.options.length = 0
+  variants.add(option)
+}
+
+function clearAll() {
+  clearIcao()
+  clearVariants()
+}
+
 function updateAssumptions() {
-  const { icao, icao_variants } = this.elements
+
+  const { icao } = this.elements
+  const variants = this.elements.icao_variants
   const { value } = icao
-  icao_variants.innerHTML = ''
-  for (const variant of AMTK_ICAOS) {
-    if (variant.startsWith(value)) {
+
+  if (value.length === 0) {
+    clearAll()
+    return
+  }
+
+  clearVariants()
+  for (const assumption of assumptions) {
+    if (assumption.startsWith(value)) {
       const option = document.createElement('option')
-      option.value = variant
-      option.textContent = variant
-      icao_variants.append(option)
+      option.value = assumption
+      option.textContent = assumption
+      variants.add(option)
     }
   }
 }

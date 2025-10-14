@@ -1,7 +1,7 @@
-import http from 'http'
-import fs from 'fs/promises' // промисифицированный fs
-import path from 'path'
-import { fileURLToPath } from 'url'
+import http from 'node:http'
+import fs from 'node:fs/promises' // промисифицированный fs
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const PORT = 3000
 
@@ -26,7 +26,7 @@ const template = (bodyContent) => `
   <script src="/amtk_form.min.js" defer></script>
 </head>
 <body>
-  ${bodyContent}
+  ${ bodyContent }
 </body>
 </html>
 `

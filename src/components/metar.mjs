@@ -1,28 +1,28 @@
 
 // src/components/metar/metar.mjs
 
-import  type         from  './type/type.mjs'
-import  icao         from  './icao/icao.mjs'
-import  datetime     from  './datetime/datetime.mjs'
-import  wind         from  './wind/wind.mjs'
-import  cavok        from  './cavok/cavok.mjs'
-import  visibility   from  './visibility/visibility.mjs'
-import  weather      from  './weather/weather.mjs'
-import  clouds       from  './clouds/clouds.mjs'
-import  temperature  from  './temperature/temperature.mjs'
-import  pressure     from  './pressure/pressure.mjs'
-import  trend        from  './trend/trend.mjs'
+import  typeComponent         from  './metar/type/type.mjs'
+import  icaoComponent         from  './metar/icao/icao.mjs'
+//import  datetimeComponent     from  './metar/datetime/datetime.mjs'
+//import  windComponent         from  './metar/wind/wind.mjs'
+//import  cavokComponent        from  './metar/cavok/cavok.mjs'
+//import  visibilityComponent   from  './metar/visibility/visibility.mjs'
+//import  weatherComponent      from  './metar/weather/weather.mjs'
+//import  cloudsComponent       from  './metar/clouds/clouds.mjs'
+//import  temperatureComponent  from  './metar/temperature/temperature.mjs'
+//import  pressureComponent     from  './metar/pressure/pressure.mjs'
+//import  trendComponent        from  './metar/trend/trend.mjs'
 
 export default {
-  type,
-  icao,
-  datetime,
-  wind,
-  cavok,
-  visibility,
-  weather,
-  clouds,
-  temperature,
-  pressure,
-  trend,
+  type:        typeComponent,
+  icao:        icaoComponent,
+//  datetime:    datetimeComponent,
+//  wind:        windComponent,
+//  cavok:       cavokComponent,
+//  visibility:  visibilityComponent,
+//  weather:     weatherComponent,
+//  clouds:      cloudsComponent,
+//  temperature: temperatureComponent,
+//  pressure:    pressureComponent,
+//  trend:       trendComponent,
 }

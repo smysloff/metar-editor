@@ -13,6 +13,7 @@
 //  9. Давление (QNH в гПа)
 // 10. Дополнительно (NOSIG, CAVOK, RMK и т.д.)
 
+//      \/ COR       \/ NIL AUTO
 // METAR UUEE 141630Z 03012G20MPS 9999 -SN BKN015CB 03/M01 Q1012 NOSIG=
 // ↑     ↑    ↑       ↑           ↑    ↑   ↑        ↑      ↑     ↑
 // 1     2    3       4           5    6   7        8      9     10
@@ -31,13 +32,13 @@ const form = new FormManager('#amtk_metar_editor')
 
 MetarComponents.type(form)
 MetarComponents.icao(form)
-MetarComponents.datetime(form)
-MetarComponents.wind(form)
-MetarComponents.cavok(form)
-MetarComponents.visibility(form)
-MetarComponents.weather(form)
-MetarComponents.clouds(form)
+//MetarComponents.datetime(form)
+//MetarComponents.wind(form)
+//MetarComponents.cavok(form)
+//MetarComponents.visibility(form)
+//MetarComponents.weather(form)
+//MetarComponents.clouds(form)
+
 //MetarComponents.temperature(form)
 //MetarComponents.pressure(form)
 //MetarComponents.trend(form)
-
