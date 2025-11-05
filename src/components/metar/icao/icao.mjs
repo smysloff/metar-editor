@@ -164,8 +164,8 @@ function clearVariants() {
 }
 
 function clearAll() {
-  clearIcao()
-  clearVariants()
+  clearIcao.call(this)
+  clearVariants.call(this)
 }
 
 function updateAssumptions() {
@@ -175,11 +175,11 @@ function updateAssumptions() {
   const { value } = icao
 
   if (value.length === 0) {
-    clearAll()
+    clearAll.call(this)
     return
   }
 
-  clearVariants()
+  clearVariants.call(this)
   for (const assumption of assumptions) {
     if (assumption.startsWith(value)) {
       const option = document.createElement('option')
@@ -198,7 +198,9 @@ function update() {
 
 export default function(form) {
 
-  // @todo cursor position
+  // @todo отследивать позицию курсора при печати
+  // @todo получать коды ICAO из DB
+  // @todo refactor to 
   form.addHandler('icao', {
     format(value) {
       return value.trim()

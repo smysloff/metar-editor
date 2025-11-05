@@ -3,8 +3,8 @@
 
 import  typeComponent         from  './metar/type/type.mjs'
 import  icaoComponent         from  './metar/icao/icao.mjs'
-//import  datetimeComponent     from  './metar/datetime/datetime.mjs'
-//import  windComponent         from  './metar/wind/wind.mjs'
+import  datetimeComponent     from  './metar/datetime/datetime.mjs'
+import  windComponent         from  './metar/wind/wind.mjs'
 //import  cavokComponent        from  './metar/cavok/cavok.mjs'
 //import  visibilityComponent   from  './metar/visibility/visibility.mjs'
 //import  weatherComponent      from  './metar/weather/weather.mjs'
@@ -16,8 +16,8 @@ import  icaoComponent         from  './metar/icao/icao.mjs'
 export default {
   type:        typeComponent,
   icao:        icaoComponent,
-//  datetime:    datetimeComponent,
-//  wind:        windComponent,
+  datetime:    datetimeComponent,
+  wind:        windComponent,
 //  cavok:       cavokComponent,
 //  visibility:  visibilityComponent,
 //  weather:     weatherComponent,
