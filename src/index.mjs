@@ -25,20 +25,22 @@
 // - RVR (видимость на ВПП) идёт после основной видимости, если есть.
 // @todo
 
-import FormManager     from './core/form_manager.mjs'
-import MetarComponents from './components/metar.mjs'
+import FormManager         from './core/form_manager.mjs'
+import MetarComponents     from './components/metar.mjs'
 
 const form = new FormManager('#amtk_metar_editor')
 
 MetarComponents.type(form)
 MetarComponents.icao(form)
 MetarComponents.datetime(form)
+MetarComponents.nil(form)
+MetarComponents.auto(form)
 MetarComponents.wind(form)
 MetarComponents.cavok(form)
-//MetarComponents.visibility(form)
-//MetarComponents.weather(form)
-//MetarComponents.clouds(form)
+MetarComponents.visibility(form)
+MetarComponents.weather(form)
+MetarComponents.clouds(form)
 
-//MetarComponents.temperature(form)
-//MetarComponents.pressure(form)
-//MetarComponents.trend(form)
+MetarComponents.temperature(form)
+MetarComponents.pressure(form)
+MetarComponents.trend(form)

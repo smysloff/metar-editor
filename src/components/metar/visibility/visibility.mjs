@@ -37,11 +37,11 @@ export default function(form) {
                  : visibilityValue < 9999 ? 1000
                  : 0
 
-      let visibilityRangeValue = AMTK_VISIBILITY.at(-1)
+      let visibilityRangeValue = visibilities.at(-1)
 
       if (base > 0) {
         const roundedValue = Math.floor(visibilityValue / base) * base
-        visibilityRangeValue = AMTK_VISIBILITY.indexOf(roundedValue)
+        visibilityRangeValue = visibilities.indexOf(roundedValue)
       }
 
       visibility_range.value = visibilityRangeValue.toString()
@@ -58,14 +58,14 @@ export default function(form) {
     init(elements) {
       const element = elements[0]
       element.setAttribute('min', 0)
-      element.setAttribute('max', AMTK_VISIBILITY.length - 1)
-      element.value = AMTK_VISIBILITY[0]
+      element.setAttribute('max', visibilities.length - 1)
+      element.value = visibilities[0]
     },
 
     auxiliary(value) {
       value = +value
       const { visibility } = this.elements
-      visibility.value = value === 0 ? '' : AMTK_VISIBILITY[value]
+      visibility.value = value === 0 ? '' : visibilities[value]
     },
 
     update: updateVisibility,

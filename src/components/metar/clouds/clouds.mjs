@@ -114,30 +114,6 @@ function auxiliaryClouds1Type(value, element) {
    }
 }
 
-form.addHandler('clouds_1', {
-  element: 'clouds_1',
-  format: formatClouds,
-  auxiliary: auxiliaryClouds1,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_1', {
-  element: 'clouds_1_height',
-  auxiliary: auxiliaryClouds1Height,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_1', {
-  element: 'clouds_1_coverage',
-  auxiliary: auxiliaryClouds1Coverage,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_1', {
-  element: 'clouds_1_type',
-  auxiliary: auxiliaryClouds1Type,
-  update: updateClouds,
-})
 
 function updateClouds2() {
   let {
@@ -191,30 +167,6 @@ function auxiliaryClouds2Type(value, element) {
    }
 }
 
-form.addHandler('clouds_2', {
-  element: 'clouds_2',
-  format: formatClouds,
-  auxiliary: auxiliaryClouds2,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_2', {
-  element: 'clouds_2_height',
-  auxiliary: auxiliaryClouds2Height,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_2', {
-  element: 'clouds_2_coverage',
-  auxiliary: auxiliaryClouds2Coverage,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_2', {
-  element: 'clouds_2_type',
-  auxiliary: auxiliaryClouds2Type,
-  update: updateClouds,
-})
 
 function updateClouds3() {
   let {
@@ -268,31 +220,6 @@ function auxiliaryClouds3Type(value, element) {
    }
 }
 
-form.addHandler('clouds_3', {
-  element: 'clouds_3',
-  format: formatClouds,
-  auxiliary: auxiliaryClouds3,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_3', {
-  element: 'clouds_3_height',
-  auxiliary: auxiliaryClouds3Height,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_3', {
-  element: 'clouds_3_coverage',
-  auxiliary: auxiliaryClouds3Coverage,
-  update: updateClouds,
-})
-
-form.addHandler('clouds_3', {
-  element: 'clouds_3_type',
-  auxiliary: auxiliaryClouds3Type,
-  update: updateClouds,
-})
-
 function auxiliaryClouds4(value) {
   const { clouds_4_height: height } = this.elements
   height.value = value === '' ? -1 : +value 
@@ -325,27 +252,110 @@ function auxiliaryClouds4Type(value, element) {
    }
 }
 
-form.addHandler('clouds_4', {
-  element: 'clouds_4',
-  format: formatClouds,
-  auxiliary: auxiliaryClouds4,
-  update: updateClouds,
-})
 
-form.addHandler('clouds_4', {
-  element: 'clouds_4_height',
-  auxiliary: auxiliaryClouds4Height,
-  update: updateClouds,
-})
+export default function(form) {
 
-form.addHandler('clouds_4', {
-  element: 'clouds_4_coverage',
-  auxiliary: auxiliaryClouds4Coverage,
-  update: updateClouds,
-})
+  form.addHandler('clouds_1', {
+    element: 'clouds_1',
+    format: formatClouds,
+    auxiliary: auxiliaryClouds1,
+    update: updateClouds,
+  })
 
-form.addHandler('clouds_4', {
-  element: 'clouds_4_type',
-  auxiliary: auxiliaryClouds4Type,
-  update: updateClouds,
-})
+  form.addHandler('clouds_1', {
+    element: 'clouds_1_height',
+    auxiliary: auxiliaryClouds1Height,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_1', {
+    element: 'clouds_1_coverage',
+    auxiliary: auxiliaryClouds1Coverage,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_1', {
+    element: 'clouds_1_type',
+    auxiliary: auxiliaryClouds1Type,
+    update: updateClouds,
+  })
+
+
+  form.addHandler('clouds_2', {
+    element: 'clouds_2',
+    format: formatClouds,
+    auxiliary: auxiliaryClouds2,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_2', {
+    element: 'clouds_2_height',
+    auxiliary: auxiliaryClouds2Height,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_2', {
+    element: 'clouds_2_coverage',
+    auxiliary: auxiliaryClouds2Coverage,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_2', {
+    element: 'clouds_2_type',
+    auxiliary: auxiliaryClouds2Type,
+    update: updateClouds,
+  })
+
+
+  form.addHandler('clouds_3', {
+    element: 'clouds_3',
+    format: formatClouds,
+    auxiliary: auxiliaryClouds3,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_3', {
+    element: 'clouds_3_height',
+    auxiliary: auxiliaryClouds3Height,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_3', {
+    element: 'clouds_3_coverage',
+    auxiliary: auxiliaryClouds3Coverage,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_3', {
+    element: 'clouds_3_type',
+    auxiliary: auxiliaryClouds3Type,
+    update: updateClouds,
+  })
+
+
+  form.addHandler('clouds_4', {
+    element: 'clouds_4',
+    format: formatClouds,
+    auxiliary: auxiliaryClouds4,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_4', {
+    element: 'clouds_4_height',
+    auxiliary: auxiliaryClouds4Height,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_4', {
+    element: 'clouds_4_coverage',
+    auxiliary: auxiliaryClouds4Coverage,
+    update: updateClouds,
+  })
+
+  form.addHandler('clouds_4', {
+    element: 'clouds_4_type',
+    auxiliary: auxiliaryClouds4Type,
+    update: updateClouds,
+  })
+
+}

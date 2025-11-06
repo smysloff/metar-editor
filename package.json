@@ -27,6 +27,7 @@
     "build": "yarn gulp",
     "clean": "yarn gulp clean",
     "watch": "yarn gulp update",
+    "restart": "yarn build && yarn start",
     "test": "echo \"no tests specfied\""
   }
 }
