@@ -12,9 +12,8 @@ function update() {
     }
   }
 
-  const { cor } = this.elements
-
-  result += cor.checked ? ` ${ cor.value }` : ''
+  //const { cor } = this.elements
+  //result += cor.checked ? ` ${ cor.value }` : ''
 
   return result
 }
@@ -26,9 +25,9 @@ export default function(form) {
     update,
   })
 
-  form.addHandler('type', {
-    element: 'cor',
-    update,
-  })
+  //form.addHandler('type', {
+  //  element: 'cor',
+  //  update,
+  //})
 
 }

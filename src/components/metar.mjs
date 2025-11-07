@@ -3,6 +3,7 @@
 
 import  typeComponent         from  './metar/type/type.mjs'
 import  icaoComponent         from  './metar/icao/icao.mjs'
+import  corComponent          from  './metar/cor/cor.mjs'
 import  datetimeComponent     from  './metar/datetime/datetime.mjs'
 import  nilComponent          from  './metar/nil/nil.mjs'
 import  autoComponent         from  './metar/auto/auto.mjs'
@@ -18,6 +19,7 @@ import  trendComponent        from  './metar/trend/trend.mjs'
 export default {
   type:        typeComponent,
   icao:        icaoComponent,
+  cor:         corComponent,
   datetime:    datetimeComponent,
   nil:         nilComponent,
   auto:        autoComponent,
