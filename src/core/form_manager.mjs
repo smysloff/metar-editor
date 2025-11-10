@@ -47,7 +47,7 @@ export default class {
     }
 
     if (!this.forms.output) {
-      console.warn(`can't find 'output' form in 'root' element ${selector}`)
+      console.warn(`can't find 'output' form in 'root' element ${ selector }`)
     }
 
     this.elements = this.forms.input.elements
@@ -61,23 +61,31 @@ export default class {
 
   #dispatch(event) {
 
-    const element = Array.from(this.elements)
-                         .find(element => element === event.target)
+    let element = Array.from(this.elements)
+                       .find(element => element === event.target)
 
-    if (!element) return
+    if (!element) {
+      if (event.target instanceof HTMLOptionElement) {
+        element = event.target.parentElement
+      } else {
+        return
+      }
+    }
 
     if (event.type === 'click') {
       if (
         (element instanceof HTMLInputElement
          && this.#non_clickable_types.includes(element.type))
-        || element instanceof HTMLSelectElement
+        || event.target instanceof HTMLSelectElement
       ) {
         return
       }
     }
 
     const record = this.registry.get(element)
-    if (!record) return
+    if (!record) {
+      return
+    }
 
     const { name } = record
     const { format, auxiliary, update } = record.callbacks
@@ -87,6 +95,7 @@ export default class {
     }
 
     if (auxiliary) {
+      console.log('auxiliary', event)
       auxiliary.call(this, element.value, element)
     }
 
