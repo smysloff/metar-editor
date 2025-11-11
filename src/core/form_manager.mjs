@@ -95,7 +95,6 @@ export default class {
     }
 
     if (auxiliary) {
-      console.log('auxiliary', event)
       auxiliary.call(this, element.value, element)
     }
 
