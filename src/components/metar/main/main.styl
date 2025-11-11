@@ -1,8 +1,9 @@
+// src/components/metar/main/main.styl
+
 .mrbox-scroll:has(.amtk_metar_editor)
   padding-bottom 0
 
 .amtk_metar_editor
-  font 18px monospace
   box-sizing border-box
   position relative
   width 728px
@@ -36,7 +37,6 @@
   select
   textarea
     box-sizing border-box
-    padding .5rem 1rem
 
   input[type='range']
   textarea
@@ -46,7 +46,14 @@
     margin-bottom 1rem
 
   label
+    white-space nowrap
+
+  .bold
     font-weight bold
+
+  .flex
+    display flex
+
 
   input
   textarea
@@ -60,3 +67,18 @@
   #amtk_metar_gust
     width calc(11ch + 2.25rem)
 
+  div
+    & > input + input
+    & > input + select
+    & > input + label
+    & > select + select
+    & > select + input
+    & > select + label
+    & > label + label
+    & > label + select
+    & > label + input
+      margin-left .5rem
+
+  summary
+    & + div
+      margin-top .5rem
