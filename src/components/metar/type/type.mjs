@@ -12,22 +12,12 @@ function update() {
     }
   }
 
-  //const { cor } = this.elements
-  //result += cor.checked ? ` ${ cor.value }` : ''
-
   return result
 }
 
 export default function(form) {
-
   form.addHandler('type', {
     checked: 'METAR',
     update,
   })
-
-  //form.addHandler('type', {
-  //  element: 'cor',
-  //  update,
-  //})
-
 }
