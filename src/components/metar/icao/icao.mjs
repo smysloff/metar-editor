@@ -4,28 +4,34 @@
 import { getIcaos } from '../../../core/utils.mjs'
 
 
-function clearIcao() {
-  const { icao } = this.elements
-  icao.value = ''
+export default function(form) {
+
+  // @todo отслеживать позицию курсора при печати
+  // @todo кеширование кодов ICAO из БД
+
+  form.addHandler('icao', {
+    format,
+    auxiliary: updateAssumptions,
+    update,
+  })
+
+  form.addHandler('icao', {
+    element: 'icao_variants',
+    init: updateAssumptions,
+    auxiliary: updateValue,
+    update,
+  })
+
 }
 
-function clearVariants(addDefaultOption = false) {
 
-  const variants = this.elements.icao_variants
-  variants.options.length = 0
+// Main Functions //
 
-  if (addDefaultOption) {
-    const option = document.createElement('option')
-    option.textContent = 'Не найдено'
-    option.disabled = true
-    option.selected = true
-    variants.add(option)
-  }
-}
-
-function clearAll() {
-  clearIcao.call(this)
-  clearVariants.call(this, true)
+function format(value) {
+  return value.trim()
+              .toUpperCase()
+              .replace(/[^A-Z]/g, '')
+              .substring(0, 4)
 }
 
 async function updateAssumptions() {
@@ -84,31 +90,34 @@ function update() {
   return value.length === 4 ? value : ''
 }
 
-export default function(form) {
+function updateValue(value) {
+  const { icao } = this.elements
+  icao.value = value
+}
 
-  // @todo отслеживать позицию курсора при печати
-  // @todo кеширование кодов ICAO из БД
-  // @todo рефакторинг и декомпозиция
 
-  form.addHandler('icao', {
-    format(value) {
-      return value.trim()
-                  .toUpperCase()
-                  .replace(/[^A-Z]/g, '')
-                  .substring(0, 4)
-    },
-    auxiliary: updateAssumptions,
-    update,
-  })
+// Util Functions //
 
-  form.addHandler('icao', {
-    element: 'icao_variants',
-    init: updateAssumptions,
-    auxiliary(value, element) {
-      const { icao } = this.elements
-      icao.value = value
-    },
-    update,
-  })
+function clearIcao() {
+  const { icao } = this.elements
+  icao.value = ''
+}
 
+function clearVariants(addDefaultOption = false) {
+
+  const variants = this.elements.icao_variants
+  variants.options.length = 0
+
+  if (addDefaultOption) {
+    const option = document.createElement('option')
+    option.textContent = 'Не найдено'
+    option.disabled = true
+    option.selected = true
+    variants.add(option)
+  }
+}
+
+function clearAll() {
+  clearIcao.call(this)
+  clearVariants.call(this, true)
 }
