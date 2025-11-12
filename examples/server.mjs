@@ -64,18 +64,18 @@ const template = (bodyContent) => `
 const server = http.createServer(async (req, res) => {
   try {
     if (req.url === '/') {
-      const formHtml = await fs.readFile(path.join(__dirname, `${ htmlFile.path }`), 'utf8')
+      const formHtml = await fs.readFile(path.join(__dirname, htmlFile.path), 'utf8')
       const page = template(formHtml)
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
       res.end(page)
     }
-    else if (req.url === `${ cssFile.url }`) {
-      const css = await fs.readFile(path.join(__dirname, `${ cssFile.path }`), 'utf8')
+    else if (req.url === cssFile.url) {
+      const css = await fs.readFile(path.join(__dirname, cssFile.path), 'utf8')
       res.writeHead(200, { 'Content-Type': 'text/css; charset=utf-8' })
       res.end(css)
     }
-    else if (req.url === `${ jsFile.url }`) {
-      const js = await fs.readFile(path.join(__dirname, `${ jsFile.path }`), 'utf8')
+    else if (req.url === jsFile.url) {
+      const js = await fs.readFile(path.join(__dirname, jsFile.path), 'utf8')
       res.writeHead(200, { 'Content-Type': 'application/javascript; charset=utf-8' })
       res.end(js)
     }
