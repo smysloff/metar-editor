@@ -36,9 +36,9 @@ class PathEntry {
 
 const paths = {
   pipe: new PathEntry('src', 'build'),
-  html: new PathEntry('src/components/**/*.pug',  'amtk_form.html'),
-  css:  new PathEntry('src/components/**/*.styl', '_amtk_form.scss'),
-  js:   new PathEntry('src/index.mjs',            'amtk_form.min.js'),
+  html: new PathEntry('src/components/**/*.pug',  'form.min.html'),
+  css:  new PathEntry('src/components/**/*.styl', 'form.min.css'),
+  js:   new PathEntry('src/index.mjs',            'form.min.js'),
 }
 
 async function clean() {
