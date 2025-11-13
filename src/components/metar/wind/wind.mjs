@@ -4,7 +4,7 @@
 // @todo VRB
 // @todo рефакторинг и декомпозиция
 
-const { min } = Math
+const { min, round } = Math
 
 
 export default function(form) {
@@ -12,89 +12,88 @@ export default function(form) {
   form.addHandler('wind', {
     element: 'calm',
     auxiliary: auxiliaryCalm,
-    update: updateCalm,
+    update,
   })
 
   form.addHandler('wind', {
     element: 'units',
-    init: initUnits,
-    update: updateWind,
+    init: init,
+    update,
   })
 
   form.addHandler('wind', {
     element: 'direction',
-    format: formatDirection,
-    auxiliary: auxiliaryDirection,
-    update: updateWind,
+    format,
+    auxiliary: auxiliary,
+    update,
   })
 
   form.addHandler('wind', {
-
     element: 'speed',
-
-    format(value) {
-      return parseInt(value
-                        .trim()
-                        .replace(/\D/, '')
-                        .substring(0, 2))
-    },
-
-    auxiliary(value) {
-      const { speed_range } = this.elements
-      speed_range.value = value
-    },
-
-    update: updateWind,
-
+    format,
+    auxiliary: auxiliary,
+    update,
   })
 
   form.addHandler('wind', {
-
     element: 'gust',
-
-    format(value) {
-      return parseInt(value
-                        .trim()
-                        .replace(/\D/, '')
-                        .substring(0, 2))
-    },
-
-    auxiliary(value) {
-      const { gust_range } = this.elements
-      gust_range.value = value
-    },
-
-    update: updateWind,
+    format,
+    auxiliary: auxiliary,
+    update,
   })
 
   form.addHandler('wind', {
     element:  'direction_range',
-    auxiliary: auxiliaryWindRange,
-    update:    updateWind,
+    auxiliary: auxiliaryRange,
+    update,
   })
 
   form.addHandler('wind', {
     element:  'speed_range',
-    auxiliary: auxiliaryWindRange,
-    update:    updateWind,
+    auxiliary: auxiliaryRange,
+    update,
   })
 
   form.addHandler('wind', {
     element:  'gust_range',
-    auxiliary: auxiliaryWindRange,
-    update:    updateWind,
+    auxiliary: auxiliaryRange,
+    update,
   })
 
   form.addHandler('wind', {
     element: 'vrb',
     auxiliary: auxiliaryVrb,
-    update: updateWind,
+    update,
   })
 
 }
 
 
 // Main Functions //
+
+function init(elements) {
+  for (const element of elements) {
+    element.checked = element.value === 'MPS'
+  }
+}
+
+function format(value, element) {
+
+  const { direction, speed, gust} = this.elements
+
+  if (element === direction) {
+    return formatDirection(value)
+  }
+
+  const item = [speed, gust].find(item => element === item)
+
+  if (item) {
+    return formatSpeed(value)
+  }
+
+  throw new Error(`Can't find element ${ element }`)
+}
+
 
 function auxiliaryCalm(value, element) {
 
@@ -115,102 +114,46 @@ function auxiliaryCalm(value, element) {
 
 }
 
-function updateCalm(_, element) {
-  return element.checked ? 'CALM' : ''
-}
+function auxiliary(value, element) {
 
-function initUnits(elements) {
-  for (const element of elements) {
-    element.checked = element.value === 'MPS'
-  }
-}
+  const { calm } = this.elements
+  calm.checked = false
 
-function formatDirection(value) {
+  const { direction, direction_range } = this.elements
+  const { speed, speed_range } = this.elements
+  const { gust, gust_range } = this.elements
+  const { vrb } = this.elements
 
-  value = parseInt(
-    value.trim()
-         .replace(/\D/, '')
-         .substring(0, 3)
-  )
-
-  return isNaN(value) ? '' : min(value, 360)
-}
-
-function auxiliaryDirection(value) {
-  const range = this.elements.direction_range
-  range.value = value === '' ? -10 : value
-}
-
-
-
-
-
-function updateWind() {
-
-  const { direction, speed, gust } = this.elements
-  const { direction_range, speed_range, gust_range } = this.elements
-  const { units, vrb } = this.elements
-
-  let result = ''
-
-  if (
-    (direction.value === '' && !vrb.checked)
-    || speed.value === ''
-  ) {
-    return result
+  if (element === direction) {
+    vrb.checked = false
+    direction_range.value = value === '' ? -10 : value
+    return
   }
 
-  result += vrb.checked
-    ? vrb.value
-    : vrb.value.padStart(3, '0')
-
-  result += speed.value.padStart(2, '0')
-
-  //result += `${direction.value.padStart(3, '0')}${speed.value.padStart(2, '0')}`
-
-  if (Number(gust.value) > Number(speed.value)) {
-    result += `G${ gust.value }`
+  if (element === speed) {
+    speed_range.value = value === '' ? -1 : value
+    return
   }
 
-  for (const unit of units) {
-    if (unit.checked) {
-      result += `${ unit.value }`; break
-    }
+  if (element === gust) {
+    gust_range.value = value === '' ? -1 : value
+    return
   }
 
-  return result
 }
 
-function auxiliaryWind(value, element) {
+function auxiliaryRange(value, element) {
+
+  const { calm } = this.elements
+  calm.checked = false
 
   const { direction, speed, gust } = this.elements
   const { direction_range, speed_range, gust_range } = this.elements
 
-  switch (element) {
-
-    case direction: {
-      direction_range.value = value === '' ? -10 : Math.round(value * .1) * 10
-      break
-    }
-
-    case speed: {
-      speed_range.value = value === '' ? -1 : value
-      break
-    }
-
-    case gust: {
-      gust_range.value = value === '' ? -1 : value
-      break
-    }
-
+  const { vrb } = this.elements
+  if (element === direction_range) {
+    vrb.checked = false
   }
-
-}
-
-function auxiliaryWindRange(value, element) {
-
-  const { direction, speed, gust } = this.elements
-  const { direction_range, speed_range, gust_range } = this.elements
 
   switch (element) {
     case direction_range:
@@ -226,10 +169,92 @@ function auxiliaryWindRange(value, element) {
 }
 
 function auxiliaryVrb(_, element) {
+
+  const { calm } = this.elements
+  calm.checked = false
+
   const { direction } = this.elements
   const range = this.elements.direction_range
   if (element.checked) {
     direction.value = ''
     range.value = '-10'
   }
+
+}
+
+function update(_, element) {
+
+  const { direction, speed, gust } = this.elements
+  const { direction_range, speed_range, gust_range } = this.elements
+  const { units, vrb, calm } = this.elements
+
+  if (element === calm && element.checked) {
+    return element.value
+  }
+
+  let result = ''
+
+  if (
+    (direction.value === '' && !vrb.checked)
+    || speed.value === ''
+  ) {
+    return result
+  }
+
+  result += vrb.checked
+    ? vrb.value
+    : roundDirection(direction.value).padStart(3, '0')
+
+  result += speed.value.padStart(2, '0')
+
+  if (
+    Number(gust.value)
+    && Number(gust.value) > Number(speed.value)
+    && !(Number(direction.value) === 0 && Number(speed.value) === 0)
+  ) {
+    result += `G${ gust.value }`
+  }
+
+  for (const unit of units) {
+    if (unit.checked) {
+      result += `${ unit.value }`; break
+    }
+  }
+
+  return result
+}
+
+
+// Util Functions //
+
+function roundDirection(value) {
+  value = round(Number(value) / 10) * 10
+  return value.toString()
+}
+
+function formatDirection(value) {
+
+  const digitLength = 3
+  const maxDegrees = 360
+
+  value = value.trim()
+               .replace(/\D/g, '')
+               .substring(0, digitLength)
+
+  value = parseInt(value)
+
+  return isNaN(value) ? '' : min(value, maxDegrees)
+}
+
+function formatSpeed(value) {
+
+  const digitLength = 2
+
+  value = value.trim()
+               .replace(/\D/g, '')
+               .substring(0, digitLength)
+
+  value = parseInt(value)
+
+  return isNaN(value) ? '' : value
 }
