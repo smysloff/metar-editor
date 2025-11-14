@@ -11,34 +11,34 @@ export default function(form) {
 
   form.addHandler('wind', {
     element: 'calm',
-    auxiliary: auxiliaryCalm,
+    auxiliary,
     update,
   })
 
   form.addHandler('wind', {
     element: 'units',
-    init: init,
+    init,
     update,
   })
 
   form.addHandler('wind', {
     element: 'direction',
     format,
-    auxiliary: auxiliary,
+    auxiliary,
     update,
   })
 
   form.addHandler('wind', {
     element: 'speed',
     format,
-    auxiliary: auxiliary,
+    auxiliary,
     update,
   })
 
   form.addHandler('wind', {
     element: 'gust',
     format,
-    auxiliary: auxiliary,
+    auxiliary,
     update,
   })
 
@@ -62,7 +62,7 @@ export default function(form) {
 
   form.addHandler('wind', {
     element: 'vrb',
-    auxiliary: auxiliaryVrb,
+    auxiliary,
     update,
   })
 
@@ -81,28 +81,29 @@ function format(value, element) {
 
   const { direction, speed, gust} = this.elements
 
-  if (element === direction) {
-    return formatDirection(value)
+  switch (element) {
+
+    case direction:
+      return formatDirection(value)
+
+    case speed:
+    case gust:
+      return formatSpeed(value)
+
+    default:
+      throw new Error(`Can't find 'format' handler for element ${ element }`)
   }
 
-  const item = [speed, gust].find(item => element === item)
-
-  if (item) {
-    return formatSpeed(value)
-  }
-
-  throw new Error(`Can't find element ${ element }`)
 }
 
+function auxiliary(value, element) {
 
-function auxiliaryCalm(value, element) {
+  const { direction, direction_range } = this.elements
+  const { speed, speed_range } = this.elements
+  const { gust, gust_range } = this.elements
+  const { units, calm, vrb } = this.elements
 
-  const { units } = this.elements
-  const { direction, speed, gust } = this.elements
-  const { direction_range, speed_range, gust_range } = this.elements
-  const { vrb } = this.elements
-
-  if (element.checked) {
+  if (element === calm && element.checked) {
     direction.value = ''
     speed.value = ''
     gust.value = ''
@@ -110,19 +111,16 @@ function auxiliaryCalm(value, element) {
     speed_range.value = -1
     gust_range.value = -1
     vrb.checked = false
+    return
   }
 
-}
-
-function auxiliary(value, element) {
-
-  const { calm } = this.elements
   calm.checked = false
 
-  const { direction, direction_range } = this.elements
-  const { speed, speed_range } = this.elements
-  const { gust, gust_range } = this.elements
-  const { vrb } = this.elements
+  if (element.checked) {
+    direction.value = ''
+    direction_range.value = '-10'
+    return
+  }
 
   if (element === direction) {
     vrb.checked = false
@@ -168,20 +166,6 @@ function auxiliaryRange(value, element) {
 
 }
 
-function auxiliaryVrb(_, element) {
-
-  const { calm } = this.elements
-  calm.checked = false
-
-  const { direction } = this.elements
-  const range = this.elements.direction_range
-  if (element.checked) {
-    direction.value = ''
-    range.value = '-10'
-  }
-
-}
-
 function update(_, element) {
 
   const { direction, speed, gust } = this.elements
@@ -203,7 +187,7 @@ function update(_, element) {
 
   result += vrb.checked
     ? vrb.value
-    : roundDirection(direction.value).padStart(3, '0')
+    : roundTo(direction.value, 10).toString().padStart(3, '0')
 
   result += speed.value.padStart(2, '0')
 
@@ -227,9 +211,8 @@ function update(_, element) {
 
 // Util Functions //
 
-function roundDirection(value) {
-  value = round(Number(value) / 10) * 10
-  return value.toString()
+function roundTo(value, precision = 1) {
+  value = roundTo(Number(value) / precision) * precision
 }
 
 function formatDirection(value) {
