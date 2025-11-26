@@ -1,6 +1,6 @@
 //- src/components/metar/main/main.pug
 
-div#amtk_metar_editor.amtk_metar_editor(data-version='')
+div#amtk_metar_editor.amtk_metar_editor(data-version='dba58dc78d43ef7e')
 
   form(name='amtk_form_input')
 
@@ -30,30 +30,32 @@ div#amtk_metar_editor.amtk_metar_editor(data-version='')
     hr
 
 
-    // ICAO
+    // ICAO & DateTime
 
-    div
+    div.amtk_flex_row.amtk_flex_gap_md
+
+      // ICAO
+
       div
-        label(for='amtk_metar_icao')
-          span.bold ICAO
+        div
+          label(for='amtk_metar_icao')
+            span.bold ICAO
+        div
+          input(type='text' name='icao' id='amtk_metar_icao')
+          select(name='icao_variants')
+            option Не найдено
+
+      // DateTime
+
       div
-        input(type='text' name='icao' id='amtk_metar_icao')
-        select(name='icao_variants')
-          option Не найдено
+        div
+          label(for='amtk_metar_date')
+            span.bold Дата и время
+        div
+          input(type='date' name='date' id='amtk_metar_date')
+          input(type='time' name='time' step='60' id='amtk_metar_time')
+          input(type='button' name='current' value='Сейчас' id='amtk_metar_current')
 
-    hr
-
-
-    // DateTime
-
-    div
-      div
-        label(for='amtk_metar_date')
-          span.bold Дата и время
-      div
-        input(type='date' name='date' id='amtk_metar_date')
-        input(type='time' name='time' step='60' id='amtk_metar_time')
-        input(type='button' name='current' value='Сейчас' id='amtk_metar_current')
     hr
 
 
@@ -78,29 +80,28 @@ div#amtk_metar_editor.amtk_metar_editor(data-version='')
           span VRB
       div
         div
-          input(type='text' name='direction' id='amtk_metar_direction' placeholder='направление')
-          input(type='text' name='speed' id='amtk_metar_speed' placeholder='скорость')
-          input(type='text' name='gust' id='amtk_metar_gust' placeholder='порыв')
-        div
           div
             label(for='amtk_metar_direction')
               span Направление
             //label(for='amtk_metar_vrb')
             //  input(type='checkbox' name='vrb' value='VRB' id='amtk_metar_vrb')
             //  span VRB
-          div
+          div.amtk_flex_row.amtk_flex_gap_sm
+            input(type='text' name='direction' id='amtk_metar_direction')
             input(type='range' name='direction_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_direction_range')
         div
           div
             label(for='amtk_metar_speed')
               span Скорость
-          div
+          div.amtk_flex_row.amtk_flex_gap_sm
+            input(type='text' name='speed' id='amtk_metar_speed')
             input(type='range' name='speed_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_speed_range')
         div
           div
             label(for='amtk_metar_gust')
               span Порыв
-          div
+          div.amtk_flex_row.amtk_flex_gap_sm
+            input(type='text' name='gust' id='amtk_metar_gust')
             input(type='range' name='gust_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_gust_range')
     hr
 
