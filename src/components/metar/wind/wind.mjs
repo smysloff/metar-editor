@@ -4,6 +4,8 @@
 // @todo VRB
 // @todo рефакторинг и декомпозиция
 
+import { roundTo } from '../../../core/utils.mjs'
+
 const { min, round } = Math
 
 
@@ -210,10 +212,6 @@ function update(_, element) {
 
 
 // Util Functions //
-
-function roundTo(value, precision = 1) {
-  value = roundTo(Number(value) / precision) * precision
-}
 
 function formatDirection(value) {
 

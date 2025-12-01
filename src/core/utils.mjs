@@ -3,13 +3,14 @@
 
 import default_icaos from './icaos.mjs'
 
+const { round } = Math
+
 export function disableCheckbox(name, cleanResult = false) {
   this.elements[name].checked = false
   if (cleanResult) {
     this.result.set(name, '')
   }
 }
-
 
 export function getFirFromPage() {
   const element = document.querySelector('login')
@@ -78,4 +79,8 @@ export async function getIcaos(value) {
     console.error('Error getting ICAOs:', error)
     return default_icaos
   }
+}
+
+export function roundTo(value, precision = 1) {
+  return round(Number(value) / precision) * precision
 }
