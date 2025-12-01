@@ -124,6 +124,9 @@ function auxiliary(value, element) {
     return
   }
 
+
+  // inputs
+
   if (element === direction) {
     vrb.checked = false
     direction_range.value = value === '' ? -10 : value
@@ -138,6 +141,23 @@ function auxiliary(value, element) {
   if (element === gust) {
     gust_range.value = value === '' ? -1 : value
     return
+  }
+
+  // range
+
+  if (element === direction_range) {
+    vrb.checked = false
+  }
+
+  switch (element) {
+    case direction_range:
+      direction.value = value === '-10' ? '' : parseInt(value); break
+
+    case speed_range:
+      speed.value = value === '-1' ? '' : parseInt(value); break
+
+    case gust_range:
+      gust.value = value === '-1' ? '' : parseInt(value); break
   }
 
 }
