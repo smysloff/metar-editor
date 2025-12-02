@@ -1,6 +1,6 @@
 //- src/components/metar/main/main.pug
 
-div#amtk_metar_editor.amtk_metar_editor(data-version='b8aa3fe9015ea387')
+div#amtk_metar_editor.amtk_metar_editor(data-version='43297a6ba9c6e158')
 
   form(name='amtk_form_input')
 
@@ -360,5 +360,9 @@ div#amtk_metar_editor.amtk_metar_editor(data-version='b8aa3fe9015ea387')
     div
       textarea(name='output' style='resize: none' id='amtk_metar_output')
     div
-      input(type='submit' value='Отправить')
-
+      div.amtk_metar_visible
+        input(name='send' type='button' value='Отправить')
+      div.amtk_metar_hide
+        span Выпустить это сообщение?
+        input(type='submit' value='Да')
+        input(name='reset' type='reset' value='Отмена')

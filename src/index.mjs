@@ -45,3 +45,5 @@ MetarComponents.clouds(form)
 MetarComponents.temperature(form)
 MetarComponents.pressure(form)
 MetarComponents.trend(form)
+
+MetarComponents.main(form)

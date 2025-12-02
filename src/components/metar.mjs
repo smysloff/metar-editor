@@ -16,6 +16,8 @@ import  temperatureComponent  from  './metar/temperature/temperature.mjs'
 import  pressureComponent     from  './metar/pressure/pressure.mjs'
 import  trendComponent        from  './metar/trend/trend.mjs'
 
+import  mainComponent         from  './metar/main/main.mjs'
+
 export default {
   type:        typeComponent,
   icao:        icaoComponent,
@@ -31,4 +33,6 @@ export default {
   temperature: temperatureComponent,
   pressure:    pressureComponent,
   trend:       trendComponent,
+
+  main:        mainComponent,
 }
