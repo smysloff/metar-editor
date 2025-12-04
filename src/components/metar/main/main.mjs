@@ -8,19 +8,19 @@ export default function(form) {
   const send_wrapper = send.parentElement
   const submit_wrapper = submit.parentElement
 
-  send_wrapper.hidden = false
-  submit_wrapper.hidden = true
+  //send_wrapper.hidden = false
+  //submit_wrapper.hidden = true
 
   send.addEventListener('click', (e) => {
     e.preventDefault()
-    send_wrapper.hidden = true
-    submit_wrapper.hidden = false
+    send_wrapper.classList.add('amtk_hidden')
+    submit_wrapper.classList.remove('amtk_hidden')
   })
 
   reset.addEventListener('click', (e) => {
     e.preventDefault()
-    send_wrapper.hidden = false
-    submit_wrapper.hidden = true
+    send_wrapper.classList.remove('amtk_hidden')
+    submit_wrapper.classList.add('amtk_hidden')
   })
 
   form.forms.output.addEventListener('submit', (e) => {
