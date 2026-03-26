@@ -1,0 +1,32 @@
+
+// file: src/app/menu/menu.styl
+
+.amtk_wre_menu
+  padding-left 1rem
+  padding-right @padding-left
+  padding-bottom 1rem
+
+  &_list
+    list-style-type none
+    display flex
+    flex-direction row
+    gap .5rem
+    border 1px solid currentColor
+    padding .5rem
+
+  &_btn
+    border none
+    cursor pointer
+    border-radius 5px
+    padding .25rem .75rem
+
+    &.amtk_wre_active
+      background-color #48a6ff
+      color white
+
+    &:hover
+      background-color #4185d7
+      color white
+
+.amtk_wre_hidden
+  display none

@@ -35,10 +35,10 @@ class PathEntry {
 }
 
 const paths = {
-  pipe: new PathEntry('src', 'build'),
-  html: new PathEntry('src/components/**/*.pug',  'form.min.html'),
-  css:  new PathEntry('src/components/**/*.styl', 'form.min.css'),
-  js:   new PathEntry('src/index.mjs',            'form.min.js'),
+  pipe: new PathEntry('src',                    'build'),
+  html: new PathEntry('src/app/main/main.pug',  'form.min.html'),
+  css:  new PathEntry('src/app/main/main.styl', 'form.min.css'),
+  js:   new PathEntry('src/index.mjs',          'form.min.js'),
 }
 
 async function clean() {
@@ -93,16 +93,16 @@ function js() {
     .pipe(rollup({
       plugins: [
         resolve(),
-        babel({
-          babelHelpers: 'bundled',
-          exclude: 'node_modules/**',
-          presets: [
-            ['@babel/preset-env', { modules: false }],
-          ],
-        })
+        //babel({ // @todo uncomment!
+        //  babelHelpers: 'bundled',
+        //  exclude: 'node_modules/**',
+        //  presets: [
+        //    ['@babel/preset-env', { modules: false }],
+        //  ],
+        //})
       ]
     }, 'iife'))
-    .pipe(terser())
+    //.pipe(terser()) // @todo uncomment!
     .pipe(rename(paths.js.dest))
     .pipe(dest(paths.pipe.dest))
     // @todo error handling

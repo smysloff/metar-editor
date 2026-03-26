@@ -28,7 +28,7 @@ export default class {
   result   = new Map()
   registry = new Map()
 
-  constructor(selector) {
+  constructor(selector, components = [], componentNames = []) {
 
     this.root = document.querySelector(selector)
 
@@ -57,6 +57,7 @@ export default class {
       this.forms.input.addEventListener(
         handled_event, (event) => this.#dispatch(event)))
 
+    this.loadComponents(components, componentNames)
   }
 
   #dispatch(event) {
@@ -226,6 +227,16 @@ export default class {
 
     this.#handleCheckedElements(elements, options)
     this.#runInitHandler(elements, options)
+  }
+
+  loadComponents(list, names) {
+    for (const name of names) {
+      const component = list[name]
+      if (!component) {
+        throw new Error(`Cannot find component '${name}'`)
+      }
+      component(this)
+    }
   }
 
 }

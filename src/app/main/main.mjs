@@ -1,5 +1,5 @@
 
-// file: src/components/metar/main/main.mjs
+// file: src/app/main/main.mjs
 
 export default function(form) {
 

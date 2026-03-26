@@ -1,49 +1,94 @@
 
 // file: src/index.mjs
 
-// Правильный порядок логических групп для METAR/SPECI:
-//  1. Тип сводки (METAR/SPECI + COR если есть)
-//  2. Код аэродрома (ICAO) (4 буквы)
-//  3. Дата и время (день + время UTC с Z в конце)
-//  4. Ветер (направление/скорость/порывы + единицы измерения + VRB/CALM если есть)
-//  5. Видимость (в метрах или км + направление если есть)
-//  6. Погодные явления (если есть: -RA, SN, FG и т.д.)
-//  7. Облачность (слои + высота + CB/TCU если есть)
-//  8. Температура/Точка росы (TT/TdTd с M для минуса)
-//  9. Давление (QNH в гПа)
-// 10. Дополнительно (NOSIG, CAVOK, RMK и т.д.)
 
-//      \/ COR       \/ NIL AUTO
-// METAR UUEE 141630Z 03012G20MPS 9999 -SN BKN015CB 03/M01 Q1012 NOSIG=
-// ↑     ↑    ↑       ↑           ↑    ↑   ↑        ↑      ↑     ↑
-// 1     2    3       4           5    6   7        8      9     10
+// Импорты модулей
 
-// Особенности:
-// - Если CAVOK (видимость ≥10 км, нет облаков ниже 5000ft, нет опасных явлений):
-// -- заменяет группы 5, 6, 7
-// - Погодные явления могут быть в любом месте после ветра, но обычно перед облачностью.
-// - RVR (видимость на ВПП) идёт после основной видимости, если есть.
-// @todo
+import FormManager      from './core/form_manager.mjs'
+import loadForm         from './app/main/main.mjs' // @todo
 
-import FormManager from './core/form_manager.mjs'
-import MetarComponents from './components/metar.mjs'
+import METAR_COMPONENTS from './components/metar/metar.mjs'
+//import TAF_COMPONENTS   from './components/taf/taf.mjs'
 
-const form = new FormManager('#amtk_metar_editor')
 
-MetarComponents.type(form)
-MetarComponents.cor(form)
-MetarComponents.icao(form)
-MetarComponents.datetime(form)
-MetarComponents.nil(form)
-MetarComponents.auto(form)
-MetarComponents.wind(form)
-MetarComponents.cavok(form)
-MetarComponents.visibility(form)
-MetarComponents.weather(form)
-MetarComponents.clouds(form)
+// Константы
 
-MetarComponents.temperature(form)
-MetarComponents.pressure(form)
-MetarComponents.trend(form)
+const METAR_FORM_SELECTOR = '#amtk_wre_metar'
+const TAF_FORM_SELECTOR   = '#amtk_wre_taf'
 
-MetarComponents.main(form)
+
+// Списки названий компонентов,
+// по которым будут искаться и загружаться в формы
+// необходимые для них компоненты
+
+const METAR_COMPONENTS_NAMES = [
+  'type',
+  'cor',
+  'icao',
+  'datetime',
+  'nil',
+  'auto',
+  'wind',
+  'cavok',
+  'visibility',
+  'weather',
+  'clouds',
+  'temperature',
+  'pressure',
+  'trend',
+]
+
+//const TAF_COMPONENTS_NAMES = [
+//  // type,
+//  // ...
+//]
+
+
+// Создание форм
+// и отрисовка компонентов в них
+
+const METAR_FORM = new FormManager(
+  METAR_FORM_SELECTOR,
+  METAR_COMPONENTS,
+  METAR_COMPONENTS_NAMES
+)
+
+//const TAF_FORM = new FormManager(
+//  TAF_FORM_SELECTOR,
+//  TAF_COMPONENTS,
+//  TAF_COMPONENTS_NAMES
+//)
+
+
+// Загрузка логики приложения
+
+loadForm(METAR_FORM)
+//loadForm(TAF_FORM)
+
+
+// Логика меню
+
+const entries = [
+  {
+    btn: document.querySelector('#amtk_wre_menu_btn_metar'),
+    form: document.querySelector('#amtk_wre_metar'),
+  },
+  {
+    btn: document.querySelector('#amtk_wre_menu_btn_taf'),
+    form: document.querySelector('#amtk_wre_taf'),
+  },
+]
+
+for (const {btn, form} of entries) {
+  btn.addEventListener('click', e => {
+    entries.forEach(entry => {
+      if (entry.btn === e.target) {
+        entry.form.classList.remove('amtk_wre_hidden')
+        entry.btn.classList.add('amtk_wre_active')
+      } else {
+        entry.form.classList.add('amtk_wre_hidden')
+        entry.btn.classList.remove('amtk_wre_active')
+      }
+    })
+  })
+}
