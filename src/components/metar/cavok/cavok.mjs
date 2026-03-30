@@ -11,6 +11,7 @@ export default function(form) {
 
       const { result } = this
       const { visibility, visibility_range } = this.elements
+      const { visibility_minimal, visibility_minimal_range, visibility_minimal_direction } = this.elements
       const { weather, intensity, precipitation, phenomena } = this.elements
       const { clouds_1_coverage, clouds_1, clouds_1_type, clouds_1_height } = this.elements
       const { clouds_2_coverage, clouds_2, clouds_2_type, clouds_2_height } = this.elements
@@ -20,6 +21,8 @@ export default function(form) {
       if (element.checked) {
         visibility.value = ''
         visibility_range.value = -1
+        visibility_minimal.value = ''
+        visibility_minimal_range.value = -1
         weather.value = ''
         intensity.forEach(item => item.checked = false)
         precipitation.value = ''
@@ -42,6 +45,9 @@ export default function(form) {
         clouds_4_height.value = -1
         visibility.disabled = true
         visibility_range.disabled = true
+        visibility_minimal.disabled = true
+        visibility_minimal_range.disabled = true
+        visibility_minimal_direction.disabled = true
         weather.disabled = true
         intensity.forEach(item => item.disabled = true)
         precipitation.disabled = true
@@ -63,6 +69,7 @@ export default function(form) {
         clouds_4_type.forEach(type => type.disabled = true)
         clouds_4_height.disabled = true
         result.set('visibility', '')
+        result.set('visibility_minimal', '')
         result.set('weather', '')
         result.set('clouds_1', '')
         result.set('clouds_2', '')
@@ -71,6 +78,9 @@ export default function(form) {
       } else {
         visibility.disabled = false
         visibility_range.disabled = false
+        visibility_minimal.disabled = false
+        visibility_minimal_range.disabled = false
+        visibility_minimal_direction.disabled = false
         weather.disabled = false
         intensity.forEach(item => item.disabled = false)
         precipitation.disabled = false

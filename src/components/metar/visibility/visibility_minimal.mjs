@@ -1,7 +1,8 @@
 
-// file: src/components/metar/visibility/visibility.mjs
+// file: src/components/metar/visibility/minimal_visibility.mjs
 
-// Допустимые значения видимости
+
+// @todo visibility_minimal_direction
 
 const visibilities = [-1]
 
@@ -15,28 +16,26 @@ const getBase = (value) => value < 800  ? 50
                          : value < 9999 ? 1000
                          :                0
 
-function updateVisibility() { // @todo update visibility_minimal
-  const { result } = this
+function updateVisibility() {
   const visibility = this.elements.visibility.value
   const minimal = this.elements.visibility_minimal.value
+  const direction = this.elements.visibility_minimal_direction.value
 
-  if (Number(minimal) >= Number(visibility)) {
-    result.set('visibility_minimal', '')
-  }
-
-  return visibility === '' ? '' : visibility.padStart(4, '0')
+  return (minimal === '' || Number(minimal) >= Number(visibility))
+    ? ''
+    : (minimal.padStart(4, '0') + direction)
 }
 
 export default function(form) {
 
-  form.addHandler('visibility', {
+  form.addHandler('visibility_minimal', {
 
     format: (value) => value.trim()
                             .replace(/\D/, '')
                             .substring(0, 4),
 
     auxiliary(value) {
-      const { visibility_range } = this.elements
+      const visibility_range = this.elements.visibility_minimal_range
 
       if (value === '') visibility_range.value = -1
 
@@ -56,9 +55,9 @@ export default function(form) {
 
   })
 
-  form.addHandler('visibility', {
+  form.addHandler('visibility_minimal', {
 
-    element: 'visibility_range',
+    element: 'visibility_minimal_range',
 
     init(elements) {
       const element = elements[0]
@@ -69,12 +68,17 @@ export default function(form) {
 
     auxiliary(value) {
       value = +value
-      const { visibility } = this.elements
+      const visibility = this.elements.visibility_minimal
       visibility.value = value === 0 ? '' : visibilities[value]
     },
 
     update: updateVisibility,
 
+  })
+
+  form.addHandler('visibility_minimal', {
+    element: 'visibility_minimal_direction',
+    update: updateVisibility,
   })
 
 }

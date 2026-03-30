@@ -119,7 +119,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
           div
             div
               label
-                span Преобладающая видимость (VV)
+                span Преобладающая
             div
               input(type='text' name='visibility' id='amtk_metar_visibility')
               label
@@ -130,10 +130,10 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
           div
             div
               label
-                span Минимальная видимость
+                span Минимальная
             div
               input(type='text' name='visibility_minimal' id='amtk_metar_visibility_minimal')
-              select
+              select(name='visibility_minimal_direction')
                 option N
                 option NE
                 option E
@@ -144,19 +144,6 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
                 option NW
             div
               input(type='range' name='visibility_minimal_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_minimal_range')
-
-        hr
-
-
-        div
-          div
-            label(for='amtk_metar_vertical_visibility')
-              span Вертикальная видимость
-          div
-            input(type='text' name='vertical_visibility' id='amtk_metar_vertical_visibility')
-          div
-            input(type='range' name='vertical_visibility_range' min='0' max='9999' step='1' value='0' id='amtk_metar_vertical_visibility_range')
-
 
       hr
 
@@ -196,6 +183,20 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
             option(value='SA') SA
             option(value='HZ') HZ
             option(value='PY') PY
+
+      hr
+
+
+      // Visibility vertical
+
+      div
+        div
+          label(for='amtk_metar_vertical_visibility')
+            span.bold Вертикальная видимость
+        div
+          input(type='text' name='vertical_visibility' id='amtk_metar_vertical_visibility')
+        div
+          input(type='range' name='vertical_visibility_range' min='0' max='9999' step='1' value='0' id='amtk_metar_vertical_visibility_range')
 
       hr
 

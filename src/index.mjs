@@ -31,6 +31,7 @@ const METAR_COMPONENTS_NAMES = [
   'wind',
   'cavok',
   'visibility',
+  'visibility_minimal',
   'weather',
   'clouds',
   'temperature',
