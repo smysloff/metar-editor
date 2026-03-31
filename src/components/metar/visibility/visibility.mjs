@@ -15,13 +15,16 @@ const getBase = (value) => value < 800  ? 50
                          : value < 9999 ? 1000
                          :                0
 
-function updateVisibility() { // @todo update visibility_minimal
+function updateVisibility() {
   const { result } = this
   const visibility = this.elements.visibility.value
   const minimal = this.elements.visibility_minimal.value
+  const direction = this.elements.visibility_minimal_direction.value
 
-  if (Number(minimal) >= Number(visibility)) {
+  if (minimal === '' || Number(minimal) >= Number(visibility)) {
     result.set('visibility_minimal', '')
+  } else {
+    result.set('visibility_minimal', (minimal.padStart(4, '0')) + direction)
   }
 
   return visibility === '' ? '' : visibility.padStart(4, '0')

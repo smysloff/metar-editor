@@ -33,6 +33,7 @@ const METAR_COMPONENTS_NAMES = [
   'visibility',
   'visibility_minimal',
   'weather',
+  'visibility_vertical',
   'clouds',
   'temperature',
   'pressure',
