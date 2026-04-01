@@ -2,7 +2,7 @@
 // file: src/components/metar/weather/weather.mjs
 
 
-function auxiliaryPhenomena(value) {
+function auxiliaryPhenomena(value, element) {
   const { weather } = this.elements
   if (value !== '') weather.value += value
 }
@@ -20,16 +20,15 @@ export default function(form) {
     element: 'weather',
 
     format(value) {
-      return value
-               .toUpperCase()
-               .replace(/[^-+A-Z ]/, '')
+      return value.toUpperCase()
+                  .replace(/[^-+A-Z ]/, '')
     },
 
     auxiliary(value) {
       const { intensity } = this.elements
       const sign = value[0]
       for (const item of intensity) {
-        item.checked = item.value === sign 
+        item.checked = item.value === sign
       }
     },
 

@@ -6,7 +6,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
 
   section#amtk_wre_metar.amtk_metar_editor
 
-    form(name='amtk_form_input')
+    form.amtk_wre_form(name='amtk_form_input')
 
       // Type
 
@@ -44,8 +44,8 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
             label(for='amtk_metar_icao')
               span.bold ICAO
           div
-            input(type='text' name='icao' id='amtk_metar_icao')
-            select(name='icao_variants')
+            input.amtk_wre_input_text(type='text' name='icao' id='amtk_metar_icao')
+            select.amtk_wre_input_select.amtk_wre_input_select(name='icao_variants')
               option Не найдено
 
         // DateTime
@@ -55,9 +55,9 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
             label(for='amtk_metar_date')
               span.bold Дата и время
           div
-            input(type='date' name='date' id='amtk_metar_date')
-            input(type='time' name='time' step='60' id='amtk_metar_time')
-            input(type='button' name='current' value='Сейчас' id='amtk_metar_current')
+            input.amtk_wre_input_date(type='date' name='date' id='amtk_metar_date')
+            input.amtk_wre_input_time(type='time' name='time' step='60' id='amtk_metar_time')
+            input.amtk_wre_input_button(type='button' name='current' value='Сейчас' id='amtk_metar_current')
 
       hr
 
@@ -90,22 +90,32 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
               //  input(type='checkbox' name='vrb' value='VRB' id='amtk_metar_vrb')
               //  span VRB
             div.amtk_flex_row.amtk_flex_gap_sm
-              input(type='text' name='direction' id='amtk_metar_direction')
+              input.amtk_wre_input_text(type='text' name='direction' id='amtk_metar_direction')
               input(type='range' name='direction_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_direction_range')
           div
             div
               label(for='amtk_metar_speed')
                 span Скорость
             div.amtk_flex_row.amtk_flex_gap_sm
-              input(type='text' name='speed' id='amtk_metar_speed')
+              input.amtk_wre_input_text(type='text' name='speed' id='amtk_metar_speed')
               input(type='range' name='speed_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_speed_range')
           div
             div
               label(for='amtk_metar_gust')
                 span Порыв
             div.amtk_flex_row.amtk_flex_gap_sm
-              input(type='text' name='gust' id='amtk_metar_gust')
+              input.amtk_wre_input_text(type='text' name='gust' id='amtk_metar_gust')
               input(type='range' name='gust_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_gust_range')
+      hr
+
+
+      // CAVOK
+
+      div.amtk_flex_row.amtk_flex_gap_sm
+        label(for='amtk_metar_cavok')
+          span.bold CAVOK
+        input#amtk_metar_cavok(type='checkbox' name='cavok' value='CAVOK')
+
       hr
 
 
@@ -116,24 +126,22 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
           div
             label(for='amtk_metar_visibility')
               span.bold Видимость
+
           div
             div
               label
                 span Преобладающая
-            div
-              input(type='text' name='visibility' id='amtk_metar_visibility')
-              label
-                input(type='checkbox' name='cavok' value='CAVOK')
-                span CAVOK
-              div
-                input(type='range' name='visibility_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_range')
+            div.amtk_flex_row.amtk_flex_gap_sm
+              input.amtk_wre_input_text(type='text' name='visibility' id='amtk_metar_visibility')
+              input(type='range' name='visibility_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_range')
+
           div
             div
               label
                 span Минимальная
-            div
-              input(type='text' name='visibility_minimal' id='amtk_metar_visibility_minimal')
-              select(name='visibility_minimal_direction')
+            div.amtk_flex_row.amtk_flex_gap_sm
+              input.amtk_wre_input_text(type='text' name='visibility_minimal' id='amtk_metar_visibility_minimal')
+              select.amtk_wre_input_select(name='visibility_minimal_direction')
                 option N
                 option NE
                 option E
@@ -142,8 +150,15 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
                 option SW
                 option W
                 option NW
-            div
               input(type='range' name='visibility_minimal_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_minimal_range')
+
+          div
+            div
+              label(for='amtk_metar_vertical_visibility')
+                span Вертикальная
+            div.amtk_flex_row.amtk_flex_gap_sm
+              input.amtk_wre_input_text(type='text' name='visibility_vertical' id='amtk_metar_visibility_vertical')
+              input(type='range' name='visibility_vertical_range' min='-1' max='20' step='1' value='0' id='amtk_metar_vertical_visibility_range')
 
       hr
 
@@ -155,14 +170,14 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
           label(for='amtk_metar_weather')
             span.bold Явления погоды
         div
-          input(type='text' name='weather' id='amtk_metar_weather')
+          input.amtk_wre_input_text(type='text' name='weather' id='amtk_metar_weather')
           label
             input(type='checkbox' name='intensity' value='-' id='amtk_metar_intensity_minus')
             span -
           label
             input(type='checkbox' name='intensity' value='+' id='amtk_metar_intensity_plus')
             span +
-          select(name='precipitation')
+          select.amtk_wre_input_select(name='precipitation')
             option(value='') Не выбрано
             option(value='DZ') DZ
             option(value='RA') RA
@@ -173,7 +188,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
             option(value='GR') GR
             option(value='GS') GS
             option(value='UP') UP
-          select(name='phenomena')
+          select.amtk_wre_input_select(name='phenomena')
             option(value='') Не выбрано
             option(value='BR') BR
             option(value='FG') FG
@@ -183,20 +198,6 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
             option(value='SA') SA
             option(value='HZ') HZ
             option(value='PY') PY
-
-      hr
-
-
-      // Visibility vertical
-
-      div
-        div
-          label(for='amtk_metar_vertical_visibility')
-            span.bold Вертикальная видимость
-        div
-          input(type='text' name='visibility_vertical' id='amtk_metar_visibility_vertical')
-        div
-          input(type='range' name='visibility_vertical_range' min='-1' max='20' step='1' value='0' id='amtk_metar_vertical_visibility_range')
 
       hr
 
@@ -213,14 +214,14 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
             label(for='amtk_metar_clouds_1')
               span 1-й слой
           div
-            select(name='clouds_1_coverage')
+            select.amtk_wre_input_select(name='clouds_1_coverage')
               //option(value='NCD') NCD
               option(value='FEW') FEW
               option(value='SCT') SCT
               option(value='BKN') BKN
               option(value='OVC') OVC
               //option(value='NSC') NSC
-            input(type='text' name='clouds_1' id='amtk_metar_clouds_1')
+            input.amtk_wre_input_text(type='text' name='clouds_1' id='amtk_metar_clouds_1')
             label
               input(type='checkbox' name='clouds_1_type' value='CB' id='amtk_metar_clouds_1_type_cb')
               span CB
@@ -237,14 +238,14 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
 
             div
               div
-                select(name='clouds_2_coverage')
+                select.amtk_wre_input_select(name='clouds_2_coverage')
                   //option(value='NCD') NCD
                   //option(value='FEW') FEW
                   option(value='SCT') SCT
                   option(value='BKN') BKN
                   option(value='OVC') OVC
                   //option(value='NSC') NSC
-                input(type='text' name='clouds_2' id='amtk_metar_clouds_2')
+                input.amtk_wre_input_text(type='text' name='clouds_2' id='amtk_metar_clouds_2')
                 label
                   input(type='checkbox' name='clouds_2_type' value='CB' id='amtk_metar_clouds_2_type_cb')
                   span CB
@@ -260,14 +261,14 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
                 summary 3-й слой
 
                 div
-                  select(name='clouds_3_coverage')
+                  select.amtk_wre_input_select(name='clouds_3_coverage')
                     //option(value='NCD') NCD
                     //option(value='FEW') FEW
                     //option(value='SCT') SCT
                     option(value='BKN') BKN
                     option(value='OVC') OVC
                     //option(value='NSC') NSC
-                  input(type='text' name='clouds_3' id='amtk_metar_clouds_3')
+                  input.amtk_wre_input_text(type='text' name='clouds_3' id='amtk_metar_clouds_3')
                   label
                     input(type='checkbox' name='clouds_3_type' value='CB' id='amtk_metar_clouds_3_type_cb')
                     span CB
@@ -284,7 +285,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
 
                     div
                       div
-                        select(name='clouds_4_coverage')
+                        select.amtk_wre_input_select(name='clouds_4_coverage')
                           //option(value='NCD') NCD
                           option(value='FEW') FEW
                           option(value='SCT') SCT
@@ -310,26 +311,27 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
 
         div
           div
-            input(type='text' name='temperature' id='amtk_metar_temperature' placeholder='воздух')
-            input(type='text' name='dew_point' id='amtk_metar_dew_point' placeholder='точка росы')
+            label(for='amtk_metar_temperature')
+              span Воздух
+
+          div.amtk_flex_row.amtk_flex_gap_sm
+            input.amtk_wre_input_text(type='text' name='temperature' id='amtk_metar_temperature')
+            label
+              input(type='checkbox' name='temperature_minus' value='-')
+              span –
+            input(type='range' name='temperature_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_temperature_range')
+
+        div
           div
-            div
-              label(for='amtk_metar_temperature')
-                span Воздух
-            div.flex
-              label
-                input(type='checkbox' name='temperature_minus' value='-')
-                span –
-              input(type='range' name='temperature_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_temperature_range')
-          div
-            div
-              label(for='amtk_metar_dew_point')
-                span Точка росы
-            div.flex
-              label
-                input(type='checkbox' name='dew_point_minus' value='-')
-                span –
-              input(type='range' name='dew_point_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_dew_point_range')
+            label(for='amtk_metar_dew_point')
+              span Точка росы
+
+          div.amtk_flex_row.amtk_flex_gap_sm
+            input.amtk_wre_input_text(type='text' name='dew_point' id='amtk_metar_dew_point')
+            label
+              input(type='checkbox' name='dew_point_minus' value='-')
+              span –
+            input(type='range' name='dew_point_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_dew_point_range')
 
       hr
 
@@ -337,24 +339,22 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
         div
           label(for='amtk_metar_pressure')
             span.bold Давление
-        div
-          div
-            input(type='text' name='pressure' id='amtk_metar_pressure')
-          div
-            input(type='range' name='pressure_range' min='899' max='1100' value='899' id='amtk_metar_pressure_range')
+        div.amtk_flex_row.amtk_flex_gap_sm
+          input.amtk_wre_input_text(type='text' name='pressure' id='amtk_metar_pressure')
+          input(type='range' name='pressure_range' min='899' max='1100' value='899' id='amtk_metar_pressure_range')
 
       hr
 
       div
         div
-          label(for='amtk_metar_trend_text')
-            span.bold TREND-прогноз (на 2 часа)
-        div()
-          //select(name='trend' id='amtk_metar_trend')
+          label(for='amtk_metar_rmk')
+            span.bold RMK
+        div
+          //select.amtk_wre_input_select(name='trend' id='amtk_metar_trend')
           //  option(value='NOSIG') NOSIG (без изменений)
           //  option(value='BECMG') BECMG (постепенные изменения)
           //  option(value='TEMPO') TEMPO (временные изменения)
-          input(type='text' name='trend_text' id='amtk_metar_trend_text' style='width:100%')
+          input.amtk_wre_input_text.amtk_wre_w100(type='text' name='rmk' id='amtk_metar_rmk')
         br
 
     form(name='amtk_form_output' method='post')
@@ -362,7 +362,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
         label(for='amtk_metar_output')
           span.bold METAR/SPECI
       div
-        textarea(name='output' style='resize: none' id='amtk_metar_output')
+        textarea.amtk_wre_form_output(name='output' id='amtk_metar_output' disabled)
       div
         div.amtk_flex_center.amtk_flex_gap_sm
           input(name='send' type='button' value='Отправить')

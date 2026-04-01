@@ -78,6 +78,7 @@ export default class {
         (element instanceof HTMLInputElement
          && this.#non_clickable_types.includes(element.type))
         || event.target instanceof HTMLSelectElement
+        || event.target instanceof HTMLOptionElement
       ) {
         return
       }

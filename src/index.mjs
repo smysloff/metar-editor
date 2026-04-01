@@ -37,7 +37,8 @@ const METAR_COMPONENTS_NAMES = [
   'clouds',
   'temperature',
   'pressure',
-  'trend',
+  //'trend',
+  'rmk',
 ]
 
 //const TAF_COMPONENTS_NAMES = [
@@ -70,27 +71,27 @@ loadForm(METAR_FORM)
 
 // Логика меню
 
-const entries = [
-  {
-    btn: document.querySelector('#amtk_wre_menu_btn_metar'),
-    form: document.querySelector('#amtk_wre_metar'),
-  },
-  {
-    btn: document.querySelector('#amtk_wre_menu_btn_taf'),
-    form: document.querySelector('#amtk_wre_taf'),
-  },
-]
-
-for (const {btn, form} of entries) {
-  btn.addEventListener('click', e => {
-    entries.forEach(entry => {
-      if (entry.btn === e.target) {
-        entry.form.classList.remove('amtk_wre_hidden')
-        entry.btn.classList.add('amtk_wre_active')
-      } else {
-        entry.form.classList.add('amtk_wre_hidden')
-        entry.btn.classList.remove('amtk_wre_active')
-      }
-    })
-  })
-}
+//const entries = [
+//  {
+//    btn: document.querySelector('#amtk_wre_menu_btn_metar'),
+//    form: document.querySelector('#amtk_wre_metar'),
+//  },
+//  {
+//    btn: document.querySelector('#amtk_wre_menu_btn_taf'),
+//    form: document.querySelector('#amtk_wre_taf'),
+//  },
+//]
+//
+//for (const {btn, form} of entries) {
+//  btn.addEventListener('click', e => {
+//    entries.forEach(entry => {
+//      if (entry.btn === e.target) {
+//        entry.form.classList.remove('amtk_wre_hidden')
+//        entry.btn.classList.add('amtk_wre_active')
+//      } else {
+//        entry.form.classList.add('amtk_wre_hidden')
+//        entry.btn.classList.remove('amtk_wre_active')
+//      }
+//    })
+//  })
+//}

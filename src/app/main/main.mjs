@@ -11,17 +11,17 @@ export default function(form) {
   //send_wrapper.hidden = false
   //submit_wrapper.hidden = true
 
-  send.addEventListener('click', (e) => {
-    e.preventDefault()
-    send_wrapper.classList.add('amtk_hidden')
-    submit_wrapper.classList.remove('amtk_hidden')
-  })
+  //send.addEventListener('click', (e) => {
+  //  e.preventDefault()
+  //  send_wrapper.classList.add('amtk_hidden')
+  //  submit_wrapper.classList.remove('amtk_hidden')
+  //})
 
-  reset.addEventListener('click', (e) => {
-    e.preventDefault()
-    send_wrapper.classList.remove('amtk_hidden')
-    submit_wrapper.classList.add('amtk_hidden')
-  })
+  //reset.addEventListener('click', (e) => {
+  //  e.preventDefault()
+  //  send_wrapper.classList.remove('amtk_hidden')
+  //  submit_wrapper.classList.add('amtk_hidden')
+  //})
 
   form.forms.output.addEventListener('submit', (e) => {
     e.preventDefault()

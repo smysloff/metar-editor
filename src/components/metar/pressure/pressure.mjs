@@ -43,8 +43,8 @@ export default function(form) {
 
       const { pressure_range: range } = this.elements
 
-      range.value = value === '' || Number(value) < 500
-        ? 499
+      range.value = value === '' || Number(value) < 900
+        ? 899
         : value
     },
 
@@ -58,7 +58,7 @@ export default function(form) {
 
     auxiliary(value) {
       const { pressure } = this.elements
-      pressure.value = Number(value) === 499 ? '' : value
+      pressure.value = Number(value) === 899 ? '' : value
     },
 
     update,

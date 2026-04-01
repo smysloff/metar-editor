@@ -16,7 +16,8 @@ import visibility_vertical from './visibility/visibility_vertical.mjs'
 import clouds              from './clouds/clouds.mjs'
 import temperature         from './temperature/temperature.mjs'
 import pressure            from './pressure/pressure.mjs'
-import trend               from './trend/trend.mjs'
+//import trend               from './trend/trend.mjs'
+import rmk                 from './rmk/rmk.mjs'
 
 export default {
   type,
@@ -34,5 +35,6 @@ export default {
   clouds,
   temperature,
   pressure,
-  trend,
+//  trend,
+  rmk,
 }

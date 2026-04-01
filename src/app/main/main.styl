@@ -67,6 +67,12 @@
   .amtk_hidden
     display none !important
 
+  .amtk_wre_w10
+    width 10rem
+
+  .amtk_wre_w100
+    width 100%
+
   input
   textarea
   select
@@ -133,14 +139,25 @@
     font-family monospace
 
   #amtk_metar_direction
-    width 3ch !important
+    width 4ch !important
     box-sizing initial
     padding .25rem
     margin 0
     font-family monospace
 
   #amtk_metar_speed
-    width 3ch !important
+  #amtk_metar_gust
+  #amtk_metar_visibility
+  #amtk_metar_visibility_minimal
+  #amtk_metar_visibility_vertical
+  #amtk_metar_clouds_1
+  #amtk_metar_clouds_2
+  #amtk_metar_clouds_3
+  #amtk_metar_clouds_4
+  #amtk_metar_pressure
+  #amtk_metar_temperature
+  #amtk_metar_dew_point
+    width 4ch !important
     box-sizing initial
     padding .25rem
     margin-top 0
@@ -148,18 +165,14 @@
     margin-bottom 0
     font-family monospace
 
-  #amtk_metar_gust
-    width 3ch !important
-    box-sizing initial
-    padding .25rem
-    margin-top 0
-    margin-right 0
-    margin-bottom 0
-    font-family monospace
+  #amtk_metar_temperature_range
+  #amtk_metar_dew_point_range
+    width 100%
 
   .amtk_flex_row
     display flex
     flex-direction row
+    align-items center
 
   .amtk_flex_gap_sm
     gap .25rem
