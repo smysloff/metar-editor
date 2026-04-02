@@ -13,23 +13,23 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
       div
         div
           label(for='amtk_metar_type_metar')
-            span.bold Тип сводки
+            span.wre_bold Тип сводки
         div
           label
             input(type='radio' name='type' value='METAR' pattern='[A-Z]{4}' title='4 заглавные буквы' id='amtk_metar_type_metar')
-            span METAR
+            span.wre_normal METAR
           label
             input(type='radio' name='type' value='SPECI' id='amtk_metar_type_speci')
-            span SPECI
+            span.wre_normal SPECI
           label
             input(type='checkbox' name='cor' value='COR' id='amtk_metar_cor')
-            span COR
+            span.wre_normal COR
           label
             input(type='checkbox' name='nil' value='NIL' id='amtk_metar_nil')
-            span NIL
+            span.wre_normal NIL
           label
             input(type='checkbox' name='auto' value='AUTO' id='amtk_metar_auto')
-            span AUTO
+            span.wre_normal AUTO
       hr
 
 
@@ -42,7 +42,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
         div
           div
             label(for='amtk_metar_icao')
-              span.bold ICAO
+              span.wre_bold ICAO
           div
             input.amtk_wre_input_text(type='text' name='icao' id='amtk_metar_icao')
             select.amtk_wre_input_select.amtk_wre_input_select(name='icao_variants')
@@ -53,7 +53,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
         div
           div
             label(for='amtk_metar_date')
-              span.bold Дата и время
+              span.wre_bold Дата и время
           div
             input.amtk_wre_input_date(type='date' name='date' id='amtk_metar_date')
             input.amtk_wre_input_time(type='time' name='time' step='60' id='amtk_metar_time')
@@ -67,25 +67,25 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
       div
         div
           label
-            span.bold Ветер
+            span.wre_bold Ветер
         div
           label
             input(type='radio' name='units' value='MPS' id='amtk_metar_units_mps')
-            span MPS
+            span.wre_normal MPS
           label
             input(type='radio' name='units' value='KT' id='amtk_metar_units_kt')
-            span KT
+            span.wre_normal KT
           label
             input(type='checkbox' name='calm' value='CALM' id='amtk_metar_calm')
-            span CALM
+            span.wre_normal CALM
           label
             input(type='checkbox' name='vrb' value='VRB' id='amtk_metar_vrb')
-            span VRB
+            span.wre_normal VRB
         div
           div
             div
               label(for='amtk_metar_direction')
-                span Направление
+                span.wre_normal Направление
               //label(for='amtk_metar_vrb')
               //  input(type='checkbox' name='vrb' value='VRB' id='amtk_metar_vrb')
               //  span VRB
@@ -95,14 +95,14 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
           div
             div
               label(for='amtk_metar_speed')
-                span Скорость
+                span.wre_normal Скорость
             div.amtk_flex_row.amtk_flex_gap_sm
               input.amtk_wre_input_text(type='text' name='speed' id='amtk_metar_speed')
               input(type='range' name='speed_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_speed_range')
           div
             div
               label(for='amtk_metar_gust')
-                span Порыв
+                span.wre_normal Порыв
             div.amtk_flex_row.amtk_flex_gap_sm
               input.amtk_wre_input_text(type='text' name='gust' id='amtk_metar_gust')
               input(type='range' name='gust_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_gust_range')
@@ -113,7 +113,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
 
       div.amtk_flex_row.amtk_flex_gap_sm
         label(for='amtk_metar_cavok')
-          span.bold CAVOK
+          span.wre_bold CAVOK
         input#amtk_metar_cavok(type='checkbox' name='cavok' value='CAVOK')
 
       hr
@@ -125,12 +125,12 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
         div
           div
             label(for='amtk_metar_visibility')
-              span.bold Видимость
+              span.wre_bold Видимость
 
           div
             div
               label
-                span Преобладающая
+                span.wre_normal Преобладающая
             div.amtk_flex_row.amtk_flex_gap_sm
               input.amtk_wre_input_text(type='text' name='visibility' id='amtk_metar_visibility')
               input(type='range' name='visibility_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_range')
@@ -138,7 +138,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
           div
             div
               label
-                span Минимальная
+                span.wre_normal Минимальная
             div.amtk_flex_row.amtk_flex_gap_sm
               input.amtk_wre_input_text(type='text' name='visibility_minimal' id='amtk_metar_visibility_minimal')
               select.amtk_wre_input_select(name='visibility_minimal_direction')
@@ -155,7 +155,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
           div
             div
               label(for='amtk_metar_vertical_visibility')
-                span Вертикальная
+                span.wre_normal Вертикальная
             div.amtk_flex_row.amtk_flex_gap_sm
               input.amtk_wre_input_text(type='text' name='visibility_vertical' id='amtk_metar_visibility_vertical')
               input(type='range' name='visibility_vertical_range' min='-1' max='20' step='1' value='0' id='amtk_metar_vertical_visibility_range')
@@ -168,15 +168,15 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
       div
         div
           label(for='amtk_metar_weather')
-            span.bold Явления погоды
+            span.wre_bold Явления погоды
         div
           input.amtk_wre_input_text(type='text' name='weather' id='amtk_metar_weather')
           label
             input(type='checkbox' name='intensity' value='-' id='amtk_metar_intensity_minus')
-            span -
+            span.wre_normal -
           label
             input(type='checkbox' name='intensity' value='+' id='amtk_metar_intensity_plus')
-            span +
+            span.wre_normal +
           select.amtk_wre_input_select(name='precipitation')
             option(value='') Не выбрано
             option(value='DZ') DZ
@@ -207,12 +207,12 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
       div
         div
           label(for='amtk_metar_clouds_1')
-            span.bold Облачность
+            span.wre_bold Облачность
 
         div
           div
             label(for='amtk_metar_clouds_1')
-              span 1-й слой
+              span.wre_normal 1-й слой
           div
             select.amtk_wre_input_select(name='clouds_1_coverage')
               //option(value='NCD') NCD
@@ -224,10 +224,10 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
             input.amtk_wre_input_text(type='text' name='clouds_1' id='amtk_metar_clouds_1')
             label
               input(type='checkbox' name='clouds_1_type' value='CB' id='amtk_metar_clouds_1_type_cb')
-              span CB
+              span.wre_normal CB
             label
               input(type='checkbox' name='clouds_1_type' value='TCU' id='amtk_metar_clouds_1_type_tcu')
-              span TCU
+              span.wre_normal TCU
           div
             input(type='range' name='clouds_1_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_1_height')
 
@@ -248,10 +248,10 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
                 input.amtk_wre_input_text(type='text' name='clouds_2' id='amtk_metar_clouds_2')
                 label
                   input(type='checkbox' name='clouds_2_type' value='CB' id='amtk_metar_clouds_2_type_cb')
-                  span CB
+                  span.wre_normal CB
                 label
                   input(type='checkbox' name='clouds_2_type' value='TCU' id='amtk_metar_clouds_2_type_tcu')
-                  span TCU
+                  span.wre_normal TCU
               div
                 input(type='range' name='clouds_2_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_2_height')
 
@@ -271,10 +271,10 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
                   input.amtk_wre_input_text(type='text' name='clouds_3' id='amtk_metar_clouds_3')
                   label
                     input(type='checkbox' name='clouds_3_type' value='CB' id='amtk_metar_clouds_3_type_cb')
-                    span CB
+                    span.wre_normal CB
                   label
                     input(type='checkbox' name='clouds_3_type' value='TCU' id='amtk_metar_clouds_3_type_tcu')
-                    span TCU
+                    span.wre_normal TCU
                 div
                   input(type='range' name='clouds_3_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_3_height')
 
@@ -295,10 +295,10 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
                         input(type='text' name='clouds_4' id='amtk_metar_clouds_4')
                         label
                           input(type='checkbox' name='clouds_4_type' value='CB' id='amtk_metar_clouds_4_type_cb')
-                          span CB
+                          span.wre_normal CB
                         label
                           input(type='checkbox' name='clouds_4_type' value='TCU' id='amtk_metar_clouds_4_type_tcu')
-                          span TCU
+                          span.wre_normal TCU
                       div
                         input(type='range' name='clouds_4_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_4_height')
 
@@ -307,30 +307,30 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
       div
         div
           label(for='amtk_temperature_temperature')
-            span.bold Температура
+            span.wre_bold Температура
 
         div
           div
             label(for='amtk_metar_temperature')
-              span Воздух
+              span.wre_normal Воздух
 
           div.amtk_flex_row.amtk_flex_gap_sm
             input.amtk_wre_input_text(type='text' name='temperature' id='amtk_metar_temperature')
             label
               input(type='checkbox' name='temperature_minus' value='-')
-              span –
+              span.wre_normal –
             input(type='range' name='temperature_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_temperature_range')
 
         div
           div
             label(for='amtk_metar_dew_point')
-              span Точка росы
+              span.wre_normal Точка росы
 
           div.amtk_flex_row.amtk_flex_gap_sm
             input.amtk_wre_input_text(type='text' name='dew_point' id='amtk_metar_dew_point')
             label
               input(type='checkbox' name='dew_point_minus' value='-')
-              span –
+              span.wre_normal –
             input(type='range' name='dew_point_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_dew_point_range')
 
       hr
@@ -338,7 +338,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
       div
         div
           label(for='amtk_metar_pressure')
-            span.bold Давление
+            span.wre_bold Давление
         div.amtk_flex_row.amtk_flex_gap_sm
           input.amtk_wre_input_text(type='text' name='pressure' id='amtk_metar_pressure')
           input(type='range' name='pressure_range' min='899' max='1100' value='899' id='amtk_metar_pressure_range')
@@ -348,7 +348,7 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
       div
         div
           label(for='amtk_metar_rmk')
-            span.bold RMK
+            span.wre_bold RMK
         div
           //select.amtk_wre_input_select(name='trend' id='amtk_metar_trend')
           //  option(value='NOSIG') NOSIG (без изменений)
@@ -360,21 +360,21 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
     form(name='amtk_form_output' method='post')
       div
         label(for='amtk_metar_output')
-          span.bold METAR/SPECI
+          span.wre_bold METAR/SPECI
       div
-        textarea.amtk_wre_form_output(name='output' id='amtk_metar_output' disabled)
+        textarea.wre_form_output(name='output' id='amtk_metar_output' disabled)
       div
         div.amtk_flex_center.amtk_flex_gap_sm
-          input(name='send' type='button' value='Отправить')
+          input.wre_metar_send(name='send' type='button' value='Передать сообщение')
 
         div.amtk_flex_center.amtk_flex_gap_sm.wre_hidden
           span Выпустить это сообщение?
-          input(name='submit' type='submit' value='Да')
-          input(name='reset' type='reset' value='Отмена')
+          input.wre_metar_submit(name='submit' type='submit' value='Да')
+          input.wre_metar_reset(name='reset' type='reset' value='Отмена')
 
         div.amtk_flex_center.amtk_flex_gap_sm.wre_hidden
           span#amtk_wre_metar_display
-          input(name='back' type='reset' value='Назад')
+          input.wre_metar_back(name='back' type='reset' value='Назад')
 
 
   section#amtk_wre_taf.amtk_wre_taf.amtk_wre_hidden
