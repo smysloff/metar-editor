@@ -10,7 +10,7 @@ async function sendMetar(type, msgTxt) {
   const options = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded: charset=UTF-8',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
       'X-Requested-With': 'XMLHttpRequest',
     },
     body: new URLSearchParams({ type, msgTxt }).toString(),

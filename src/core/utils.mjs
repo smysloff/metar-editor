@@ -31,7 +31,7 @@ export async function getIcaosFromDB(fir) {
     return []
   }
 
-  const endpoint = '/sigmet/modules/taceditor/'
+  const endpoint = 'modules/taceditor/'
 
   try {
 
