@@ -366,10 +366,16 @@ div#amtk_wre.amtk_wre(data-version='909cfb9b1dacc63c')
       div
         div.amtk_flex_center.amtk_flex_gap_sm
           input(name='send' type='button' value='Отправить')
-        div.amtk_flex_center.amtk_flex_gap_sm.amtk_hidden
+
+        div.amtk_flex_center.amtk_flex_gap_sm.wre_hidden
           span Выпустить это сообщение?
           input(name='submit' type='submit' value='Да')
           input(name='reset' type='reset' value='Отмена')
+
+        div.amtk_flex_center.amtk_flex_gap_sm.wre_hidden
+          span#amtk_wre_metar_display
+          input(name='back' type='reset' value='Назад')
+
 
   section#amtk_wre_taf.amtk_wre_taf.amtk_wre_hidden
     h2 TAF
