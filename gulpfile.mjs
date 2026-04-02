@@ -93,16 +93,16 @@ function js() {
     .pipe(rollup({
       plugins: [
         resolve(),
-        //babel({ // @todo uncomment!
-        //  babelHelpers: 'bundled',
-        //  exclude: 'node_modules/**',
-        //  presets: [
-        //    ['@babel/preset-env', { modules: false }],
-        //  ],
-        //})
+        babel({
+          babelHelpers: 'bundled',
+          exclude: 'node_modules/**',
+          presets: [
+            ['@babel/preset-env', { modules: false }],
+          ],
+        })
       ]
     }, 'iife'))
-    //.pipe(terser()) // @todo uncomment!
+    .pipe(terser())
     .pipe(rename(paths.js.dest))
     .pipe(dest(paths.pipe.dest))
     // @todo error handling
