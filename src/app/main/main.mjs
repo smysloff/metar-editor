@@ -5,7 +5,7 @@
 // type: 'SA_SEND' - METAR, 'SP_SEND' - SPECI
 async function sendMetar(type, msgTxt) {
 
-  const endpoint = '/handler.php'
+  const endpoint = '/sigmet/handler.php'
 
   const options = {
     method: 'POST',
