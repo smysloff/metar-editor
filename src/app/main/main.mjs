@@ -5,12 +5,13 @@
 // type: 'SA_SEND' - METAR, 'SP_SEND' - SPECI
 async function sendMetar(type, msgTxt) {
 
-  const endpoint = '/sigmet/handler.php'
+  const endpoint = 'handler.php'
 
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded: charset=UTF-8',
+      'X-Requested-With': 'XMLHttpRequest',
     },
     body: new URLSearchParams({ type, msgTxt }).toString(),
   }
