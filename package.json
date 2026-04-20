@@ -23,10 +23,10 @@
     "stylus": "^0.64.0"
   },
   "scripts": {
-    "start": "yarn node examples/server.mjs",
-    "build": "yarn gulp",
-    "clean": "yarn gulp clean",
-    "watch": "yarn gulp update",
+    "start": "node examples/server.mjs",
+    "build": "gulp",
+    "clean": "gulp clean",
+    "watch": "gulp update",
     "restart": "yarn build && yarn start",
     "test": "echo \"no tests specfied\""
   }
