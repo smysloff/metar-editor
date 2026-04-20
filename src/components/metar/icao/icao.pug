@@ -1,0 +1,27 @@
+//- file: src/components/metar/icao/icao.pug
+
+// ICAO & DateTime
+
+div.amtk_flex_row.amtk_flex_gap_md
+
+  // ICAO
+
+  div
+    div
+      label(for='amtk_metar_icao')
+        span.wre_bold ICAO
+    div
+      input.amtk_wre_input_text(type='text' name='icao' id='amtk_metar_icao')
+      select.amtk_wre_input_select.amtk_wre_input_select(name='icao_variants')
+        option Не найдено
+
+  // DateTime
+
+  div
+    div
+      label(for='amtk_metar_date')
+        span.wre_bold Дата и время
+    div
+      input.amtk_wre_input_date(type='date' name='date' id='amtk_metar_date')
+      input.amtk_wre_input_time(type='time' name='time' step='60' id='amtk_metar_time')
+      input.amtk_wre_input_button(type='button' name='current' value='Сейчас' id='amtk_metar_current')

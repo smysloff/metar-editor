@@ -1,0 +1,40 @@
+//- file: src/components/metar/visibility/visibility.pug
+
+div
+  div
+    div
+      label(for='amtk_metar_visibility')
+        span.wre_bold Видимость
+
+    div
+      div
+        label
+          span.wre_normal Преобладающая
+      div.amtk_flex_row.amtk_flex_gap_sm
+        input.amtk_wre_input_text(type='text' name='visibility' id='amtk_metar_visibility')
+        input(type='range' name='visibility_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_range')
+
+    div
+      div
+        label
+          span.wre_normal Минимальная
+      div.amtk_flex_row.amtk_flex_gap_sm
+        input.amtk_wre_input_text(type='text' name='visibility_minimal' id='amtk_metar_visibility_minimal')
+        select.amtk_wre_input_select(name='visibility_minimal_direction')
+          option N
+          option NE
+          option E
+          option SE
+          option S
+          option SW
+          option W
+          option NW
+        input(type='range' name='visibility_minimal_range' min='-1' max='9999' step='1' value='-1' id='amtk_metar_visibility_minimal_range')
+
+    div
+      div
+        label(for='amtk_metar_vertical_visibility')
+          span.wre_normal Вертикальная
+      div.amtk_flex_row.amtk_flex_gap_sm
+        input.amtk_wre_input_text(type='text' name='visibility_vertical' id='amtk_metar_visibility_vertical')
+        input(type='range' name='visibility_vertical_range' min='-1' max='20' step='1' value='0' id='amtk_metar_vertical_visibility_range')

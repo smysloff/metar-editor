@@ -1,0 +1,9 @@
+//- file: src/components/metar/pressure/pressure.pug
+
+div
+  div
+    label(for='amtk_metar_pressure')
+      span.wre_bold Давление
+  div.amtk_flex_row.amtk_flex_gap_sm
+    input.amtk_wre_input_text(type='text' name='pressure' id='amtk_metar_pressure')
+    input(type='range' name='pressure_range' min='899' max='1100' value='899' id='amtk_metar_pressure_range')

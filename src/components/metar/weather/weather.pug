@@ -1,0 +1,35 @@
+//- file: src/components/metar/weather/weather.pug
+
+div
+  div
+    label(for='amtk_metar_weather')
+      span.wre_bold Явления погоды
+  div
+    input.amtk_wre_input_text(type='text' name='weather' id='amtk_metar_weather')
+    label
+      input(type='checkbox' name='intensity' value='-' id='amtk_metar_intensity_minus')
+      span.wre_normal -
+    label
+      input(type='checkbox' name='intensity' value='+' id='amtk_metar_intensity_plus')
+      span.wre_normal +
+    select.amtk_wre_input_select(name='precipitation')
+      option(value='') Не выбрано
+      option(value='DZ') DZ
+      option(value='RA') RA
+      option(value='SN') SN
+      option(value='SG') SG
+      option(value='IC') IC
+      option(value='PL') PL
+      option(value='GR') GR
+      option(value='GS') GS
+      option(value='UP') UP
+    select.amtk_wre_input_select(name='phenomena')
+      option(value='') Не выбрано
+      option(value='BR') BR
+      option(value='FG') FG
+      option(value='FU') FU
+      option(value='VA') VA
+      option(value='DU') DU
+      option(value='SA') SA
+      option(value='HZ') HZ
+      option(value='PY') PY
