@@ -28,6 +28,7 @@
     "clean": "gulp clean",
     "watch": "gulp update",
     "restart": "yarn build && yarn start",
+    "push": "git push all && git push github && git push origin",
     "test": "echo \"no tests specfied\""
   }
 }

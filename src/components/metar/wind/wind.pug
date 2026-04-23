@@ -1,7 +1,5 @@
 //- file: src/components/metar/wind/wind.pug
 
-// Wind
-
 div
   div
     label
@@ -24,9 +22,6 @@ div
       div
         label(for='amtk_metar_direction')
           span.wre_normal Направление
-        //label(for='amtk_metar_vrb')
-        //  input(type='checkbox' name='vrb' value='VRB' id='amtk_metar_vrb')
-        //  span VRB
       div.amtk_flex_row.amtk_flex_gap_sm
         input.amtk_wre_input_text(type='text' name='direction' id='amtk_metar_direction')
         input(type='range' name='direction_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_direction_range')
@@ -44,3 +39,22 @@ div
       div.amtk_flex_row.amtk_flex_gap_sm
         input.amtk_wre_input_text(type='text' name='gust' id='amtk_metar_gust')
         input(type='range' name='gust_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_gust_range')
+  div
+    div
+      label
+        span.wre_bold Сильные изменения
+    div
+      div
+        div
+          label(for='amtk_metar_vrb_min')
+            span.wre_normal От
+        div.amtk_flex_row.amtk_flex_gap_sm
+          input.amtk_wre_imput_text(type='text' name='vrb_min' id='amtk_metar_vrb_min')
+          input(type='range' name='vrb_min_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_vrb_min_range')
+      div
+        div
+          label(for='amtk_metar_vrb_max')
+            span.wre_normal До
+        div.amtk_flex_row.amtk_flex_gap_sm
+          input.amtk_wre_imput_text(type='text' name='vrb_max' id='amtk_metar_vrb_max')
+          input(type='range' name='vrb_max_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_vrb_max_range')

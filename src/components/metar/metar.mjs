@@ -8,6 +8,7 @@ import datetime            from './datetime/datetime.mjs'
 import nil                 from './nil/nil.mjs'
 import auto                from './auto/auto.mjs'
 import wind                from './wind/wind.mjs'
+//import wind_vrb            from './wind/wind_vrb.mjs'
 import cavok               from './cavok/cavok.mjs'
 import visibility          from './visibility/visibility.mjs'
 import visibility_minimal  from './visibility/visibility_minimal.mjs'
@@ -27,6 +28,7 @@ export default {
   nil,
   auto,
   wind,
+  //wind_vrb,
   cavok,
   visibility,
   visibility_minimal,

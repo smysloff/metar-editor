@@ -29,6 +29,7 @@ const METAR_COMPONENTS_NAMES = [
   'nil',
   'auto',
   'wind',
+  //'wind_vrb',
   'cavok',
   'visibility',
   'visibility_minimal',

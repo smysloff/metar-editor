@@ -102,7 +102,7 @@ function js() {
         })
       ]
     }, 'iife'))
-    .pipe(terser())
+    //.pipe(terser())
     .pipe(rename(paths.js.dest))
     .pipe(dest(paths.pipe.dest))
     // @todo error handling
