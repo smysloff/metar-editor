@@ -6,7 +6,7 @@ export default function(form) {
 }
 
 function init() {
-  this.result.set('rmk', '=')
+  //this.result.set('rmk', '=')
 }
 
 function format(value) {
@@ -14,5 +14,5 @@ function format(value) {
 }
 
 function update(value = '') {
-  return value + '='
+  return value// + '='
 }

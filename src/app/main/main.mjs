@@ -6,6 +6,7 @@
 async function sendMetar(type, msgTxt) {
 
   const endpoint = 'handler.php'
+  msgTxt += '='
 
   const options = {
     method: 'POST',

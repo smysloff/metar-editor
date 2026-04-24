@@ -225,9 +225,10 @@ function update(value, element) {
   }
 
   if (
-        vrb.checked &&
-     (  (Number(speed.value) <= 1 && units.value === 'MPS')
-     || (Number(speed.value) <= 3 && units.value === 'KT') )
+    vrb.checked && (
+      (vrb_min.value === '' || vrb_max.value === '')
+      || Number(vrb_min.value) >= Number(vrb_max.value)
+    )
   ) {
     result += vrb.value
   } else {
