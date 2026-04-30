@@ -1,6 +1,15 @@
+
 //- file: src/components/metar/cavok/cavok.pug
 
-div.amtk_flex_row.amtk_flex_gap_sm
-  label(for='amtk_metar_cavok')
-    span.wre_bold CAVOK
-  input#amtk_metar_cavok(type='checkbox' name='cavok' value='CAVOK')
+section.wre-section
+  .wre-component
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_cavok')
+          span.wre-field__badge.wre-field__badge--bold CAVOK
+        input.wer-field__input.wer-field__input--checkbox(
+          id='wre_metar_cavok'
+          type='checkbox'
+          name='cavok'
+          value='CAVOK'
+        )

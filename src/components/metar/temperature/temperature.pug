@@ -1,30 +1,86 @@
+
 //- file: src/components/metar/temperature/temperature.pug
 
-div
-  div
-    label(for='amtk_temperature_temperature')
-      span.wre_bold Температура
+section.wre-section
 
-  div
-    div
-      label(for='amtk_metar_temperature')
-        span.wre_normal Воздух
+  //- Temperature
 
-    div.amtk_flex_row.amtk_flex_gap_sm
-      input.amtk_wre_input_text(type='text' name='temperature' id='amtk_metar_temperature')
-      label
-        input(type='checkbox' name='temperature_minus' value='-')
-        span.wre_normal –
-      input(type='range' name='temperature_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_temperature_range')
+  .wre-component
 
-  div
-    div
-      label(for='amtk_metar_dew_point')
-        span.wre_normal Точка росы
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_temperature')
+          span.wre-field__badge.wre-field__badge--bold Температура
 
-    div.amtk_flex_row.amtk_flex_gap_sm
-      input.amtk_wre_input_text(type='text' name='dew_point' id='amtk_metar_dew_point')
-      label
-        input(type='checkbox' name='dew_point_minus' value='-')
-        span.wre_normal –
-      input(type='range' name='dew_point_range' min='-1' max='80' step='1' value='-1' id='amtk_metar_dew_point_range')
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_temperature')
+          span.wre-field__badge Воздух
+
+    .wre-columns
+
+      .wre-field
+        input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+          id='wre_metar_temperature'
+          type='text'
+          name='temperature'
+        )
+
+      .wre-field
+        label.wre-field__label(for='wre_temperature_minus')
+          input(
+            id='wre_temperature_minus'
+            type='checkbox'
+            name='temperature_minus'
+            value='-'
+          )
+          span.wre_normal –
+
+      .wre-field.wre-field--w100
+        input.wre-field__input.wre-field__input--range(
+          id='wre_metar_temperature_range'
+          type='range'
+          name='temperature_range'
+          min='-1' max='80'
+          step='1'
+          value='-1'
+        )
+
+  //- Dew point
+
+  .wre-component
+
+    .wre-row
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_dew_point')
+          span.wre-field__badge Точка росы
+
+    .wre-columns
+
+      .wre-field
+        input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+          id='wre_metar_dew_point'
+          type='text'
+          name='dew_point'
+        )
+
+      .wre-field
+        label.wre-field__label
+          input.wre-field__input.wre-field__input--checkbox(
+            id='wre_metar_dew_point_minus'
+            type='checkbox'
+            name='dew_point_minus'
+            value='-'
+          )
+          span.wre-field__badge –
+
+      .wre-field.wre-field--w100
+        input.wre-field__input.wre-field__input--range(
+          id='wre_metar_dew_point_range'
+          type='range'
+          name='dew_point_range'
+          min='-1' max='80'
+          step='1'
+          value='-1'
+        )

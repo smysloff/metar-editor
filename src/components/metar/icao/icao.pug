@@ -1,27 +1,59 @@
+
 //- file: src/components/metar/icao/icao.pug
 
-// ICAO & DateTime
+section.wre-section
 
-div.amtk_flex_row.amtk_flex_gap_md
+  .wre-columns
 
-  // ICAO
 
-  div
-    div
-      label(for='amtk_metar_icao')
-        span.wre_bold ICAO
-    div
-      input.amtk_wre_input_text(type='text' name='icao' id='amtk_metar_icao')
-      select.amtk_wre_input_select.amtk_wre_input_select(name='icao_variants')
-        option Не найдено
+    //- ICAO
 
-  // DateTime
+    .wre-component
 
-  div
-    div
-      label(for='amtk_metar_date')
-        span.wre_bold Дата и время
-    div
-      input.amtk_wre_input_date(type='date' name='date' id='amtk_metar_date')
-      input.amtk_wre_input_time(type='time' name='time' step='60' id='amtk_metar_time')
-      input.amtk_wre_input_button(type='button' name='current' value='Сейчас' id='amtk_metar_current')
+      .wre-row
+        .wre-field
+          label.wre-field__label(for='wre_metar_icao')
+            span.wre-field__badge.wre-field__badge--bold ICAO
+
+      .wre-row
+        .wre-field
+          input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+            id='wre_metar_icao'
+            type='text'
+            name='icao'
+          )
+          select.wre-field__input.wre-field__input--select(
+            id='wre_metar_icao_variants'
+            name='icao_variants'
+          )
+            option Не найдено
+
+
+    //- DateTime
+
+    .wre-component
+
+      .wre-row
+        .wre-field
+          label.wre-field__label(for='wre_metar_date')
+            span.wre-field__badge.wre-field__badge--bold Дата и время
+
+      .wre-row
+        .wre-field
+          input.wre-field__input.wre-field__input--date(
+            id='wre_metar_date'
+            type='date'
+            name='date'
+          )
+          input.wre-field__input.wre-field__input--time(
+            id='wre_metar_time'
+            type='time'
+            name='time'
+            step='60'
+          )
+          input.wre-field__input.wre-field__input--button(
+            id='wre_metar_current_time'
+            type='button'
+            name='current_time'
+            value='Сейчас'
+          )

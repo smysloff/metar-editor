@@ -1,99 +1,233 @@
+
 //- file: src/components/metar/clouds/clouds.pug
 
-div
-  div
-    label(for='amtk_metar_clouds_1')
-      span.wre_bold Облачность
+section.wre-section
 
-  div
-    div
-      label(for='amtk_metar_clouds_1')
-        span.wre_normal 1-й слой
-    div
-      select.amtk_wre_input_select(name='clouds_1_coverage')
-        //option(value='NCD') NCD
-        option(value='FEW') FEW
-        option(value='SCT') SCT
-        option(value='BKN') BKN
-        option(value='OVC') OVC
-        //option(value='NSC') NSC
-      input.amtk_wre_input_text(type='text' name='clouds_1' id='amtk_metar_clouds_1')
-      label
-        input(type='checkbox' name='clouds_1_type' value='CB' id='amtk_metar_clouds_1_type_cb')
-        span.wre_normal CB
-      label
-        input(type='checkbox' name='clouds_1_type' value='TCU' id='amtk_metar_clouds_1_type_tcu')
-        span.wre_normal TCU
-    div
-      input(type='range' name='clouds_1_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_1_height')
+  .wre-component
 
-  div
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_clouds_1')
+          span.wre-field__badge.wre-field__badge--bold Облачность
 
-    details
-      summary 2-й слой
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_clouds_1')
+          span.wre-field__badge 1-й слой
 
-      div
-        div
-          select.amtk_wre_input_select(name='clouds_2_coverage')
+    .wre-row
+
+      .wre-columns
+
+        .wre-field
+          select.wre-field__input.wre-field__input--select(
+            name='clouds_1_coverage'
+          )
             //option(value='NCD') NCD
-            //option(value='FEW') FEW
+            option(value='FEW') FEW
             option(value='SCT') SCT
             option(value='BKN') BKN
             option(value='OVC') OVC
             //option(value='NSC') NSC
-          input.amtk_wre_input_text(type='text' name='clouds_2' id='amtk_metar_clouds_2')
-          label
-            input(type='checkbox' name='clouds_2_type' value='CB' id='amtk_metar_clouds_2_type_cb')
-            span.wre_normal CB
-          label
-            input(type='checkbox' name='clouds_2_type' value='TCU' id='amtk_metar_clouds_2_type_tcu')
-            span.wre_normal TCU
-        div
-          input(type='range' name='clouds_2_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_2_height')
 
-      div
+        .wre-field
+          input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+            id='wre_metar_clouds_1'
+            type='text'
+            name='clouds_1'
+          )
 
-        details
-          summary 3-й слой
+        .wre-field
+          label.wre-field__label(for='wre_metar_clouds_1_type_cb')
+            input.wre-field__input.wre-field__input--checkbox(
+              id='wre_metar_clouds_1_type_cb'
+              type='checkbox'
+              name='clouds_1_type'
+              value='CB'
+            )
+            span.wre-field__badge CB
 
-          div
-            select.amtk_wre_input_select(name='clouds_3_coverage')
+        .wre-field
+          label.wre-field__label(for='wre_metar_clouds_1_type_tcu')
+            input.wre-field__input.wre-field__input--checkbox(
+              id='wre_metar_clouds_1_type_tcu'
+              type='checkbox'
+              name='clouds_1_type'
+              value='TCU'
+            )
+            span.wre-field__badge TCU
+
+      .wre-row
+        .wre-field
+          input.wre-field__input.wre-field__input--range(
+            id='wre_metar_clouds_1_height'
+            type='range'
+            name='clouds_1_height'
+            min='-1' max='600'
+            step='1'
+            value='-1'
+          )
+
+      details.wre-details
+        summary.wre-details__summary 2-й слой
+
+        .wre-columns
+
+          .wre-field
+            select.wre-field__input.wre-field__input--select(
+              name='clouds_2_coverage'
+            )
               //option(value='NCD') NCD
               //option(value='FEW') FEW
-              //option(value='SCT') SCT
+              option(value='SCT') SCT
               option(value='BKN') BKN
               option(value='OVC') OVC
               //option(value='NSC') NSC
-            input.amtk_wre_input_text(type='text' name='clouds_3' id='amtk_metar_clouds_3')
-            label
-              input(type='checkbox' name='clouds_3_type' value='CB' id='amtk_metar_clouds_3_type_cb')
-              span.wre_normal CB
-            label
-              input(type='checkbox' name='clouds_3_type' value='TCU' id='amtk_metar_clouds_3_type_tcu')
-              span.wre_normal TCU
-          div
-            input(type='range' name='clouds_3_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_3_height')
 
-          div
+          .wre-field
+            input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+              id='wre_metar_clouds_2'
+              type='text'
+              name='clouds_2'
+            )
 
-            details
-              summary Дополнительная группа
+          .wre-field
+            label.wre-field__label(for='wre_metar_clouds_2_type_cb')
+              input.wre-field__input.wre-field__input--checkbox(
+                id='wre_metar_clouds_2_type_cb'
+                type='checkbox'
+                name='clouds_2_type'
+                value='CB'
+              )
+              span.wre-field__badge CB
 
-              div
-                div
-                  select.amtk_wre_input_select(name='clouds_4_coverage')
-                    //option(value='NCD') NCD
-                    option(value='FEW') FEW
-                    option(value='SCT') SCT
-                    option(value='BKN') BKN
-                    option(value='OVC') OVC
-                    //option(value='NSC') NSC
-                  input(type='text' name='clouds_4' id='amtk_metar_clouds_4')
-                  label
-                    input(type='checkbox' name='clouds_4_type' value='CB' id='amtk_metar_clouds_4_type_cb')
-                    span.wre_normal CB
-                  label
-                    input(type='checkbox' name='clouds_4_type' value='TCU' id='amtk_metar_clouds_4_type_tcu')
-                    span.wre_normal TCU
-                div
-                  input(type='range' name='clouds_4_height' min='-1' max='600' step='1' value='-1' id='amtk_metar_clouds_4_height')
+          .wre-field
+            label.wre-field__label(for='wre_metar_clouds_2_type_tcu')
+              input.wre-field__input.wre-field__input--checkbox(
+                id='wre_metar_clouds_2_type_tcu'
+                type='checkbox'
+                name='clouds_2_type'
+                value='TCU'
+              )
+              span.wre-field__badge TCU
+
+
+        .wre-row
+          .wre-field
+            input.wre-field__input.wre-field__input--range(
+              id='wre_metar_clouds_2_height'
+              type='range'
+              name='clouds_2_height'
+              min='-1' max='600'
+              step='1'
+              value='-1'
+            )
+
+
+        details.wre-details
+          summary.wre-details__summary 3-й слой
+
+          .wre-columns
+
+            .wre-field
+              select.wre-field__input.wre-field__input--select(
+                name='clouds_3_coverage'
+              )
+                //option(value='NCD') NCD
+                //option(value='FEW') FEW
+                //option(value='SCT') SCT
+                option(value='BKN') BKN
+                option(value='OVC') OVC
+                //option(value='NSC') NSC
+
+            .wre-field
+              input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+                id='wre_metar_clouds_3'
+                type='text'
+                name='clouds_3'
+              )
+
+            .wre-field
+              label.wre-field__label(for='wre_metar_clouds_3_type_cb')
+                input.wre-field__input.wre-field__input--checkbox(
+                  id='wre_metar_clouds_3_type_cb'
+                  type='checkbox'
+                  name='clouds_3_type'
+                  value='CB'
+                )
+                span.wre-field__badge CB
+
+            .wre-field
+              label.wre-field__label(for='wre_metar_clouds_3_type_tcu')
+                input(
+                  id='wre_metar_clouds_3_type_tcu'
+                  type='checkbox'
+                  name='clouds_3_type'
+                  value='TCU'
+                )
+                span.wre-field__badge TCU
+
+          .wre-row
+            .wre-field
+              input.wre-field__input.wre-field__input--range(
+                id='wre_metar_clouds_3_height'
+                type='range'
+                name='clouds_3_height'
+                min='-1' max='600'
+                step='1'
+                value='-1'
+              )
+
+          details.wre-details
+            summary.wre-details__summary Дополнительная группа
+
+            .wre-columns
+
+              .wre-field
+                select.wre-field__input.wre-field__input--select(
+                  name='clouds_4_coverage'
+                )
+                  //option(value='NCD') NCD
+                  option(value='FEW') FEW
+                  option(value='SCT') SCT
+                  option(value='BKN') BKN
+                  option(value='OVC') OVC
+                  //option(value='NSC') NSC
+
+              .wre-field
+                input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+                  id='wre_metar_clouds_4'
+                  type='text'
+                  name='clouds_4'
+                )
+
+              .wre-field
+                label.wre-field__label(for='wre_metar_clouds_4_type_cb')
+                  input.wre-field__input.wre-field__input--checkbox(
+                    id='wre_metar_clouds_4_type_cb'
+                    type='checkbox'
+                    name='clouds_4_type'
+                    value='CB'
+                  )
+                  span.wre-field__badge CB
+
+              .wre-field
+                label.wre-field__label(for='wre_metar_clouds_4_type_tcu')
+                  input.wre-field__input.wre-field__input--checkbox(
+                    id='wre_metar_clouds_4_type_tcu'
+                    type='checkbox'
+                    name='clouds_4_type'
+                    value='TCU'
+                  )
+                  span.wre-field__badge TCU
+
+            .wre-row
+              .wre-field
+                input.wre-field__input.wre-field__input--range(
+                  id='wre_metar_clouds_4_height'
+                  type='range'
+                  name='clouds_4_height'
+                  min='-1' max='600'
+                  step='1'
+                  value='-1'
+                )

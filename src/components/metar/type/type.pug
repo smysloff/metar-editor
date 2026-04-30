@@ -1,26 +1,64 @@
+
 //- src/components/metar/type/type.pug
 
-// Type
+section.wre-section
 
-div
-  div
-    label(for='amtk_metar_type_metar')
-      span.wre_bold Тип сводки
-  div
-    div
-      label
-        input(type='radio' name='type' value='METAR' pattern='[A-Z]{4}' title='4 заглавные буквы' id='amtk_metar_type_metar')
-        span.wre_normal METAR
-      label
-        input(type='radio' name='type' value='SPECI' id='amtk_metar_type_speci')
-        span.wre_normal SPECI
-      label
-        input(type='checkbox' name='cor' value='COR' id='amtk_metar_cor')
-        span.wre_normal COR
-    div
-      label
-        input(type='checkbox' name='nil' value='NIL' id='amtk_metar_nil')
-        span.wre_normal NIL
-      label
-        input(type='checkbox' name='auto' value='AUTO' id='amtk_metar_auto')
-        span.wre_normal AUTO
+  .wre-component
+
+    .wre-row
+
+      .wre-field
+        label.wre-field__label(for='amtk_metar_type_metar')
+          span.wre-field__badge.wre-field__badge--bold Тип сводки
+
+    .wre-columns
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_type_metar')
+          input.wre-field__input.wre-field__input--radio(
+            id='wre_metar_type_metar'
+            type='radio'
+            name='type'
+            value='METAR'
+          )
+          span.wre-field__badge METAR
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_type_speci')
+          input.wre-field__input.wre-field__input--radio(
+            id='wre_metar_type_speci'
+            type='radio'
+            name='type'
+            value='SPECI'
+          )
+          span.wre-field__badge SPECI
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_cor')
+          input.wre-field__input.wre-field__input--checkbox(
+            id='wre_metar_cor'
+            type='checkbox'
+            name='cor'
+            value='COR'
+          )
+          span.wre-field__badge COR
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_nil')
+          input.wre-field__input.wre-field__input--checkbox(
+            id='wre_metar_nil'
+            type='checkbox'
+            name='nil'
+            value='NIL'
+          )
+          span.wre-field__badge NIL
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_auto')
+          input.wre-field__input.wre-field__input--checkbox(
+            id='wre_metar_auto'
+            type='checkbox'
+            name='auto'
+            value='AUTO'
+          )
+          span.wre-field__badge AUTO

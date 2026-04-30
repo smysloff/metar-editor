@@ -1,60 +1,160 @@
+
 //- file: src/components/metar/wind/wind.pug
 
-div
-  div
-    label
-      span.wre_bold Ветер
-  div
-    label
-      input(type='radio' name='units' value='MPS' id='amtk_metar_units_mps')
-      span.wre_normal MPS
-    label
-      input(type='radio' name='units' value='KT' id='amtk_metar_units_kt')
-      span.wre_normal KT
-    label
-      input(type='checkbox' name='calm' value='CALM' id='amtk_metar_calm')
-      span.wre_normal CALM
-    label
-      input(type='checkbox' name='vrb' value='VRB' id='amtk_metar_vrb')
-      span.wre_normal VRB
-  div
-    div
-      div
-        label(for='amtk_metar_direction')
-          span.wre_normal Направление
-      div.amtk_flex_row.amtk_flex_gap_sm
-        input.amtk_wre_input_text(type='text' name='direction' id='amtk_metar_direction')
-        input(type='range' name='direction_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_direction_range')
-    div
-      div
-        label(for='amtk_metar_speed')
-          span.wre_normal Скорость
-      div.amtk_flex_row.amtk_flex_gap_sm
-        input.amtk_wre_input_text(type='text' name='speed' id='amtk_metar_speed')
-        input(type='range' name='speed_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_speed_range')
-    div
-      div
-        label(for='amtk_metar_gust')
-          span.wre_normal Порыв
-      div.amtk_flex_row.amtk_flex_gap_sm
-        input.amtk_wre_input_text(type='text' name='gust' id='amtk_metar_gust')
-        input(type='range' name='gust_range' min='-1' max='99' step='1' value='-1' id='amtk_metar_gust_range')
-  div
-    div
-      label
-        span.wre_bold Сильные изменения
-    div
-      div
-        div
-          label(for='amtk_metar_vrb_min')
-            span.wre_normal От
-        div.amtk_flex_row.amtk_flex_gap_sm
-          input.amtk_wre_imput_text(type='text' name='vrb_min' id='amtk_metar_vrb_min')
-          input(type='range' name='vrb_min_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_vrb_min_range')
-      div
-        div
-          label(for='amtk_metar_vrb_max')
-            span.wre_normal До
-        div.amtk_flex_row.amtk_flex_gap_sm
-          input.amtk_wre_imput_text(type='text' name='vrb_max' id='amtk_metar_vrb_max')
-          input(type='range' name='vrb_max_range' min='-10' max='360' step='10' value='-10' id='amtk_metar_vrb_max_range')
+section.wre-section
+
+  //- Wind
+
+  .wre-component
+
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_direction')
+          span.wre-field__badge.wre-field__badge--bold Ветер
+
+    .wre-columns
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_units_mps')
+          input.wre-field__input.wre-field__input--radio(
+            id='wre_metar_units_mps'
+            type='radio'
+            name='units'
+            value='MPS'
+          )
+          span.wre_field__badge MPS
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_units_kt')
+          input.wre-field__input.wre-field__input--radio(
+            id='wre_metar_units_kt'
+            type='radio'
+            name='units'
+            value='KT'
+          )
+          span.wre-field__badge KT
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_calm')
+          input.wre-field__input.wre-field__input--checkbox(
+            id='wre_metar_calm'
+            type='checkbox'
+            name='calm'
+            value='CALM'
+          )
+          span.wre-field__badge CALM
+
+      .wre-field
+        label.wre-field__label(for='wre_metar_vrb')
+          input.wre-field__input.wre-field__input--checkbox(
+            id='wre_metar_vrb'
+            type='checkbox'
+            name='vrb'
+            value='VRB'
+          )
+          span.wre-field__badge VRB
+
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_direction')
+          span.wre-field__badge Направление
+      .wre-field
+        .wre-columns
+          input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+            id='wre_metar_direction'
+            type='text'
+            name='direction'
+          )
+          input.wre-field__input.wre-field__input--range(
+            id='wre_metar_direction_range'
+            type='range'
+            name='direction_range'
+            min='-10' max='360'
+            step='10'
+            value='-10'
+          )
+
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_speed')
+          span.wre-field__badge Скорость
+      .wre-field
+        .wre-columns
+          input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+            id='wre_metar_speed'
+            type='text'
+            name='speed'
+          )
+          input.wre-field__input.wre-field__input--range(
+            id='wre_metar_speed_range'
+            type='range'
+            name='speed_range'
+            min='-1' max='99'
+            step='1'
+            value='-1'
+          )
+
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_gust')
+          span.wre_field__badge Порыв
+      .wre-field
+        .wre-columns
+          input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+            id='wre_metar_gust'
+            type='text'
+            name='gust'
+          )
+          input.wre-field__input.wre-field__input--range(
+            id='wre_metar_gust_range'
+            type='range'
+            name='gust_range'
+            min='-1' max='99'
+            step='1'
+            value='-1'
+          )
+
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_vrb_min')
+          span.wre-field__badge.wre-field__badge--bold Сильные изменения
+
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_vrb_min')
+          span.wre-field__badge От
+      .wre-field
+        .wre-columns
+          input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+            id='wre_metar_vrb_min'
+            type='text'
+            name='vrb_min'
+          )
+          input.wre-field__input.wre-field__input--range(
+            id='wre_metar_vrb_min_range'
+            type='range'
+            name='vrb_min_range'
+            min='-10' max='360'
+            step='10'
+            value='-10'
+          )
+
+    .wre-row
+      .wre-field
+        label.wre-field__label(for='wre_metar_vrb_max')
+          span.wre-field__badge До
+      .wre-field
+        .wre-columns
+          input.wre-field__input.wre-field__input--text.wre-field__input--4ch(
+            id='wre_metar_vrb_max'
+            type='text'
+            name='vrb_max'
+          )
+          input.wre-field__input.wre-field__input--range(
+            id='wre_metar_vrb_max_range'
+            type='range'
+            name='vrb_max_range'
+            min='-10' max='360'
+            step='10'
+            value='-10'
+          )
